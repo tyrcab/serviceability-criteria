@@ -1,6 +1,14 @@
 {
   "Comeng": {
-    "Advertising": [],
+    "Advertising":[
+  { "condition": "External - Worn", "category": "MNT" },
+  { "condition": "External - Damaged but Safe", "category": "MNT" },
+  { "condition": "External - Damaged Unsafe/Out of Gauge", "category": "C" },
+  { "condition": "External - Missing", "category": "MNT" },
+  { "condition": "Internal - Damaged", "category": "MNT" },
+  { "condition": "Internal - Missing", "category": "MNT" }
+],
+],
     "Bell": [],
     "Blinds": [],
     "Bogies": [],
