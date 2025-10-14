@@ -1,1 +1,34 @@
+{
+  "Comeng": {
+    "Advertising": [],
+    "Bell": [],
+    "Blinds": [],
+    "Bogies": [],
+    "Brake Systems": [],
+    "Brake Controls": [],
+    "Brake Equipment": [],
+    "Brake Block / Head": [],
+    "Cabinet Covers / Doors": [],
+    "Car Body": [],
+    "Circuit Breakers": [],
+    "Communication Systems - Touch Screen DDU (561M & Above)": [],
+    "Communication Systems - Push Button DDU (554M & Below)": [],
+    "Communication Systems": [],
+    "Compressor": [],
+    "Continuity Test": [],
+    "Couplers": [],
+    "Doors": [],
+    "Drivers Cab": [],
+    "Fault Indicator Lights": [],
+    "Filters": [],
+    "Gauges": [],
+    "Graffiti": [],
+    "Grids": [],
+    "Hand Rails": [],
+    "Headboard": []
+  },
+  "Siemens": {},
+  "X'Trapolis": {},
+  "HCMT": {}
+}
 
