@@ -1,14 +1,3 @@
-/* Logo styling */
-.logo-container {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.logo {
-  width: 100px;        /* default width */
-  max-width: 40%;      /* responsive */
-  height: auto;
-}
 /* Reset default margins and paddings */
 * {
   margin: 0;
@@ -22,6 +11,16 @@ body {
   color: #222;
   padding: 20px;
   line-height: 1.5;
+}
+/* Logo styling */
+.logo-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.logo {
+  width: 100px;        /* default width */
+  max-width: 40%;      /* responsive */
+  height: auto;
 }
 
 /* Title */
