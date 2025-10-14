@@ -1,3 +1,14 @@
+/* Logo styling */
+.logo-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 100px;        /* default width */
+  max-width: 40%;      /* responsive */
+  height: auto;
+}
 /* Reset default margins and paddings */
 * {
   margin: 0;
