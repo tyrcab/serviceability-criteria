@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Serviceability Criteria Guideline</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Serviceability Criteria Guideline</h1>
+
+  <div class="dropdown-container">
+    <label>Train Type:</label>
+    <select id="trainType">
+      <option value="">Select Train Type</option>
+      <option value="Comeng">Comeng</option>
+      <option value="Siemens">Siemens</option>
+      <option value="X'Trapolis">X'Trapolis</option>
+      <option value="HCMT">HCMT</option>
+    </select>
+
+    <label>Equipment Fault:</label>
+    <select id="equipmentFault" disabled>
+      <option value="">Select Equipment Fault</option>
+    </select>
+
+    <label>Fault/Condition:</label>
+    <select id="faultCondition" disabled>
+      <option value="">Select Fault/Condition</option>
+    </select>
+  </div>
+
+  <div class="result-box" id="resultBox" style="display: none;">
+    <h2>Result</h2>
+    <p><strong>Fault/Condition:</strong> <span id="resultCondition"></span></p>
+    <p><strong>Category:</strong> <span id="resultCategory"></span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
