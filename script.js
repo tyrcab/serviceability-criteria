@@ -1,6 +1,5 @@
-let data = {}; // will hold the JSON data
+let data = {}; // JSON data holder
 
-// Load JSON when page loads
 fetch('data.json')
   .then(response => {
     if (!response.ok) throw new Error("Failed to load data.json");
@@ -51,13 +50,18 @@ equipmentFaultSelect.addEventListener("change", function() {
 
   if (trainType && fault && data[trainType][fault]) {
     const conditions = data[trainType][fault];
-    conditions.forEach(item => {
-      const opt = document.createElement("option");
-      opt.value = item.condition;
-      opt.textContent = item.condition;
-      faultConditionSelect.appendChild(opt);
-    });
-    faultConditionSelect.disabled = false;
+    if (conditions.length > 0) {
+      conditions.forEach(item => {
+        const opt = document.createElement("option");
+        opt.value = item.condition;
+        opt.textContent = item.condition;
+        faultConditionSelect.appendChild(opt);
+      });
+      faultConditionSelect.disabled = false;
+    } else {
+      // No fault/condition entries yet
+      faultConditionSelect.disabled = true;
+    }
   } else {
     faultConditionSelect.disabled = true;
   }
