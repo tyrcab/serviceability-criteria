@@ -1,0 +1,95 @@
+const data = {
+  "Comeng": {
+    "Brakes": [
+      { condition: "Brake pads worn", category: "B" },
+      { condition: "Low air pressure", category: "A" }
+    ],
+    "Doors": [
+      { condition: "Door won’t close", category: "A" },
+      { condition: "Door sensor fault", category: "C" }
+    ]
+  },
+  "Siemens": {
+    "Traction": [
+      { condition: "Traction motor fault", category: "B" },
+      { condition: "Inverter overheating", category: "C" }
+    ]
+  },
+  "X'Trapolis": {
+    "HVAC": [
+      { condition: "Aircon not cooling", category: "B" },
+      { condition: "Fan noise", category: "C" }
+    ]
+  },
+  "HCMT": {
+    "Doors": [
+      { condition: "Door obstruction", category: "A" },
+      { condition: "Door indicator light faulty", category: "C" }
+    ]
+  }
+};
+
+const trainTypeSelect = document.getElementById("trainType");
+const equipmentFaultSelect = document.getElementById("equipmentFault");
+const faultConditionSelect = document.getElementById("faultCondition");
+const resultBox = document.getElementById("resultBox");
+const resultCondition = document.getElementById("resultCondition");
+const resultCategory = document.getElementById("resultCategory");
+
+trainTypeSelect.addEventListener("change", function() {
+  const trainType = this.value;
+  equipmentFaultSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
+  faultConditionSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
+  faultConditionSelect.disabled = true;
+  resultBox.style.display = "none";
+
+  if (trainType) {
+    const faults = Object.keys(data[trainType]);
+    faults.forEach(fault => {
+      const opt = document.createElement("option");
+      opt.value = fault;
+      opt.textContent = fault;
+      equipmentFaultSelect.appendChild(opt);
+    });
+    equipmentFaultSelect.disabled = false;
+  } else {
+    equipmentFaultSelect.disabled = true;
+  }
+});
+
+equipmentFaultSelect.addEventListener("change", function() {
+  const trainType = trainTypeSelect.value;
+  const fault = this.value;
+  faultConditionSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
+  resultBox.style.display = "none";
+
+  if (fault) {
+    const conditions = data[trainType][fault];
+    conditions.forEach(item => {
+      const opt = document.createElement("option");
+      opt.value = item.condition;
+      opt.textContent = item.condition;
+      faultConditionSelect.appendChild(opt);
+    });
+    faultConditionSelect.disabled = false;
+  } else {
+    faultConditionSelect.disabled = true;
+  }
+});
+
+faultConditionSelect.addEventListener("change", function() {
+  const trainType = trainTypeSelect.value;
+  const fault = equipmentFaultSelect.value;
+  const condition = this.value;
+
+  if (condition) {
+    const found = data[trainType][fault].find(item => item.condition === condition);
+    if (found) {
+      resultCondition.textContent = found.condition;
+      resultCategory.textContent = found.category;
+      resultBox.style.display = "block";
+    }
+  } else {
+    resultBox.style.display = "none";
+  }
+});
