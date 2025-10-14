@@ -1,76 +1,1489 @@
 {
   "Comeng": {
-    "Advertising":[
-  { "condition": "External - Worn", "category": "MNT" },
-  { "condition": "External - Damaged but Safe", "category": "MNT" },
-  { "condition": "External - Damaged Unsafe/Out of Gauge", "category": "C" },
-  { "condition": "External - Missing", "category": "MNT" },
-  { "condition": "Internal - Damaged", "category": "MNT" },
-  { "condition": "Internal - Missing", "category": "MNT" }
-],
-    "Bell": [],
-    "Blinds": [],
-    "Bogies": [],
-    "Brake Systems": [],
-    "Brake Controls": [],
-    "Brake Equipment": [],
-    "Brake Block / Head": [],
-    "Cabinet Covers / Doors": [],
-    "Car Body": [],
-    "Circuit Breakers": [],
-    "Communication Systems - Touch Screen DDU (561M & Above)": [],
-    "Communication Systems - Push Button DDU (554M & Below)": [],
-    "Communication Systems": [],
-    "Compressor": [],
-    "Continuity Test": [],
-    "Couplers": [],
-    "Doors": [],
-    "Drivers Cab": [],
-    "Fault Indicator Lights": [],
-    "Filters": [],
-    "Gauges": [],
-    "Graffiti": [],
-    "Grids": [],
-    "Hand Rails": [],
-    "Headboard": [],
-    "Horn": [],
-    "Hoses": [],
-    "HVAC": [],
-    "Inter-car Access": [],
-    "Isolating Cocks": [],
-    "Ladder": [],
-    "Lights (External)": [],
-    "Lights (Internal)": [],
-    "Loss-of-Overhead Shutdown Module": [],
-    "Low Pressure Flag": [],
-    "Main Reservoir": [],
-    "Master Controller": [],
-    "Master/Controller Key": [],
-    "Master Selector Switch/Reverser": [],
-    "Mirrors": [],
-    "Motors": [],
-    "Other Equipment": [],
-    "Pantograph": [],
-    "Pilot Valves": [],
-    "Pipes": [],
-    "Power Conversion": [],
-    "Power Point": [],
-    "Safety Flag Holder": [],
-    "Seats": [],
-    "Secondary Devices": [],
-    "Steps": [],
-    "Strap Hanger": [],
-    "Suspension": [],
-    "Switches": [],
-    "Totally Disabled Train": [],
-    "Train Cable": [],
-    "Train Presentation": [],
-    "Trip": [],
-    "VICERS": [],
-    "Wheel Chair Ramp": [],
-    "Windows": [],
-    "Windscreen": [],
-    "Windscreen Wiper": []
+    "Advertising": [
+      {
+        "condition": "External - Worn",
+        "category": "MNT"
+      },
+      {
+        "condition": "External - Damaged but Safe",
+        "category": "MNT"
+      },
+      {
+        "condition": "External - Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "External - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Internal - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Internal - Missing",
+        "category": "MNT"
+      }
+    ],
+    "Bell": [
+      {
+        "condition": "Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Button - Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Button - Inoperative, Drivers Dash",
+        "category": "MNT"
+      }
+    ],
+    "Blinds": [
+      {
+        "condition": "Side Window  - Will Not Raise / Stay Up (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Side Window  - Will Not Raise / Stay Up (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Side Window  - Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Side Window  - Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Side Window  - Will Not Stay Down (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Side Window  - Will Not Stay Down (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Side Window  - Rod, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Side Window  - Rod, Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Side Window  - Rod, Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Side Window  - Torn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Blind Removed (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Blind Removed (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Blind wedged up (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Blind wedged up (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Blind cut away (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Blind cut away (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Not Removed (Leading Motor)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Not Removed (Trailing Motor)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Raise / Stay Up, Not Removed (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen (B side) - Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Stay Down (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen (B side) - Will Not Stay Down (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Rod, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Rod, Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen (B side) - Rod, Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (B side) - Torn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Will Not Raise / Stay Up, Blind Removed",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Will Not Raise / Stay Up, Blind Wedged Up",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Will Not Raise / Stay Up, Blind Cut Away",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Will Not Raise / Stay Up, Not Removed",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Will Not Stay Down",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Rod, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Rod, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Rod, Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen (A Side) - Torn",
+        "category": "MNT"
+      }
+    ],
+    "Bogies": [
+      {
+        "condition": "Axle Box - Hot Box",
+        "category": "C"
+      },
+      {
+        "condition": "Axle Box - Cover Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Axle Box - Seized",
+        "category": "C"
+      },
+      {
+        "condition": "Earth Strap on Bogie - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Earth Strap on Bogie - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Earth Strap on Bogie - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Guard Iron - Damaged, Clear of Brake Rigging, Bogie Not Isolated (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Guard Iron - Damaged, Clear of Brake Rigging, Bogie Not Isolated (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Guard Iron - Damaged, Fouling Brake Rigging, Bogie Isolated, Brakes Jammed On",
+        "category": "C"
+      },
+      {
+        "condition": "Guard Iron - Damaged, Fouling Brake Rigging, Bogie Isolated, Brakes Released (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Guard Iron - Damaged, Fouling Brake Rigging, Bogie Isolated, Brakes Released (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Guard Iron - Damaged, Fouling Brake Rigging, Bogie Isolated, Brakes Released (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Guard Iron - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Guard Iron - Missing",
+        "category": "S"
+      },
+      {
+        "condition": "Guard Iron - Too Low",
+        "category": "MNT"
+      },
+      {
+        "condition": "Guard Iron - Too High",
+        "category": "S"
+      },
+      {
+        "condition": "Leads on Bogie - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Leads on Bogie - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Leads on Bogie - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Noisy",
+        "category": "MNT"
+      },
+      {
+        "condition": "Pipes on Bogie - Blow of Air, Not Isolated, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Pipes on Bogie - Blow of Air, Not Isolated, Excessive Blow",
+        "category": "S"
+      },
+      {
+        "condition": "Pipes on Bogie - Blow of Air, Bogie Isolated (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Pipes on Bogie - Blow of Air, Bogie Isolated (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Pipes on Bogie - Blow of Air, Bogie Isolated (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Pipes on Bogie - Damaged/Bent, Not Isolated, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Pipes on Bogie - Damaged/Bent, Not Isolated, Excessive Blow",
+        "category": "S"
+      },
+      {
+        "condition": "Pipes on Bogie - Damaged/Bent, Bogie Isolated (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Pipes on Bogie - Damaged/Bent, Bogie Isolated (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Pipes on Bogie - Damaged/Bent, Bogie Isolated (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Pipes on Bogie - Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "Wheels - Cracked",
+        "category": "C"
+      },
+      {
+        "condition": "Wheels - Flats Minor Flats (Less than 60mm)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Wheels - Flats Excessive Flats (Greater than 60mm)",
+        "category": "S"
+      },
+      {
+        "condition": "Wheels - Moved",
+        "category": "C"
+      },
+      {
+        "condition": "Wheels - Pits",
+        "category": "MNT"
+      },
+      {
+        "condition": "Wheels - Scaled",
+        "category": "S"
+      }
+    ],
+    "Brake Systems": [
+      {
+        "condition": "Automatic Brake (Air) - Not Applying, One Car Only, Fault Not Rectified",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Not Applying, More Than 1 Car, Fault Not Rectified",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Not Applying, Whole Train, Fault Not Rectified",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Not Releasing, One Car Only",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Not Releasing, More Than 1 Car",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Not Releasing, Whole Train",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Erratic / Jerking, With sufficient control",
+        "category": "S"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Erratic / Jerking, Insufficient control",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Erratic / Jerking, Caused Safety Incident, Platform Overshoot",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Erratic / Jerking, Caused Safety Incident, SPAD",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Erratic / Jerking, Caused Safety Incident, Other",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Poor Braking, With sufficient control",
+        "category": "S"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Poor Braking, Insufficient control",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Poor Braking, Caused Safety Incident, Platform Overshoot",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Poor Braking, Caused Safety Incident, SPAD",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Poor Braking, Caused Safety Incident, Other",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Releasing, One Car Only, Fault Not Rectified",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Releasing, More Than 1 Car, Fault Not Rectified",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Releasing, Whole Train, Fault Not Rectified",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Releasing, Caused Safety Incident, Platform Overshoot",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Releasing, Caused Safety Incident, SPAD",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Releasing, Caused Safety Incident, Other",
+        "category": "C"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Slow to Apply, EP Brake Operational",
+        "category": "S"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Slow to Apply, EP Brake Not Operational, With sufficient control",
+        "category": "S"
+      },
+      {
+        "condition": "Automatic Brake (Air) - Slow to Apply, EP Brake Not Operational, Insufficient control",
+        "category": "C"
+      },
+      {
+        "condition": "Control Governor - Failed Test On Preparation (Leading Motor)",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Control Governor - Failed Test On Preparation, Other Motor (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Control Governor - Failed Test On Preparation, Other Motor (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Governor - Bypass Button, Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Governor - Bypass Button, Damaged/Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Governor - Bypass Button, Shade Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "EP Brake - Inoperative",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "EP Brake - Not Releasing",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "EP Brake - Circuit Breaker Tripping",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "EP Brake - Stepping Incorrectly / Erratic",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "EP Brake - Low Pressure",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "EP Brake - Self Applying (Creeping on)",
+        "category": "MNT"
+      },
+      {
+        "condition": "EP Brake - High Pressure",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "EP Brake - Poor Braking, No Safety Incident",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "EP Brake - Poor Braking, Caused Safety Incident, Platform Overshoot",
+        "category": "C"
+      },
+      {
+        "condition": "EP Brake - Poor Braking, Caused Safety Incident, SPAD",
+        "category": "C"
+      },
+      {
+        "condition": "EP Brake - Poor Braking, Caused Safety Incident, Other",
+        "category": "C"
+      },
+      {
+        "condition": "EP Brake - Simultaneous EP & Rheo",
+        "category": "MNT"
+      },
+      {
+        "condition": "EP Brake - Lock Out Magnet Valve Inoperative",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Apply, By Train Line Push Button (At least 75% available)",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Apply, By Train Line Push Button (Less than 75% available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Apply, By Locking The Master Controller (At least 75% available)",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Apply, By Locking The Master Controller (Less than 75% available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Apply, By The 60 Second Timer (At least 75% available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Apply, By The 60 Second Timer (Less than 75% available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Release, Unable To Release Locally",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Release, Able To Release Locally",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Applies in Running",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Excessive Blow, Released & Isolated (At least 75% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Excessive Blow, Released & Isolated (Less than 75% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Excessive Blow, Unable To Release",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Button / Switch (Local), Will not release, Able To Release By Train Line",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Button / Switch (Local), Will not release, Unable To Release By Train Line, Released & Isolated (At least 75% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Button / Switch (Local), Will not release, Unable To Release By Train Line, Released & Isolated (Less than 75% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Button / Switch (Local), Will not apply (At least 75% available)",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Button / Switch (Local), Will not apply (Less than 75% available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Button (Local), Blow of Air",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Damaged, Released & Isolated (At least 75% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Damaged, Released & Isolated (Less than 75% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Damaged, Unable To Release",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Gauge, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Gauge, Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Hand Brace Missing (Tread Brake)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Indicator Light (Applied), Permanently On, Brakes Released",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Indicator Light (Applied), Permanently On, Brakes Stuck On",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Indicator Light (Applied), No Indication",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Not Applying (At least 75% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Not Applying (Less than 75% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Stuck On, Released & Isolated (At least 75% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Stuck On, Released & Isolated (Less than 75% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Stuck On, Unable To Release",
+        "category": "C"
+      },
+      {
+        "condition": "Rheostat Brake - Erratic, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Erratic, Fault Lights Not Illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Dropping Out, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Dropping Out, Fault Lights Not Illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - High Amps, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - High Amps, Fault Lights Not Illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Inoperative, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Inoperative, Fault Lights Not Illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Low Amps, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Low Amps, Fault Lights Not Illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Poor Blending, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Poor Blending, Fault Lights Not Illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Poor Braking, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Poor Braking, Fault Lights Not Illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Simultaneous Rheo & EP, Fault lights illuminated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rheostat Brake - Simultaneous Rheo & EP, Fault Lights Not Illuminated",
+        "category": "MNT"
+      }
+    ],
+    "Brake Controls": [
+      {
+        "condition": "Drivers Brake Valve - Blow of Air, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Blow of Air, Excessive Blow",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Handle Missing (Lead/Trail Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Handle Missing (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Out of Position",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Blow of Air, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Blow of Air, Excessive Blow",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Pin Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Pin Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Closed but Charging Brake Pipe",
+        "category": "C"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Guard, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Guard, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - BV Isolating Cock, Guard, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Creeps On",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Base Plate, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Base Plate, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Base Plate, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Nut, Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Brake Valve - Handle, Nut, Missing",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Brake Valve - Pedestal Cover, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Pedestal Cover, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Brake Valve - Pedestal Cover, Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Drivers Brake Valve - Release Prevention Valve, Inoperative",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Brake Valve - Self releasing",
+        "category": "S"
+      },
+      {
+        "condition": "Hand Release - Valve, Blow of Air, Air Brake Fully Operative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Release - Valve, Blow of Air, Brake Unit Isolated",
+        "category": "C"
+      },
+      {
+        "condition": "Hand Release - Valve, Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Release - Valve, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Release - Wire, Disconnected",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Release - Wire, Missing",
+        "category": "MNT"
+      }
+    ],
+    "Brake Equipment": [
+      {
+        "condition": "Brake Cylinder - High Pressure",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Leaks Off (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Leaks Off (6 Car Train, One bogie inoperable) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Brake Cylinder - Leaks Off (6 Car Train, More than 1 bogie inoperable)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Will Not Apply (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Will Not Apply (6 Car Train, One bogie inoperable) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Brake Cylinder - Will Not Apply (6 Car Train, More than 1 bogie inoperable)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Bogie Isolated (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Bogie Isolated (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Bogie Isolated (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Multiple wheels, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Multiple wheels, Bogie Isolated (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Multiple wheels, Bogie Isolated (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Multiple wheels, Bogie Isolated (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Piston Travel Excessive",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Piston Travel Excessive, Multiple Wheels, Less than 4 wheels per 3 car",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Piston Travel Excessive, Multiple Wheels, 4 or more wheels per 3 car",
+        "category": "S"
+      },
+      {
+        "condition": "Brake Cylinder - Piston Travel Insufficient",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Piston Travel Insufficient, Multiple Wheels",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Brake Pipe - Charging When BVIC Closed",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Pipe - Leaks (Blow of Air), Maintains Greater than 550KPa",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Pipe - Leaks (Blow of Air), Maintains 425KPa to Less than 550KPa",
+        "category": "S"
+      },
+      {
+        "condition": "Brake Pipe - Leaks (Blow of Air), Unable to maintain 425KPa",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Pipe - Leaks On",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Pipe - Slow to Charge",
+        "category": "S"
+      },
+      {
+        "condition": "Brake Pipe - Damaged Piping",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Pipe - Low Pressure, Set Between 425KPa and 550KPa",
+        "category": "S"
+      },
+      {
+        "condition": "Brake Pipe - Low Pressure, Set below 425KPa",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Pipe - High Pressure",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Unit - Damaged, Isolated",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Unit - Damaged, Not Isolated",
+        "category": "S"
+      },
+      {
+        "condition": "Brake Unit - Blow of Air, Excessive Isolated",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Unit - Blow of Air, Minor Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rigging - Hanging",
+        "category": "C"
+      },
+      {
+        "condition": "Rigging - Requires Adjustment",
+        "category": "S"
+      },
+      {
+        "condition": "Rigging - Requires Adjustment, Multiple Wheels",
+        "category": "S"
+      },
+      {
+        "condition": "Rigging - Damaged, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rigging - Damaged, Bogie Isolated (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Rigging - Damaged, Bogie Isolated (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Rigging - Damaged, Bogie Isolated (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Rigging - Missing, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rigging - Missing, Bogie Isolated (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Rigging - Missing, Bogie Isolated (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Rigging - Missing, Bogie Isolated (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Seven Step Relay (EP) - Blow of Air",
+        "category": "MNT"
+      },
+      {
+        "condition": "Van Area Brake Cock - Inoperative (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Van Area Brake Cock - Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Van Area Brake Cock - Blow of Air Maintains Greater than 550KPa (Minor Blow)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Van Area Brake Cock - Blow of Air, Maintains 425KPa to Less than 550KPa",
+        "category": "S"
+      },
+      {
+        "condition": "Van Area Brake Cock - Blow of Air, Unable to maintain 425KPa",
+        "category": "C"
+      },
+      {
+        "condition": "Van Area Brake Cock - Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Van Area Brake Cock - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Van Area Brake Cock - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Van Area Brake Cock - Handle, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Van Area Brake Cock - Handle, Missing",
+        "category": "MNT"
+      }
+    ],
+    "Brake Block / Head": [
+      {
+        "condition": "Worn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Worn - Multiple Wheels",
+        "category": "MNT"
+      },
+      {
+        "condition": "Missing / Key Missing (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Missing / Key Missing (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Missing / Key Missing (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Missing / Key Missing - Multiple wheels (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Missing / Key Missing - Multiple wheels (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Missing / Key Missing - Multiple wheels (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 12.5% off block but less than 50%)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 12.5% off block but less than 50%), Multiple Wheels, Up to 8 per 3 cars",
+        "category": "S"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 12.5% off block but less than 50%), Multiple Wheels, 9 or more per 3 cars",
+        "category": "C"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block) (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block) (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block) (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block), Multiple wheels (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block), Multiple wheels (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block), Multiple wheels (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Head - Loose, Multiple Wheels",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Bogie Isolated, head jammed on wheel",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Bogie Isolated, head clear of wheel (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Bogie Isolated, head clear of wheel (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Bogie Isolated, head clear of wheel (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Multiple wheels, Bogie Isolated, head jammed on wheel",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Multiple wheels, Bogie Isolated, head clear of wheel (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Multiple wheels, Bogie Isolated, head clear of wheel (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Multiple wheels, Bogie Isolated, head clear of wheel (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Spring On Brake Head Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Sticking Brakes - Whole Train, Not Released",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Bogie Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Bogie Isolated, brakes released (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Bogie Isolated, brakes released (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Sticking Brakes - Bogie Isolated, brakes released (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Both bogies, Bogies Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Both bogies, Bogies Isolated, brakes released",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Bogie Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Bogie Isolated, brakes released (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Bogie Isolated, brakes released (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Bogie Isolated, brakes released (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Multiple Wheels, Bogie Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Multiple Wheels, Bogie Isolated, brakes released (3 Car Train)",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Multiple Wheels, Bogie Isolated, brakes released (6 Car Train, One bogie isolated) - FWN",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Multiple Wheels, Bogie Isolated, brakes released (6 Car Train, More than 1 bogie isolated)",
+        "category": "C"
+      }
+    ],
+    "Cabinet Covers / Doors": [
+      {
+        "condition": "Cab - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - Will Not Lock",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - Will Not Open",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - Door Catch Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - High Tension Cabinet, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - High Tension Cabinet, Handle Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - High Tension Cabinet, Will Not Lock",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - High Tension Cabinet, Will Not Open",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cab - High Tension Cabinet, Door Catch Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "External Equipment - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "External Equipment - Will Not Close / Lock, Driver to make safe",
+        "category": "S"
+      },
+      {
+        "condition": "External Equipment - Will Not Close / Lock, Unable to make safe",
+        "category": "C"
+      },
+      {
+        "condition": "External Equipment - Will Not Open",
+        "category": "MNT"
+      },
+      {
+        "condition": "External Equipment - Missing (In Running)",
+        "category": "S"
+      },
+      {
+        "condition": "External Equipment - Missing, In Siding",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Damaged, No immediate Hazards present",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Area - Damaged, Electrical or Mechanical hazards, Employee Travelling to Protect",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Area - Damaged, Electrical or Mechanical hazards, No Employee Available",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Will Not Lock, No immediate Hazards present",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Area - Will Not Lock, Electrical or Mechanical hazards, Employee Travelling to Protect",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Area - Will Not Lock, Electrical or Mechanical hazards, No Employee Available",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Will Not Close, No immediate Hazards present",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Area - Will Not Close, Electrical or Mechanical hazards, Employee Travelling to Protect",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Area - Will Not Close, Electrical or Mechanical hazards, No Employee Available",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Will Not Unlock",
+        "category": "MNT"
+      }
+    ],
+    "Car Body": [
+      {
+        "condition": "Ceiling - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Collision Damage - Major",
+        "category": "C"
+      },
+      {
+        "condition": "Collision Damage - Minor",
+        "category": "MNT"
+      },
+      {
+        "condition": "Struck Platform (Confirmed)",
+        "category": "C"
+      },
+      {
+        "condition": "Front of Train - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Front of Train - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Exterior - Damaged but Safe",
+        "category": "MNT"
+      },
+      {
+        "condition": "Exterior - Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "Floor Damage - Saloon Floor, Tripping hazard",
+        "category": "S"
+      },
+      {
+        "condition": "Floor Damage - Saloon Floor, Badly Damaged",
+        "category": "S"
+      },
+      {
+        "condition": "Floor Damage - Saloon Floor, Cut",
+        "category": "MNT"
+      },
+      {
+        "condition": "Floor Damage - Saloon Floor, Torn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Floor Damage - Saloon Floor, Holed",
+        "category": "MNT"
+      },
+      {
+        "condition": "Floor Damage - Cab Floor, Tripping hazard",
+        "category": "S"
+      },
+      {
+        "condition": "Floor Damage - Cab Floor, Badly Damaged",
+        "category": "S"
+      },
+      {
+        "condition": "Floor Damage - Cab Floor, Cut",
+        "category": "MNT"
+      },
+      {
+        "condition": "Floor Damage - Cab Floor, Torn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Floor Damage - Cab Floor, Holed",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Livery Damage, Front of Train, Worn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Livery Damage, Front of Train, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Livery Damage, Front of Train, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Livery Damage, Side of Train, Worn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Livery Damage, Side of Train, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Livery Damage, Side of Train, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Car Number Sticker, Cab, Worn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stickers - Car Number Sticker, Cab, Damaged",
+        "category": "MNT"
+      }
+    ]
   },
   "Siemens": {},
   "X'Trapolis": {},
