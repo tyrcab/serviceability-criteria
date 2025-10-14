@@ -1,33 +1,19 @@
-const data = {
-  "Comeng": {
-    "Brakes": [
-      { condition: "Brake pads worn", category: "B" },
-      { condition: "Low air pressure", category: "A" }
-    ],
-    "Doors": [
-      { condition: "Door won’t close", category: "A" },
-      { condition: "Door sensor fault", category: "C" }
-    ]
-  },
-  "Siemens": {
-    "Traction": [
-      { condition: "Traction motor fault", category: "B" },
-      { condition: "Inverter overheating", category: "C" }
-    ]
-  },
-  "X'Trapolis": {
-    "HVAC": [
-      { condition: "Aircon not cooling", category: "B" },
-      { condition: "Fan noise", category: "C" }
-    ]
-  },
-  "HCMT": {
-    "Doors": [
-      { condition: "Door obstruction", category: "A" },
-      { condition: "Door indicator light faulty", category: "C" }
-    ]
-  }
-};
+let data = {}; // will hold the JSON data
+
+// Load JSON when page loads
+fetch('data.json')
+  .then(response => {
+    if (!response.ok) throw new Error("Failed to load data.json");
+    return response.json();
+  })
+  .then(json => {
+    data = json;
+    console.log("Data loaded successfully");
+  })
+  .catch(error => {
+    console.error("Error loading JSON:", error);
+    alert("Failed to load serviceability data.");
+  });
 
 const trainTypeSelect = document.getElementById("trainType");
 const equipmentFaultSelect = document.getElementById("equipmentFault");
@@ -43,7 +29,7 @@ trainTypeSelect.addEventListener("change", function() {
   faultConditionSelect.disabled = true;
   resultBox.style.display = "none";
 
-  if (trainType) {
+  if (trainType && data[trainType]) {
     const faults = Object.keys(data[trainType]);
     faults.forEach(fault => {
       const opt = document.createElement("option");
@@ -63,7 +49,7 @@ equipmentFaultSelect.addEventListener("change", function() {
   faultConditionSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
   resultBox.style.display = "none";
 
-  if (fault) {
+  if (trainType && fault && data[trainType][fault]) {
     const conditions = data[trainType][fault];
     conditions.forEach(item => {
       const opt = document.createElement("option");
@@ -82,7 +68,7 @@ faultConditionSelect.addEventListener("change", function() {
   const fault = equipmentFaultSelect.value;
   const condition = this.value;
 
-  if (condition) {
+  if (trainType && fault && condition) {
     const found = data[trainType][fault].find(item => item.condition === condition);
     if (found) {
       resultCondition.textContent = found.condition;
