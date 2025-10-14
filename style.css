@@ -12,21 +12,30 @@ body {
   padding: 20px;
   line-height: 1.5;
 }
-/* Logo styling */
-.logo-container {
+
+/* Header with logo */
+.app-header {
   text-align: center;
-  margin-bottom: 15px;
-}
-.logo {
-  width: 100px;        /* default width */
-  max-width: 40%;      /* responsive */
-  height: auto;
+  margin-bottom: 25px; /* spacing below logo + heading */
 }
 
-/* Title */
-h1 {
-  text-align: center;
-  font-size: 1.6rem;
+/* Logo styling */
+.logo-container {
+  margin-bottom: 10px;
+}
+
+.logo {
+  width: 120px;       /* default desktop size */
+  max-width: 50%;     /* scales on smaller screens */
+  height: auto;
+  display: block;
+  margin: 0 auto;     /* center horizontally */
+}
+
+/* Heading styling */
+.app-header h1 {
+  font-size: 1.8rem;
+  color: #1E90FF;      /* theme color */
   margin-bottom: 20px;
 }
 
@@ -53,9 +62,15 @@ select {
   background: white;
   font-size: 1rem;
   cursor: pointer;
+  transition: border 0.2s ease-in-out;
 }
 
-/* Disable visual feedback */
+select:focus {
+  border-color: #1E90FF;
+  outline: none;
+}
+
+/* Disabled dropdown styling */
 select:disabled {
   background: #eee;
   color: #777;
@@ -78,13 +93,18 @@ select:disabled {
   color: #0057d9;
 }
 
-/* Make sure it's mobile friendly */
+/* Make mobile friendly */
 @media (max-width: 600px) {
   body {
     padding: 15px;
   }
 
-  h1 {
+  .logo {
+    width: 90px;
+    max-width: 60%;
+  }
+
+  .app-header h1 {
     font-size: 1.4rem;
   }
 
@@ -95,6 +115,10 @@ select:disabled {
 
   label {
     font-size: 0.95rem;
+  }
+
+  .dropdown-container {
+    gap: 12px;
   }
 
   .result-box {
