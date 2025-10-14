@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Serviceability Criteria Guideline</title>
+
+  <!-- ✅ Viewport meta tag for iPhones & Android -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Serviceability Criteria Guideline</h1>
 
   <div class="dropdown-container">
-    <label>Train Type:</label>
+    <label for="trainType">Train Type:</label>
     <select id="trainType">
       <option value="">Select Train Type</option>
       <option value="Comeng">Comeng</option>
@@ -18,12 +22,12 @@
       <option value="HCMT">HCMT</option>
     </select>
 
-    <label>Equipment Fault:</label>
+    <label for="equipmentFault">Equipment Fault:</label>
     <select id="equipmentFault" disabled>
       <option value="">Select Equipment Fault</option>
     </select>
 
-    <label>Fault/Condition:</label>
+    <label for="faultCondition">Fault/Condition:</label>
     <select id="faultCondition" disabled>
       <option value="">Select Fault/Condition</option>
     </select>
@@ -38,4 +42,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
