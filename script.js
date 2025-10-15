@@ -2,18 +2,29 @@ let data = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
-  const equipmentSelect = document.getElementById("equipmentFault"); // fixed
+  const equipmentSelect = document.getElementById("equipmentFault");
   const faultSelect = document.getElementById("faultCondition");
   const resultBox = document.getElementById("resultBox");
   const resultCondition = document.getElementById("resultCondition");
   const resultCategory = document.getElementById("resultCategory");
+
+  // Map category codes to full text and color
+  const categoryMap = {
+    "C": { text: "C - Critical", color: "red" },
+    "MNT": { text: "MNT - Maintenance", color: "black" },
+    "RIR": { text: "RIR - Rectified in Running", color: "black" },
+    "S": { text: "S - Serious", color: "orange" },
+    "S-ENDR": { text: "S-ENDR - Serious End Run", color: "orange" },
+    "S-PRTY": { text: "S-PRTY - Serious Priority", color: "orange" },
+    "S-RETN": { text: "S-RETN - Serious Return Run", color: "orange" }
+  };
 
   // Load JSON data
   fetch("data.json")
     .then(response => response.json())
     .then(json => {
       data = json;
-      console.log("Data loaded:", data); // Debug check
+      console.log("Data loaded:", data);
     })
     .catch(error => console.error("Error loading JSON:", error));
 
@@ -69,10 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectedFault = data[trainType][equipment].find(f => f.condition === fault);
       if (selectedFault) {
         resultCondition.textContent = selectedFault.condition;
-        resultCategory.textContent = selectedFault.category;
+
+        // Map category code to display text and color
+        const categoryInfo = categoryMap[selectedFault.category] || { text: selectedFault.category, color: "black" };
+        resultCategory.textContent = categoryInfo.text;
+        resultCategory.style.color = categoryInfo.color;
+
         resultBox.style.display = "block";
       }
     }
   });
 });
-
