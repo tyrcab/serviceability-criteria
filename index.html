@@ -4,70 +4,63 @@
   <meta charset="UTF-8">
   <title>Serviceability Criteria Guideline</title>
 
-  <!-- ✅ Viewport meta tag for iPhones & Android -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PWA / Theme -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1E90FF">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 
+  <!-- Styles & Scripts -->
   <link rel="stylesheet" href="style.css?v=1.0.3">
-<script src="app.js?v=1.0.3">
-  
-</script>
+  <script src="app.js?v=1.0.3" defer></script>
 </head>
 <body>
-  <!-- Header with Logo -->
+
+  <!-- HEADER -->
   <header class="app-header">
-    <div class="logo-container">
-      <img src="icons/icon-192.png" alt="Serviceability Logo" class="logo">
-    </div>
+    <img src="icons/icon-192.png" alt="Logo" class="logo">
     <h1>Serviceability Criteria Guideline</h1>
   </header>
 
-  <div class="dropdown-container">
-    <label for="trainType">Train Type:</label>
-    <select id="trainType">
-      <option value="">Select Train Type</option>
-    </select>
+  <!-- DROPDOWNS -->
+  <main class="main-content">
+    <div class="dropdown-container">
+      <label for="trainType">Train Type:</label>
+      <select id="trainType">
+        <option value="">Select Train Type</option>
+      </select>
 
-    <label for="equipmentFault">Equipment Fault:</label>
-    <select id="equipmentFault" disabled>
-      <option value="">Select Equipment Fault</option>
-    </select>
+      <label for="equipmentFault">Equipment Fault:</label>
+      <select id="equipmentFault" disabled>
+        <option value="">Select Equipment Fault</option>
+      </select>
 
-    <label for="faultCondition">Fault/Condition:</label>
-    <select id="faultCondition" disabled>
-      <option value="">Select Fault/Condition</option>
-    </select>
-  </div>
+      <label for="faultCondition">Fault/Condition:</label>
+      <select id="faultCondition" disabled>
+        <option value="">Select Fault/Condition</option>
+      </select>
+    </div>
 
-  <div class="result-box" id="resultBox" style="display: none;">
-    <h2>Result</h2>
-    <p>
-      <strong>Fault/Condition:</strong> 
-      <span id="resultCondition"></span>
-    </p>
-    <p style="margin-top: 5px;">
-      <strong>Category:</strong> 
-      <span id="resultCategory"></span>
-    </p>
-  </div>
+    <div class="result-box" id="resultBox" style="display:none;">
+      <h2>Result</h2>
+      <p><strong>Fault/Condition:</strong> <span id="resultCondition"></span></p>
+      <p><strong>Category:</strong> <span id="resultCategory"></span></p>
+    </div>
+  </main>
 
-  <!-- TERMS OF SERVICE LINK -->
+  <!-- TERMS OF SERVICE -->
   <div class="tos-container">
     <a href="#" id="tosLink">Terms of Service</a>
   </div>
 
-  <!-- TERMS OF SERVICE MODAL -->
   <div id="tosModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-
-      <!-- Logo at top of modal -->
       <div class="modal-logo-container">
-        <img src="icons/icon-192.png" alt="Serviceability Logo" class="modal-logo">
+        <img src="icons/icon-192.png" alt="Logo" class="modal-logo">
       </div>
-
       <h2>Terms of Service</h2>
       <ul>
         <li>This application derives information from the most recent Serviceability Criteria Guideline provided in paperlite.</li>
@@ -77,21 +70,22 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    If there are any incorrect serviceability criteria guidelines please send an email to 
+    <a href="mailto:tyroncabral@gmail.com">tyroncabral@gmail.com</a>
+  </footer>
+
+  <!-- SERVICE WORKER -->
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("service-worker.js")
+        navigator.serviceWorker.register("service-worker.js")
           .then(() => console.log("✅ Service Worker registered"))
           .catch((err) => console.log("Service Worker registration failed:", err));
       });
     }
   </script>
 
-  <footer class="app-footer">
-    If there are any incorrect serviceability criteria guidelines please send an email to 
-    <a href="mailto:tyroncabral@gmail.com">tyroncabral@gmail.com</a>
-  </footer>
 </body>
 </html>
