@@ -1,6 +1,6 @@
 let data = {};
 let trains = [];
-const cache = {}; // Cache for loaded train JSONs
+const cache = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultCategory = document.getElementById("resultCategory");
 
   const categoryMap = {
-    "C": { text: "C - Critical", color: "black" },
-    "MNT": { text: "MNT - Maintenance", color: "black" },
-    "RIR": { text: "RIR - Rectified in Running", color: "black" },
-    "S": { text: "S - Serious", color: "black" },
-    "S-ENDR": { text: "S-ENDR - Serious End Run", color: "black" },
-    "S-PRTY": { text: "S-PRTY - Serious Priority", color: "black" },
-    "S-RETN": { text: "S-RETN - Serious Return Run", color: "black" }
+    "C": { text: "C - Critical", class: "critical-bg" },
+    "S": { text: "S - Serious", class: "serious-bg" },
+    "S-ENDR": { text: "S-ENDR - Serious", class: "serious-bg" },
+    "S-PRTY": { text: "S-PRTY - Serious", class: "serious-bg" },
+    "S-RETN": { text: "S-RETN - Serious", class: "serious-bg" },
+    "MNT": { text: "MNT - Maintenance", class: "maintenance-bg" },
+    "RIR": { text: "RIR - Rectified in Running", class: "maintenance-bg" }
   };
 
   const loadTrains = async () => {
@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
+    if (cache[jsonFile]) return cache[jsonFile];
     try {
       const response = await fetch(`${jsonFile}?t=${Date.now()}`);
       const json = await response.json();
@@ -101,43 +102,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (equipment && fault && data[equipment]) {
       const selectedFault = data[equipment].find(f => f.condition === fault);
+      if (!selectedFault) return;
 
-      if (selectedFault) {
-        resultCondition.textContent = selectedFault.condition;
+      resultCondition.textContent = selectedFault.condition;
 
-        const catKey = selectedFault.category
-          ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
-          : "";
+      const catKey = selectedFault.category
+        ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
+        : "";
 
-        const categoryInfo =
-          categoryMap[catKey] || { text: selectedFault.category || "Unknown", color: "black" };
+      const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", class: "default-bg" };
+      resultCategory.textContent = categoryInfo.text;
 
-        resultCategory.textContent = categoryInfo.text;
+      // Pulse animation
+      resultCategory.classList.remove("pulse");
+      void resultCategory.offsetWidth;
+      resultCategory.classList.add("pulse");
 
-        // 🔔 Trigger pulse animation
-        resultCategory.classList.remove("pulse");
-        void resultCategory.offsetWidth; // restart animation
-        resultCategory.classList.add("pulse");
+      // Apply background class
+      resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
+      resultBox.classList.add(categoryInfo.class);
 
-        // 🔴🟠⚙️ Apply background and text color dynamically
-        resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
-
-        if (catKey === "C") {
-          resultBox.classList.add("critical-bg");
-          resultBox.style.color = "#000";
-        } else if (catKey.startsWith("S")) {
-          resultBox.classList.add("serious-bg");
-          resultBox.style.color = "#000";
-        } else if (catKey === "MNT" || catKey === "RIR") {
-          resultBox.classList.add("maintenance-bg");
-          resultBox.style.color = "#111";
-        } else {
-          resultBox.classList.add("default-bg");
-          resultBox.style.color = "#111";
-        }
-
-        resultBox.style.display = "block";
+      // Text color
+      if (catKey === "C" || catKey.startsWith("S")) {
+        resultBox.style.color = "#000";
+      } else {
+        resultBox.style.color = "#111";
       }
+
+      resultBox.style.display = "block";
     }
   });
 
@@ -146,21 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
 
-  // Open modal
   tosLink.addEventListener("click", (e) => {
     e.preventDefault();
     tosModal.classList.add("show");
   });
 
-  // Close modal when clicking ×
-  tosClose.addEventListener("click", () => {
-    tosModal.classList.remove("show");
-  });
-
-  // Close modal when clicking outside the content
-  tosModal.addEventListener("click", (e) => {
-    if (e.target === tosModal) {
-      tosModal.classList.remove("show");
-    }
-  });
+  tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
+  tosModal.addEventListener("click", (e) => { if (e.target === tosModal) tosModal.classList.remove("show"); });
 });
