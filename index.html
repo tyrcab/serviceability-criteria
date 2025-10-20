@@ -3,24 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Serviceability Criteria Guideline</title>
-
-  <!-- ✅ Viewport meta tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1E90FF">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 
-  <!-- Cache-busted CSS -->
-  <script>
-    const head = document.getElementsByTagName('head')[0];
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'style.css?t=' + Date.now();
-    head.appendChild(link);
-  </script>
+  <!-- Simple cache-busting -->
+  <link rel="stylesheet" href="style.css?v=1.0">
 </head>
 <body>
-  <!-- Header with Logo -->
   <header class="app-header">
     <div class="logo-container">
       <img src="icons/icon-192.png" alt="Serviceability Logo" class="logo">
@@ -28,7 +19,6 @@
     <h1>Serviceability Criteria Guideline</h1>
   </header>
 
-  <!-- Dropdowns -->
   <div class="dropdown-container">
     <label for="trainType">Train Type:</label>
     <select id="trainType">
@@ -46,19 +36,16 @@
     </select>
   </div>
 
-  <!-- Result Box -->
   <div class="result-box default-bg" id="resultBox" style="display: none;">
     <h2>Result</h2>
     <p><strong>Fault/Condition:</strong> <span id="resultCondition"></span></p>
     <p style="margin-top:5px;"><strong>Category:</strong> <span id="resultCategory"></span></p>
   </div>
 
-  <!-- Terms of Service Link -->
   <div class="tos-container">
     <a href="#" id="tosLink">Terms of Service</a>
   </div>
 
-  <!-- Terms of Service Modal -->
   <div id="tosModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -74,12 +61,8 @@
     </div>
   </div>
 
-  <!-- Cache-busted JS -->
-  <script>
-    const scriptTag = document.createElement('script');
-    scriptTag.src = 'script.js?t=' + Date.now();
-    document.body.appendChild(scriptTag);
-  </script>
+  <!-- Script -->
+  <script src="script.js?v=1.0"></script>
 
   <footer class="app-footer">
     If there are any incorrect serviceability criteria guidelines please send an email to 
