@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <title>Serviceability Criteria Guideline</title>
 
-  <!-- ✅ Viewport meta tag for iPhones & Android -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1E90FF">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 
-  <link rel="stylesheet" href="style.css">
+  <!-- Cache-busting -->
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
   <!-- Header with Logo -->
@@ -38,7 +38,7 @@
     </select>
   </div>
 
-  <div class="result-box" id="resultBox" style="display: none;">
+  <div class="result-box default-bg" id="resultBox" style="display: none;">
     <h2>Result</h2>
     <p>
       <strong>Fault/Condition:</strong> 
@@ -59,13 +59,11 @@
   <div id="tosModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-
-      <!-- Logo at top of modal -->
-      <div class="modal-logo-container">
-        <img src="icons/icon-192.png" alt="Serviceability Logo" class="modal-logo">
+      <!-- Logo inside modal -->
+      <div style="text-align:center; margin-bottom:10px;">
+        <img src="icons/icon-192.png" alt="Serviceability Logo" style="width:60px; height:60px;">
       </div>
-
-      <h2>Terms of Service</h2>
+      <h2 style="text-align:center;">Terms of Service</h2>
       <ul>
         <li>This application derives information from the most recent Serviceability Criteria Guideline provided in paperlite.</li>
         <li>Errors may be present, due to it being impractical to check every single entry.</li>
@@ -74,7 +72,8 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Cache-busting -->
+  <script src="script.js?v=2"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
