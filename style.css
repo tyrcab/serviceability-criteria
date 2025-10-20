@@ -1,35 +1,45 @@
-/* 🔷 GENERAL LAYOUT */
-body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+/* 🔷 RESET & GENERAL LAYOUT */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background-color: #f9fafb;
   color: #222;
+  padding-bottom: 70px; /* space for fixed footer */
 }
 
+/* HEADER */
 .app-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-top: 15px solid #1E90FF; /* blue border */
-  background-color: #fff; /* white background for logo visibility */
-  color: #000;
   padding: 15px;
+  border-top: 15px solid #1E90FF;
+  background-color: #fff;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.logo-container {
-  margin-right: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
 }
 
+/* MAIN CONTENT */
+.main-content {
+  padding: 10px 15px;
+}
+
+/* DROPDOWNS */
 .dropdown-container {
-  margin: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -47,49 +57,37 @@ select {
   border: 1px solid #ccc;
   outline: none;
   background-color: #fff;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 select:focus {
   border-color: #1E90FF;
-  box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+  box-shadow: 0 0 5px rgba(30,144,255,0.5);
 }
 
-/* 🔲 RESULT BOX */
-#resultBox {
+/* RESULT BOX */
+.result-box {
   border-radius: 12px;
   padding: 15px 20px;
-  margin: 20px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-  transition: background 0.4s ease, border-color 0.4s ease, color 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  word-wrap: break-word;
 }
 
-#resultBox h2 {
-  margin-top: 0;
+.result-box h2 {
+  margin-bottom: 10px;
   font-size: 1.3em;
-  color: inherit;
 }
 
-#resultBox strong {
-  color: inherit;
+.result-box strong {
+  font-weight: 600;
 }
 
 #resultCategory {
   font-weight: 700;
-  font-size: 1.15em;
+  font-size: 1.1em;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-
-/* 🔔 Pulse animation */
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.pulse {
-  animation: pulse 0.6s ease-in-out;
 }
 
 /* TERMS OF SERVICE LINK */
@@ -101,42 +99,42 @@ select:focus {
 .tos-container a {
   color: #1E90FF;
   text-decoration: underline;
-  cursor: pointer;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .tos-container a:hover {
   color: #104E8B;
 }
 
-/* MODAL POPUP - CENTERED WITH FADE-IN */
+/* MODAL */
 .modal {
-  display: flex; 
+  display: flex;
   position: fixed;
   z-index: 2000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; 
+  overflow: auto;
   background-color: rgba(0,0,0,0.5);
   align-items: center;
   justify-content: center;
   opacity: 0;
-  pointer-events: none; /* prevent clicks when hidden */
-  transition: opacity 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.3s;
 }
 
 .modal.show {
   opacity: 1;
-  pointer-events: auto; /* allow clicks when visible */
+  pointer-events: auto;
 }
 
 .modal-content {
   background-color: #fff;
-  padding: 20px 30px;
+  padding: 15px 20px;
   border-radius: 10px;
-  width: 90%;
+  width: 95%;
   max-width: 500px;
   max-height: 80vh;
   overflow-y: auto;
@@ -144,7 +142,6 @@ select:focus {
   position: relative;
   animation: slideDown 0.3s ease-out;
 }
-
 
 .modal-logo-container {
   display: flex;
@@ -157,10 +154,8 @@ select:focus {
   height: 60px;
 }
 
-
 .modal-content h2 {
-    text-align: center;
-  margin-top: 0;
+  text-align: center;
   margin-bottom: 15px;
 }
 
@@ -183,30 +178,25 @@ select:focus {
   color: #000;
 }
 
-/* MODAL OPEN ANIMATION */
 @keyframes slideDown {
   0% { transform: translateY(-20px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
-}
-
-/* MOBILE RESPONSIVE */
-@media (max-width: 600px) {
-  .dropdown-container { margin: 10px; }
-  select { font-size: 0.95em; }
-  #resultBox { margin: 10px; padding: 12px 15px; }
-  .modal-content { padding: 15px 20px; }
 }
 
 /* FOOTER */
 .app-footer {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   background-color: #1E90FF;
   color: white;
   text-align: center;
-  padding: 10px 15px;
-  font-size: 0.95em;
+  padding: 10px 8px;
+  font-size: 0.9em;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
   z-index: 1000;
 }
@@ -214,8 +204,13 @@ select:focus {
 .app-footer a {
   color: #ffffff;
   text-decoration: underline;
+  word-break: break-all;
 }
 
-.app-footer a:hover {
-  color: #e0e0e0;
+@media (max-width: 600px) {
+  .dropdown-container { margin: 10px 5px; }
+  select { font-size: 0.95em; }
+  .result-box { margin: 10px 5px; padding: 12px 15px; }
+  .modal-content { padding: 15px 15px; }
+  .app-footer { font-size: 0.85em; padding: 8px 6px; }
 }
