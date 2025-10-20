@@ -4,19 +4,20 @@
   <meta charset="UTF-8">
   <title>Serviceability Criteria Guideline</title>
 
-  <!-- Prevent caching -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <!-- Viewport meta tag for mobile -->
+  <!-- ✅ Viewport meta tag -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1E90FF">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 
-  <!-- CSS with cache-busting -->
-  <link rel="stylesheet" href="style.css?v=3">
+  <!-- Cache-busted CSS -->
+  <script>
+    const head = document.getElementsByTagName('head')[0];
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'style.css?t=' + Date.now();
+    head.appendChild(link);
+  </script>
 </head>
 <body>
   <!-- Header with Logo -->
@@ -27,6 +28,7 @@
     <h1>Serviceability Criteria Guideline</h1>
   </header>
 
+  <!-- Dropdowns -->
   <div class="dropdown-container">
     <label for="trainType">Train Type:</label>
     <select id="trainType">
@@ -44,29 +46,24 @@
     </select>
   </div>
 
-  <div class="result-box" id="resultBox" style="display: none;">
+  <!-- Result Box -->
+  <div class="result-box default-bg" id="resultBox" style="display: none;">
     <h2>Result</h2>
-    <p>
-      <strong>Fault/Condition:</strong> 
-      <span id="resultCondition"></span>
-    </p>
-    <p style="margin-top: 5px;">
-      <strong>Category:</strong> 
-      <span id="resultCategory"></span>
-    </p>
+    <p><strong>Fault/Condition:</strong> <span id="resultCondition"></span></p>
+    <p style="margin-top:5px;"><strong>Category:</strong> <span id="resultCategory"></span></p>
   </div>
 
-  <!-- TERMS OF SERVICE LINK -->
+  <!-- Terms of Service Link -->
   <div class="tos-container">
     <a href="#" id="tosLink">Terms of Service</a>
   </div>
 
-  <!-- TERMS OF SERVICE MODAL -->
+  <!-- Terms of Service Modal -->
   <div id="tosModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <div style="text-align:center;">
-        <img src="icons/icon-192.png" alt="Logo" style="width:60px;height:60px;margin-bottom:10px;">
+      <div style="text-align:center; margin-bottom:10px;">
+        <img src="icons/icon-192.png" alt="Logo" class="logo" style="width:60px;height:60px;">
       </div>
       <h2 style="text-align:center;">Terms of Service</h2>
       <ul>
@@ -77,17 +74,11 @@
     </div>
   </div>
 
-  <!-- JS with cache-busting -->
-  <script src="script.js?v=3"></script>
+  <!-- Cache-busted JS -->
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker
-          .register("service-worker.js")
-          .then(() => console.log("✅ Service Worker registered"))
-          .catch((err) => console.log("Service Worker registration failed:", err));
-      });
-    }
+    const scriptTag = document.createElement('script');
+    scriptTag.src = 'script.js?t=' + Date.now();
+    document.body.appendChild(scriptTag);
   </script>
 
   <footer class="app-footer">
