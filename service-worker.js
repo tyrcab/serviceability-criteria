@@ -1,7 +1,4 @@
-// Versioned cache name – increment this with each release
-const CACHE_NAME = "scg-cache-v2";
-
-// Files to cache
+// List of files to cache (no need to version manually)
 const urlsToCache = [
   "./",
   "./index.html",
@@ -14,15 +11,18 @@ const urlsToCache = [
   "./icons/icon-512.png"
 ];
 
-// Install service worker and cache files
+// Generate a dynamic cache name based on timestamp
+const CACHE_NAME = `scg-cache-${Date.now()}`;
+
+// Install service worker and cache all files
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
   );
-  self.skipWaiting(); // Activate this SW immediately
+  self.skipWaiting();
 });
 
-// Activate new service worker and remove old caches
+// Activate new SW and delete old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -35,7 +35,7 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-  self.clients.claim(); // Take control of all clients immediately
+  self.clients.claim();
 });
 
 // Fetch: Network-first, fallback to cache
@@ -43,7 +43,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Update cache with fresh version
+        // Update cache with the latest version
         if (event.request.url.startsWith(self.location.origin)) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
