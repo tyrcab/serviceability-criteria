@@ -1,6 +1,6 @@
 let data = {};
 let trains = [];
-const cache = {};
+const cache = {}; // Cache for loaded train JSONs
 
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
@@ -12,17 +12,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const categoryMap = {
     "C": { text: "C - Critical", class: "critical-bg" },
-    "S": { text: "S - Serious", class: "serious-bg" },
-    "S-ENDR": { text: "S-ENDR - Serious", class: "serious-bg" },
-    "S-PRTY": { text: "S-PRTY - Serious", class: "serious-bg" },
-    "S-RETN": { text: "S-RETN - Serious", class: "serious-bg" },
     "MNT": { text: "MNT - Maintenance", class: "maintenance-bg" },
-    "RIR": { text: "RIR - Rectified in Running", class: "maintenance-bg" }
+    "RIR": { text: "RIR - Rectified in Running", class: "maintenance-bg" },
+    "S": { text: "S - Serious", class: "serious-bg" },
+    "S-ENDR": { text: "S-ENDR - Serious End Run", class: "serious-bg" },
+    "S-PRTY": { text: "S-PRTY - Serious Priority", class: "serious-bg" },
+    "S-RETN": { text: "S-RETN - Serious Return Run", class: "serious-bg" }
   };
 
   const loadTrains = async () => {
     try {
-      const response = await fetch("trains.json");
+      const response = await fetch(`trains.json?t=${Date.now()}`);
       trains = await response.json();
       trains.forEach(train => {
         const option = document.createElement("option");
@@ -65,17 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     data = await loadTrainData(jsonFile);
 
-    if (Object.keys(data).length > 0) {
-      Object.keys(data).forEach(eq => {
-        const option = document.createElement("option");
-        option.value = eq;
-        option.textContent = eq;
-        equipmentSelect.appendChild(option);
-      });
-      equipmentSelect.disabled = false;
-    } else {
-      equipmentSelect.disabled = true;
-    }
+    Object.keys(data || {}).forEach(eq => {
+      const option = document.createElement("option");
+      option.value = eq;
+      option.textContent = eq;
+      equipmentSelect.appendChild(option);
+    });
+
+    equipmentSelect.disabled = !Object.keys(data).length;
   });
 
   equipmentSelect.addEventListener("change", () => {
@@ -100,37 +97,38 @@ document.addEventListener("DOMContentLoaded", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
 
-    if (equipment && fault && data[equipment]) {
-      const selectedFault = data[equipment].find(f => f.condition === fault);
-      if (!selectedFault) return;
+    if (!equipment || !fault || !data[equipment]) return;
 
-      resultCondition.textContent = selectedFault.condition;
+    const selectedFault = data[equipment].find(f => f.condition === fault);
+    if (!selectedFault) return;
 
-      const catKey = selectedFault.category
-        ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
-        : "";
+    resultCondition.textContent = selectedFault.condition;
 
-      const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", class: "default-bg" };
-      resultCategory.textContent = categoryInfo.text;
+    const catKey = selectedFault.category
+      ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
+      : "";
 
-      // Pulse animation
-      resultCategory.classList.remove("pulse");
-      void resultCategory.offsetWidth;
-      resultCategory.classList.add("pulse");
+    const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", class: "default-bg" };
 
-      // Apply background class
-      resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
-      resultBox.classList.add(categoryInfo.class);
+    resultCategory.textContent = categoryInfo.text;
 
-      // Text color
-      if (catKey === "C" || catKey.startsWith("S")) {
-        resultBox.style.color = "#000";
-      } else {
-        resultBox.style.color = "#111";
-      }
+    // Trigger pulse animation
+    resultCategory.classList.remove("pulse");
+    void resultCategory.offsetWidth;
+    resultCategory.classList.add("pulse");
 
-      resultBox.style.display = "block";
+    // Reset all background classes
+    resultBox.className = "result-box"; // remove previous classes
+    resultBox.classList.add(categoryInfo.class);
+
+    // Set text color explicitly
+    if (categoryInfo.class === "critical-bg" || categoryInfo.class === "serious-bg") {
+      resultBox.style.color = "#000";
+    } else {
+      resultBox.style.color = "#111";
     }
+
+    resultBox.style.display = "block";
   });
 
   // TERMS OF SERVICE MODAL
@@ -143,6 +141,11 @@ document.addEventListener("DOMContentLoaded", () => {
     tosModal.classList.add("show");
   });
 
-  tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
-  tosModal.addEventListener("click", (e) => { if (e.target === tosModal) tosModal.classList.remove("show"); });
+  tosClose.addEventListener("click", () => {
+    tosModal.classList.remove("show");
+  });
+
+  tosModal.addEventListener("click", (e) => {
+    if (e.target === tosModal) tosModal.classList.remove("show");
+  });
 });
