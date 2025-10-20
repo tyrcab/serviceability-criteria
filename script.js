@@ -11,18 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultCategory = document.getElementById("resultCategory");
 
   const categoryMap = {
-    "C": { text: "C - Critical", class: "critical-bg" },
-    "MNT": { text: "MNT - Maintenance", class: "maintenance-bg" },
-    "RIR": { text: "RIR - Rectified in Running", class: "maintenance-bg" },
-    "S": { text: "S - Serious", class: "serious-bg" },
-    "S-ENDR": { text: "S-ENDR - Serious End Run", class: "serious-bg" },
-    "S-PRTY": { text: "S-PRTY - Serious Priority", class: "serious-bg" },
-    "S-RETN": { text: "S-RETN - Serious Return Run", class: "serious-bg" }
+    "C": { text: "C - Critical", className: "critical-bg", color: "#000" },
+    "S": { text: "S - Serious", className: "serious-bg", color: "#000" },
+    "S-ENDR": { text: "S-ENDR - Serious End Run", className: "serious-bg", color: "#000" },
+    "S-PRTY": { text: "S-PRTY - Serious Priority", className: "serious-bg", color: "#000" },
+    "S-RETN": { text: "S-RETN - Serious Return Run", className: "serious-bg", color: "#000" },
+    "MNT": { text: "MNT - Maintenance", className: "maintenance-bg", color: "#111" },
+    "RIR": { text: "RIR - Rectified in Running", className: "maintenance-bg", color: "#111" }
   };
 
+  // Load trains.json
   const loadTrains = async () => {
     try {
-      const response = await fetch(`trains.json?t=${Date.now()}`);
+      const response = await fetch("trains.json?v=" + Date.now());
       trains = await response.json();
       trains.forEach(train => {
         const option = document.createElement("option");
@@ -35,9 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Load individual train JSON
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
-    if (cache[jsonFile]) return cache[jsonFile];
+    if (cache[jsonFile]) return cache[jsonFile]; // return cached
     try {
       const response = await fetch(`${jsonFile}?t=${Date.now()}`);
       const json = await response.json();
@@ -51,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
+  // Handle train selection
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -65,16 +68,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     data = await loadTrainData(jsonFile);
 
-    Object.keys(data || {}).forEach(eq => {
-      const option = document.createElement("option");
-      option.value = eq;
-      option.textContent = eq;
-      equipmentSelect.appendChild(option);
-    });
-
-    equipmentSelect.disabled = !Object.keys(data).length;
+    if (Object.keys(data).length > 0) {
+      Object.keys(data).forEach(eq => {
+        const option = document.createElement("option");
+        option.value = eq;
+        option.textContent = eq;
+        equipmentSelect.appendChild(option);
+      });
+      equipmentSelect.disabled = false;
+    } else {
+      equipmentSelect.disabled = true;
+    }
   });
 
+  // Handle equipment selection
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -93,42 +100,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle fault selection and display result
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
 
-    if (!equipment || !fault || !data[equipment]) return;
+    if (equipment && fault && data[equipment]) {
+      const selectedFault = data[equipment].find(f => f.condition === fault);
 
-    const selectedFault = data[equipment].find(f => f.condition === fault);
-    if (!selectedFault) return;
+      if (selectedFault) {
+        resultCondition.textContent = selectedFault.condition;
 
-    resultCondition.textContent = selectedFault.condition;
+        const catKey = selectedFault.category
+          ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
+          : "";
 
-    const catKey = selectedFault.category
-      ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
-      : "";
+        const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", className: "default-bg", color: "#111" };
 
-    const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", class: "default-bg" };
+        resultCategory.textContent = categoryInfo.text;
 
-    resultCategory.textContent = categoryInfo.text;
+        // Pulse animation
+        resultCategory.classList.remove("pulse");
+        void resultCategory.offsetWidth; // restart animation
+        resultCategory.classList.add("pulse");
 
-    // Trigger pulse animation
-    resultCategory.classList.remove("pulse");
-    void resultCategory.offsetWidth;
-    resultCategory.classList.add("pulse");
-
-    // Reset all background classes
-    resultBox.className = "result-box"; // remove previous classes
-    resultBox.classList.add(categoryInfo.class);
-
-    // Set text color explicitly
-    if (categoryInfo.class === "critical-bg" || categoryInfo.class === "serious-bg") {
-      resultBox.style.color = "#000";
-    } else {
-      resultBox.style.color = "#111";
+        // Update result box colors
+        resultBox.className = "result-box " + categoryInfo.className;
+        resultBox.style.color = categoryInfo.color;
+        resultBox.style.display = "block";
+      }
     }
-
-    resultBox.style.display = "block";
   });
 
   // TERMS OF SERVICE MODAL
@@ -136,16 +137,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
 
+  // Open modal
   tosLink.addEventListener("click", (e) => {
     e.preventDefault();
     tosModal.classList.add("show");
   });
 
+  // Close modal when clicking ×
   tosClose.addEventListener("click", () => {
     tosModal.classList.remove("show");
   });
 
+  // Close modal when clicking outside content
   tosModal.addEventListener("click", (e) => {
-    if (e.target === tosModal) tosModal.classList.remove("show");
+    if (e.target === tosModal) {
+      tosModal.classList.remove("show");
+    }
   });
 });
