@@ -1,0 +1,6 @@
+[
+  { "name": "Comeng", "file": "comeng.json" },
+  { "name": "Siemens", "file": "siemens.json" },
+  { "name": "X'Trapolis", "file": "xtrapolis.json" },
+  { "name": "HCMT", "file": "hcmt.json" }
+]
