@@ -33,7 +33,7 @@ const categoryDefinitions = {
     <h3>Serious (S) Faults:</h3>
     <p>When a Serious fault is identified, the train may enter and/or remain in revenue service, 
     but will be removed from service as soon as reasonably practical, 
-    but not later than the end of scheduled services for that day (including those after 00:00).<br>All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
+    but not later than the end of scheduled services for that day (including those after 00:00).<br>All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.</br>
 </p>
   `,
   "S-PRTY": `
