@@ -93,7 +93,7 @@ select:focus {
 /* CATEGORY COLORS */
 .critical-bg {
   background-color: #ff4d4f; /* red */
-  color: white;
+  color: black;
 }
 
 .serious-bg {
