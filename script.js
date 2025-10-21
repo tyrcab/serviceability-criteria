@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultCondition = document.getElementById("resultCondition");
   const resultCategory = document.getElementById("resultCategory");
 
+  // 🧭 Automatically detect base path (local or GitHub Pages)
+  const basePath = window.location.pathname.includes("serviceability-criteria")
+    ? "/serviceability-criteria/"
+    : "/";
+
   const categoryMap = {
     "C": { text: "C - Critical", color: "black" },
     "MNT": { text: "MNT - Maintenance", color: "black" },
@@ -20,9 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "S-RETN": { text: "S-RETN - Serious Return Run", color: "black" }
   };
 
+  // 🔹 Load list of trains
   const loadTrains = async () => {
     try {
-      const response = await fetch("trains.json");
+      const response = await fetch(`${basePath}trains.json`);
       trains = await response.json();
       trains.forEach(train => {
         const option = document.createElement("option");
@@ -35,10 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // 🔹 Load individual train data
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
     try {
-      const response = await fetch(`${jsonFile}?t=${Date.now()}`);
+      const response = await fetch(`${basePath}${jsonFile}?t=${Date.now()}`);
       const json = await response.json();
       cache[jsonFile] = json;
       return json;
@@ -48,8 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Initialize dropdown
   loadTrains();
 
+  // 🔸 When train type changes
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -77,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 🔸 When equipment fault changes
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -95,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 🔸 When fault/condition changes
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -119,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         void resultCategory.offsetWidth; // restart animation
         resultCategory.classList.add("pulse");
 
-        // 🔴🟠⚙️ Apply background and text color dynamically
+        // 🎨 Apply background & text color
         resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
 
         if (catKey === "C") {
@@ -141,23 +152,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // TERMS OF SERVICE MODAL
+  // 🔹 TERMS OF SERVICE MODAL
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
 
-  // Open modal
   tosLink.addEventListener("click", (e) => {
     e.preventDefault();
     tosModal.classList.add("show");
   });
 
-  // Close modal when clicking ×
   tosClose.addEventListener("click", () => {
     tosModal.classList.remove("show");
   });
 
-  // Close modal when clicking outside the content
   tosModal.addEventListener("click", (e) => {
     if (e.target === tosModal) {
       tosModal.classList.remove("show");
