@@ -22,10 +22,12 @@
   <header class="app-header">
     <img src="icons/icon-192.png" alt="Logo" class="logo">
     <h1>Serviceability Criteria Guideline</h1>
+    <!-- Fault Definitions link -->
+    <a href="#" id="definitionsLink" style="margin-top:5px; color:#1E90FF; text-decoration:underline;">Fault Definitions</a>
   </header>
 
   <!-- DOCUMENT INFO -->
-  <div id="docInfo" class="doc-info" style="display:none;"></div>
+  <div id="docInfo" class="doc-info" style="display:none; background-color: #fff3b0; padding: 10px; border-radius: 6px; margin: 10px 15px; font-weight: bold;"></div>
 
   <!-- DROPDOWNS -->
   <main class="main-content">
@@ -69,6 +71,27 @@
         <li>This application derives information from the most recent Serviceability Criteria Guideline provided in paperlite.</li>
         <li>Errors may be present, due to it being impractical to check every single entry.</li>
         <li>If unsure please contact PD help desk for further clarification on your fault.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DEFINITIONS MODAL -->
+  <div id="definitionsModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Fault Definitions</h2>
+      <ul>
+        <li><strong>Critical (C) Faults:</strong> Critical faults booked during a safety preparation must not enter service. Critical faults booked in running must be removed from service as soon as possible, detraining passengers at the first available station, with the train shunting at a stabling siding as directed by the Train Controller Metrol if safe to do so.</li>
+        <li><strong>Maintenance (MNT) Faults:</strong> Reviewed via FMP within 24 hours. Prioritised, attended, and rectified if possible; otherwise, the FMP system reflects when rectified.</li>
+        <li><strong>Rectified in Running (RIR):</strong> Fault rectified in running. TMM/FWN(s) to be removed by Driver. Reviewed via FMP system.</li>
+        <li><strong>Serious (S) Faults:</strong> Train may enter/remain in revenue service but will be removed as soon as practical, no later than end of scheduled services for the day.</li>
+        <li>Serious faults may have subcategories:
+          <ul>
+            <li><strong>PRTY:</strong> Higher priority to be removed from service.</li>
+            <li><strong>RETN:</strong> Train will not be driven from defective cab again until rectified.</li>
+            <li><strong>ENDR:</strong> May be driven from non-defective cab within Metro network limits. Defective cab must not be used in revenue service.</li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
