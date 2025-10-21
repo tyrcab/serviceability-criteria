@@ -9,6 +9,17 @@ const trainDocs = {
   "hcmt.json": "Document Number: A9721 Version:2.0 Published: 22/02/2024"
 };
 
+// Category definitions
+const categoryDefinitions = {
+  "C": "Critical (C) Faults: Critical faults booked during a safety preparation must not enter service. Critical faults booked in running must be removed from service as soon as possible, detraining passengers at the first available station, with the train shunting at a stabling siding as directed by the Train Controller Metrol if safe to do so.",
+  "MNT": "Maintenance (MNT) Faults: A Maintenance fault will be reviewed via the FMP system within 24 hours of submission. Maintenance faults will be prioritised, attended and rectified if possible or the FMP system annotated to reflect when rectified.",
+  "RIR": "Rectified in Running (RIR) Faults: Fault rectified in running. TMM/FWN(s) to be removed by Driver. Will be reviewed via the FMP system.",
+  "S": "Serious (S) Faults: When a Serious fault is identified, the train may enter and/or remain in revenue service, but will be removed from service as soon as reasonably practical, but not later than the end of scheduled services for that day.",
+  "S-PRTY": "Serious Priority (S-PRTY): Given a higher priority to be removed from service than other serious faults.",
+  "S-RETN": "Serious Return Run (S-RETN): After the defective leading cab arrives at its current destination, the train will not be driven from that cab again in revenue service until the fault is rectified.",
+  "S-ENDR": "Serious End Run (S-ENDR): May be driven in revenue service from the current non–defective cab as far as the Metro network allows. The defective cab must not be driven from in revenue service."
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
   const equipmentSelect = document.getElementById("equipmentFault");
@@ -63,11 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
-  // Train type selection
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
-
-    // Show document info above dropdowns
     docInfo.textContent = trainDocs[jsonFile] || "";
     docInfo.style.display = jsonFile ? "block" : "none";
 
@@ -97,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Equipment selection
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -117,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Fault selection
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -144,22 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (catKey === "MNT" || catKey === "RIR") resultBox.classList.add("maintenance-bg");
         else resultBox.classList.add("default-bg");
 
-        // Show result and definitions boxes
         resultBox.style.display = "block";
+
+        // Show definitions under result
+        definitionsBox.textContent = categoryDefinitions[catKey] || "No definition available for this category.";
         definitionsBox.style.display = "block";
       }
-    } else {
-      resultBox.style.display = "none";
-      definitionsBox.style.display = "none";
     }
   });
-
-  // TERMS OF SERVICE MODAL
-  const tosLink = document.getElementById("tosLink");
-  const tosModal = document.getElementById("tosModal");
-  const tosClose = tosModal.querySelector(".close");
-
-  tosLink.addEventListener("click", (e) => { e.preventDefault(); tosModal.classList.add("show"); });
-  tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
-  tosModal.addEventListener("click", (e) => { if (e.target === tosModal) tosModal.classList.remove("show"); });
 });
