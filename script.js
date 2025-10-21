@@ -5,7 +5,7 @@ const cache = {};
 const trainDocs = {
   "comeng.json": "Document Number: A9718 Version:1.0 Published: 02/08/2022",
   "siemens.json": "Document Number: A9720 Version:1.0 Published: 02/08/2022",
-  "xtrapolis.json": "Document Number: A9719 Version:1.0 Published: 02/08/2022",
+  "Xtrapolis.json": "Document Number: A9719 Version:1.0 Published: 02/08/2022",
   "hcmt.json": "Document Number: A9721 Version:2.0 Published: 22/02/2024"
 };
 
