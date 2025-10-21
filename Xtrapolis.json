@@ -1,0 +1,2854 @@
+{
+    "Advertising": [
+      {
+        "condition": "External - Worn",
+        "category": "MNT"
+      },
+      {
+        "condition": "External - Damaged but Safe",
+        "category": "MNT"
+      },
+      {
+        "condition": "External - Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "External - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Internal - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Internal - Missing",
+        "category": "MNT"
+      }
+    ],
+    "Blinds": [
+      {
+        "condition": "Windscreen - Will Not Stay Down (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen - Will Not Stay Down (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen - Track, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen - Track, Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Windscreen - Track, Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Windscreen - Torn",
+        "category": "MNT"
+      }
+    ],
+    "Bogies": [
+      {
+        "condition": "Wireless Sensor Nodes WSN - WSN Gearbox, Mounting Bracket Damaged, Secured",
+        "category": "MNT"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - WSN Gearbox, Mounting Bracket Damaged, Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - WSN Gearbox, Mounting Bracket Damaged, Bolt Missing",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, WSN Antenna Missing",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, WSN Missing",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, WSN Damaged",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, Guard Damaged, Secured",
+        "category": "MNT"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, Guard Damaged, Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, Guard Damaged, Bolt Missing",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, Mounting Bracket, Secured",
+        "category": "MNT"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, Mounting Bracket, Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Wireless Sensor Nodes WSN - Antenna Cover Trailer Car, Mounting Bracket, Bolt Missing",
+        "category": "S"
+      }
+    ],
+    "Brake Systems": [
+      {
+        "condition": "Holding Brake - Inoperative",
+        "category": "S"
+      },
+      {
+        "condition": "Holding Brake - Not Releasing",
+        "category": "C"
+      },
+      {
+        "condition": "Holding Brake - Low Pressure",
+        "category": "S"
+      },
+      {
+        "condition": "Holding Brake - High Pressure",
+        "category": "MNT"
+      },
+      {
+        "condition": "Holding Brake - Slow to Apply",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Automatic Park Brake (Train Line), Fails To Release",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Excessive Blow, Released & Isolated (At least 50% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Excessive Blow, Released & Isolated (Less than 50% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Excessive Blow, Unable To Release",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Blow of Air, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Damaged, Released & Isolated (At least 50% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Damaged, Released & Isolated (Less than 50% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Damaged, Unable To Release",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Hand Release Cable, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Hand Release Cable, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Hand Release Cable, Securing Clip, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Hand Release Cable, Securing Clip, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Hand Release Cable, Securing Clip, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Hand Release Cable, Padlock, Damaged/Seized",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Hand Release Cable, Padlock, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Park Brake - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Park Brake - Not Applying (At least 50% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Not Applying (Less than 50% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Stuck On, Released & Isolated (At least 50% park brakes available)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Park Brake - Stuck On, Released & Isolated (Less than 50% of park brakes available)",
+        "category": "C"
+      },
+      {
+        "condition": "Park Brake - Stuck On, Unable To Release",
+        "category": "C"
+      }
+    ],
+    "Brake Controls": [
+      {
+        "condition": "Brake Indicator Lights (End of Cars) - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Indicator Lights (End of Cars) - Globe Out",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Indicator Lights (End of Cars) - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Indicator Lights (End of Cars) - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Indicator Lights (End of Cars) - Wrong Indication",
+        "category": "MNT"
+      }
+    ],
+    "Brake Equipment": [
+      {
+        "condition": "Brake Cylinder - High Pressure",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Leaks Off",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Will Not Apply",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Bogie Isolated",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Multiple wheels, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Cylinder - Blow of Air, Multiple wheels, Bogie Isolated",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Cylinder - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Brake Unit - Damaged, Isolated",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Unit - Damaged, Not Isolated",
+        "category": "S"
+      },
+      {
+        "condition": "Rigging - Damaged, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rigging - Damaged, Bogie Isolated",
+        "category": "C"
+      },
+      {
+        "condition": "Rigging - Missing, Bogie Not Isolated",
+        "category": "MNT"
+      },
+      {
+        "condition": "Rigging - Missing, Bogie Isolated",
+        "category": "C"
+      }
+    ],
+    "Brake Block / Head": [
+      {
+        "condition": "Broken / Fragmented Block (More than 12.5% off block but less than 50%), Multiple Wheels, Up to 8 per 3 cars",
+        "category": "S"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 12.5% off block but less than 50%), Multiple Wheels, 9 or more per 3 cars",
+        "category": "C"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block)",
+        "category": "C"
+      },
+      {
+        "condition": "Broken / Fragmented Block (More than 50% off block), Multiple wheels",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Head - Loose, Multiple Wheels",
+        "category": "MNT"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Bogie Isolated, head jammed on wheel",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Bogie Isolated, head clear of wheel",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Multiple wheels, Bogie Isolated, head jammed on wheel",
+        "category": "C"
+      },
+      {
+        "condition": "Brake Head - Turned Brake Head, Multiple wheels, Bogie Isolated, head clear of wheel",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Whole Train, Not Released",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Bogie Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Bogie Isolated, brakes released",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Both bogies, Bogies Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Both bogies, Bogies Isolated, brakes released",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Bogie Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Bogie Isolated, brakes released",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Multiple Wheels, Bogie Isolated, brakes fail to release",
+        "category": "C"
+      },
+      {
+        "condition": "Sticking Brakes - Individual Pad / Calliper / Tread, Multiple Wheels, Bogie Isolated, brakes released",
+        "category": "C"
+      }
+    ],
+    "Cabinet Covers / Doors": [
+      {
+        "condition": "External Equipment - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "External Equipment - Will Not Close / Lock, Driver to make safe",
+        "category": "S"
+      },
+      {
+        "condition": "External Equipment - Will Not Close / Lock, Unable to make safe",
+        "category": "C"
+      },
+      {
+        "condition": "External Equipment - Will Not Open",
+        "category": "MNT"
+      },
+      {
+        "condition": "External Equipment - Missing (In Running)",
+        "category": "S"
+      },
+      {
+        "condition": "External Equipment - Missing, In Siding",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Damaged, No immediate Hazards present",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Area - Damaged, Electrical or Mechanical hazards, Employee Travelling to Protect",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Area - Damaged, Electrical or Mechanical hazards, No Employee Available",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Will Not Lock, No immediate Hazards present",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Area - Will Not Lock, Electrical or Mechanical hazards, Employee Travelling to Protect",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Area - Will Not Lock, Electrical or Mechanical hazards, No Employee Available",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Will Not Close, No immediate Hazards present",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Area - Will Not Close, Electrical or Mechanical hazards, Employee Travelling to Protect",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Area - Will Not Close, Electrical or Mechanical hazards, No Employee Available",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Area - Will Not Unlock",
+        "category": "MNT"
+      }
+    ],
+    "Car Body": [
+      {
+        "condition": "Leaking Water - Cab, Windscreen, Left hand Side, Above Centre (Substantial Leak, Water not flowing onto live electrical equipment)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Leaking Water - Cab, Windscreen, Left hand Side, Above Centre (Substantial Leak, Water flowing directly onto live electrical equipment)",
+        "category": "C"
+      },
+      {
+        "condition": "Leaking Water - Cab, Windscreen, Left hand Side, Below Centre, Minor Leak",
+        "category": "MNT"
+      },
+      {
+        "condition": "Leaking Water - Cab, Windscreen, Left hand Side, Below Centre (Substantial Leak, Water not flowing onto live electrical equipment)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Leaking Water - Cab, Windscreen, Left hand Side, Below Centre (Substantial Leak, Water flowing directly onto live electrical equipment)",
+        "category": "C"
+      },
+      {
+        "condition": "Leaking Water - Saloon, Roof, Minor Leak",
+        "category": "MNT"
+      },
+      {
+        "condition": "Leaking Water - Saloon, Roof (Substantial Leak, Water not flowing onto live electrical equipment)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Leaking Water - Saloon, Roof (Substantial Leak, Water flowing directly onto live electrical equipment)",
+        "category": "C"
+      },
+      {
+        "condition": "Leaking Water - Saloon, Other, Minor Leak",
+        "category": "MNT"
+      },
+      {
+        "condition": "Leaking Water - Saloon, Other (Substantial Leak, Water not flowing onto live electrical equipment)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Leaking Water - Saloon, Other (Substantial Leak, Water flowing directly onto live electrical equipment)",
+        "category": "C"
+      }
+    ],
+    "Circuit Breakers": [
+      {
+        "condition": "36Q1 - Driver’s Seat Power Supply - Will Not Remain Set (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "10Q1 - Master Controller - Will Not Remain Set",
+        "category": "C"
+      },
+      {
+        "condition": "10Q2 - Driving Mode - Will Not Remain Set",
+        "category": "C"
+      },
+      {
+        "condition": "21Q9.1 - Auxiliary Inverter 1 Control - Will Not Remain Set",
+        "category": "S"
+      },
+      {
+        "condition": "21Q9.2 - Auxiliary Inverter 2 Control - Will Not Remain Set",
+        "category": "S"
+      },
+      {
+        "condition": "22Q5 - Pantograph Control - Will Not Remain Set",
+        "category": "C"
+      },
+      {
+        "condition": "22Q6 - Multiple Unit Relay - Will Not Remain Set (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "22Q6 - Multiple Unit Relay - Will Not Remain Set (Centre Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "22Q10 - Pantograph Control - Will Not Remain Set",
+        "category": "C"
+      },
+      {
+        "condition": "22Q11 - Pantographs Control - Will Not Remain Set (Lead/Trail Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "22Q11 - Pantographs Control - Will Not Remain Set (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "30Q2 - Reduced Service - Will Not Remain Set (Lead/Trail Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "30Q2 - Reduced Service - Will Not Remain Set (Centre Motor)",
+        "category": "S"
+      }
+    ],
+    "Communication Systems": [
+      {
+        "condition": "Public Address System - Cab to Cab, Button, Globe Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (On T Car Roof), Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (On T Car Roof), Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (On T Car Roof), Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (On T Car Roof), Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (On T Car Roof), Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (Under T Car), Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (Under T Car), Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (Under T Car), Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (Under T Car), Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Antenna (Under T Car), Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Controller Box (Under T Car), Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Controller Box (Under T Car), Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Controller Box (Under T Car), Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Controller Box (Under T Car), Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - POTS Controller Box (Under T Car), Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - Speedo Box (Yellow) on T Car Axle, Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - Speedo Box (Yellow) on T Car Axle, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - Speedo Box (Yellow) on T Car Axle, Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - Speedo Box (Yellow) on T Car Axle, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - Speedo Box (Yellow) on T Car Axle, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - Incorrect Report Time",
+        "category": "MNT"
+      },
+      {
+        "condition": "Position of Train Equipment - No Match Found",
+        "category": "MNT"
+      }
+    ],
+    "Compressor": [
+      {
+        "condition": "Air Delivery Hose - Missing (Main Reservoir less than 750KPa but greater than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Air Delivery Hose - Missing (Main Reservoir less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Air Intake Filter - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Air Intake Filter - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Air Intake Filter - Missing (Main Reservoir less than 750KPa but greater than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Air Intake Filter - Missing (Main Reservoir less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Governor (Compressor) - Settings too Low",
+        "category": "MNT"
+      },
+      {
+        "condition": "Governor (Compressor) - Settings too High",
+        "category": "MNT"
+      },
+      {
+        "condition": "Inoperative (Main Reservoir less than 750KPa but greater than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Inoperative (Main Reservoir less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Insufficient Pressure (Main Reservoir less than 750KPa but greater than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Insufficient Pressure (Main Reservoir less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Noisy",
+        "category": "MNT"
+      },
+      {
+        "condition": "Oil Filter on Compressor - Leaking",
+        "category": "MNT"
+      },
+      {
+        "condition": "Oil Filter on Compressor - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Oil Filter on Compressor - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Oil Filter on Compressor - Missing (Main Reservoir less than 750KPa but greater than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Oil Filter on Compressor - Missing (Main Reservoir less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Oil Leaking",
+        "category": "MNT"
+      },
+      {
+        "condition": "Smoke Issuing (Main Reservoir less than 750KPa but greater than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Smoke Issuing (Main Reservoir less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Vibrating",
+        "category": "MNT"
+      }
+    ],
+    "Continuity Test": [
+      {
+        "condition": "ESB Operated In End Cab - Brake Cylinder Pressure Reduces Below Emergency Pressure",
+        "category": "C"
+      },
+      {
+        "condition": "ESB Operated In End Cab - Able to Obtain Traction Power",
+        "category": "C"
+      }
+    ],
+    "Couplers": [
+      {
+        "condition": "Scharfenberg Coupler - Electrical Cables, Missing, Leading Trailing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Scharfenberg Coupler - Electrical Cables, Missing (Centre Motors)",
+        "category": "C"
+      },
+      {
+        "condition": "Scharfenberg Coupler - Air Hoses, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Scharfenberg Coupler - Air Hoses, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Scharfenberg Coupler - Air Hoses, Blow of Air",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Bent",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Hose Bags, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Hose Bags, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Bracket Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Padlock, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Transition Coupler - Padlock, Damaged/Seized",
+        "category": "MNT"
+      }
+    ],
+    "Doors": [
+      {
+        "condition": "Saloon Doors - Saloon Door Open Button, Inoperative, Door 6 (Lead/Trail Motor) - FWN",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Doors - Saloon Door Open Button, Inoperative, Multiple Doors on One Car, 1 door per side per car - FWN",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Doors - Saloon Door Open Button, Inoperative, Multiple Doors on One Car, More than 1 door per side per car",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Doors - Saloon Door Open Button, Loose/Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Doors - Saloon Door Open Button, Loose/Damaged, Multiple Doors on One Car",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Doors - Release Indication Lights, Internal Missing/Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Doors - Release Indication Lights, External Missing/Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Doors - Emergency EXIT Handle, Will Not Reset, Door 1 (Lead/Trail Motor) - FWN",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Doors - Emergency EXIT Handle, Will Not Reset - FWN",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Doors - Emergency EXIT Handle, Will Not Reset, Multiple Doors on One Car, 1 door per side per car - FWN",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Doors - Emergency EXIT Handle, Will Not Reset, Multiple Doors on One Car",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Doors - Emergency EXIT Handle, Seal Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Doors - Emergency EXIT Handle, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Doors - Inhibit Timer Insufficient",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Doors - Door Incident In Running, Door Forced and Person Jumped out",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Doors - Door Incident In Running, Door Forced and Person Jumped out, Unknown Door",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Doors - Door Incident In Running, Passenger Injury At Door",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Doors - Door Incident In Running, Passenger Injury At Door, Unknown Door",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Doors - Door Incident In Running, Other Door Safety Issue",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Doors - Door Incident In Running, Other Door Safety Issue, Unknown Door",
+        "category": "C"
+      }
+    ],
+    "Drivers Cab": [
+      {
+        "condition": "Fire Extinguisher - Damaged, Inoperative (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Fire Extinguisher - Damaged, Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Fire Extinguisher - Damaged, Operative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Fire Extinguisher - Under Pressure",
+        "category": "MNT"
+      },
+      {
+        "condition": "Fire Extinguisher - Over Pressure",
+        "category": "MNT"
+      },
+      {
+        "condition": "Fire Extinguisher - Out of Date",
+        "category": "MNT"
+      },
+      {
+        "condition": "Fire Extinguisher - Bracket Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Fire Extinguisher - Bracket Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "First Aid Kit - Unsealed",
+        "category": "MNT"
+      },
+      {
+        "condition": "First Aid Kit - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Flags - Red Flag, Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Flags - Red Flag, Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Flags - Red Flag, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Flags - Green Flag, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Flags - Green Flag, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Switch Stick - Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Switch Stick - Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Switch Stick - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Switch Stick - Clip, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Switch Stick - Clip, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Track Circuit Jumper Cable - Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Track Circuit Jumper Cable - Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Track Circuit Jumper Cable - Damaged",
+        "category": "MNT"
+      }
+    ],
+    "Fault Indicator Lights": [
+      {
+        "condition": "Indicating Defect - 24V Converter, Equipment Affected",
+        "category": "S"
+      },
+      {
+        "condition": "Indicating Defect - 24V Converter, Unknown If Equipment Affected",
+        "category": "MNT"
+      },
+      {
+        "condition": "Indicating Defect - Safety System Isolation, Door Loop Bypass Key switch Turned",
+        "category": "C"
+      },
+      {
+        "condition": "Indicating Defect - Service Brake Fault, Normal Service Braking Effort",
+        "category": "S"
+      },
+      {
+        "condition": "Indicating Defect - Service Brake Fault, Reduced Service Brake Effort",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Indicating Defect - Speed Input fault, Speedo Operative",
+        "category": "S"
+      },
+      {
+        "condition": "Indicating Defect - Speed Input fault, Speedo Inoperative (Leading Motor)",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Indicating Defect - Speed Input fault, Speedo Inoperative (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Indicating Defect - Speed Input fault, Speedo Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Indicating Defect - VICERS, Inoperative, Blown Globe",
+        "category": "S"
+      },
+      {
+        "condition": "Indicating Defect - VICERS, Light illuminated",
+        "category": "S"
+      },
+      {
+        "condition": "Indicating Defect - VICERS, Light cover defaced, cracked, too dim/flickering",
+        "category": "MNT"
+      },
+      {
+        "condition": "Indicating Defect - VICERS, Light missing",
+        "category": "S"
+      },
+      {
+        "condition": "Illuminated but no fault",
+        "category": "S"
+      },
+      {
+        "condition": "Illuminated but no fault - Door Loop Bypass",
+        "category": "C"
+      },
+      {
+        "condition": "Illuminated but no fault - Safety System Isolation",
+        "category": "C"
+      },
+      {
+        "condition": "Lenses - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lenses - Missing",
+        "category": "MNT"
+      }
+    ],
+    "Filters": [
+      {
+        "condition": "Blow of Air - Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Blow of Air - Excessive Blow (Main Res less than 700KPa but more than 580KPa), 3 Cars",
+        "category": "S"
+      },
+      {
+        "condition": "Blow of Air - Excessive Blow (Main Res less than 700KPa but more than 580KPa), 6 Cars",
+        "category": "S"
+      },
+      {
+        "condition": "Blow of Air - Excessive Blow (Main Res less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Damaged but Safe",
+        "category": "MNT"
+      },
+      {
+        "condition": "Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Missing",
+        "category": "MNT"
+      }
+    ],
+    "Gauges": [
+      {
+        "condition": "Speedo - Not Legible, Digital",
+        "category": "S"
+      },
+      {
+        "condition": "Speedo - Not Legible, Analogue",
+        "category": "S"
+      },
+      {
+        "condition": "Speedo - Not Legible, Digital and Analogue, Partially Legible",
+        "category": "S"
+      },
+      {
+        "condition": "Speedo - Not Legible, Digital and Analogue, Totally Obscured (Leading Motor)",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Speedo - Not Legible, Digital and Analogue, Totally Obscured (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Speedo - Not Legible, Digital and Analogue, Totally Obscured (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Speedo - Dirty",
+        "category": "MNT"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Inoperative, Battery Charger Fault illuminated",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Inoperative, Battery Charger Fault Not illuminated",
+        "category": "S"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Above 90V, up to 115V, Battery Charger Fault illuminated",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Above 90V, up to 115V, Battery Charger Fault Not illuminated",
+        "category": "S"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Above 115V, up to 130V, Battery Charger Fault illuminated",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Below 90V",
+        "category": "C"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Above 130V",
+        "category": "S"
+      },
+      {
+        "condition": "Volt Meter (Battery) - Globe Blown",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lights - Inoperative, One Gauge, Brake Cylinder Gauge",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lights - Inoperative, One Gauge Duplex (BP / Main Res)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lights - Inoperative, One Gauge, Speedo",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lights - Inoperative, Multiple (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Lights - Inoperative, Multiple (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lights - Dimmer Switch, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lights - Dimmer Switch, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Lights - Dimmer Switch, Inoperative",
+        "category": "MNT"
+      }
+    ],
+    "Graffiti": [
+      {
+        "condition": "Interior Saloon - Seats, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - Ceiling, Wet",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Interior Saloon - Ceiling, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - Ceiling, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - Bulkhead wall / door, Wet",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Interior Saloon - Bulkhead wall / door, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - Bulkhead wall / door, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - End wall, Wet",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Interior Saloon - End wall, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - End wall, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - Side, Wet",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Interior Saloon - Side, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - Side, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - Saloon Doors, Wet",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Interior Saloon - Saloon Doors, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - Saloon Doors, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - Floor, Wet",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - Floor, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - Floor, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - Windows, Wet",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Interior Saloon - Windows, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - Windows, Offensive",
+        "category": "S"
+      },
+      {
+        "condition": "Interior Saloon - All Interior, Wet",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Interior Saloon - All Interior, Tag",
+        "category": "MNT"
+      },
+      {
+        "condition": "Interior Saloon - All Interior, Offensive",
+        "category": "S"
+      }
+    ],
+    "Grids": [
+      {
+        "condition": "Smoke Issuing - Motors & Rheo isolated, smoke continues",
+        "category": "C"
+      }
+    ],
+    "Hand Rails": [
+      {
+        "condition": "Disabled Seat - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Disabled Seat - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "External Cab Door - Damaged",
+        "category": "S"
+      },
+      {
+        "condition": "External Cab Door - Loose",
+        "category": "C"
+      },
+      {
+        "condition": "External Cab Door - Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Internal Cab Door - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Internal Cab Door - Missing",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Wind Barrier - Damaged",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Wind Barrier - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Wind Barrier - Missing",
+        "category": "S"
+      }
+    ],
+    "Headboard": [
+      {
+        "condition": "Cannot Read (illegible)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Defective",
+        "category": "MNT"
+      },
+      {
+        "condition": "Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stuck on Destination",
+        "category": "S"
+      },
+      {
+        "condition": "Stuck on Wrong Destination",
+        "category": "S"
+      },
+      {
+        "condition": "Showing Wrong Destination - Headboard blanked",
+        "category": "MNT"
+      },
+      {
+        "condition": "Showing Wrong Destination - Unable to blank",
+        "category": "S"
+      }
+    ],
+    "Horn": [
+      {
+        "condition": "Low Tone - Weak, Lead / Trail Motor",
+        "category": "S"
+      },
+      {
+        "condition": "Low Tone - Weak (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Low Note Button - Too Loud",
+        "category": "MNT"
+      },
+      {
+        "condition": "Low Note Button - Inoperative, Lead / Trail Motor",
+        "category": "S"
+      },
+      {
+        "condition": "Low Note Button - Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Low Note Button - Weak, Lead / Trail Motor",
+        "category": "S"
+      },
+      {
+        "condition": "Low Note Button - Weak (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Isolating Cock - Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Isolating Cock - Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Isolating Cock - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Trumpet - Missing (Leading Motor)",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Trumpet - Missing (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Trumpet - Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Trumpet - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Trumpet - Leaking Air",
+        "category": "MNT"
+      },
+      {
+        "condition": "Trumpet - Loose",
+        "category": "MNT"
+      }
+    ],
+    "Hoses": [
+      {
+        "condition": "(Main Reservoir Damaged/Missing) - End Of Train, Unable to Close Tap",
+        "category": "C"
+      },
+      {
+        "condition": "(Main Reservoir Damaged/Missing) - Between Cars Isolated (Tap Closed)",
+        "category": "MNT"
+      }
+    ],
+    "HVAC": [
+      {
+        "condition": "Vents - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Vents - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Heaters Saloon - Ineffective",
+        "category": "MNT"
+      },
+      {
+        "condition": "Heaters Saloon - Ineffective, All heaters/HVAC ineffective",
+        "category": "MNT"
+      },
+      {
+        "condition": "Heaters Saloon - Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Heaters Saloon - Inoperative, All heaters/HVAC inoperative",
+        "category": "MNT"
+      }
+    ],
+    "Inter-car Access": [
+      {
+        "condition": "Bellows - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Bellows - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Bellows - Cut",
+        "category": "MNT"
+      },
+      {
+        "condition": "Bellows - Torn",
+        "category": "MNT"
+      },
+      {
+        "condition": "Safety Chains (Between Cars) - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Safety Chains (Between Cars) - Unhooked",
+        "category": "MNT"
+      },
+      {
+        "condition": "Safety Chains (Between Cars) - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Safety Chains (Between Cars) - Plastic Cover, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Safety Chains (Between Cars) - Plastic Cover, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Tread Plate - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Tread Plate - Not Level",
+        "category": "MNT"
+      },
+      {
+        "condition": "Tread Plate - Loose",
+        "category": "MNT"
+      }
+    ],
+    "Isolating Cocks": [
+      {
+        "condition": "End Cocks - Brake Pipe, Blow of Air (Main Res less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Other Cocks - Blow of Air, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Other Cocks - Blow of Air, Excessive Blow (Main Res less than 700KPa but more than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Other Cocks - Blow of Air, Excessive Blow (Main Res less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Other Cocks - Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Other Cocks - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Other Cocks - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Other Cocks - Handle Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drain valves - Blow of Air, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drain valves - Blow of Air, Excessive Blow (Main Res less than 700KPa but more than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Drain valves - Blow of Air, Excessive Blow (Main Res less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Drain valves - Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drain valves - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drain valves - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drain valves - Handle Missing",
+        "category": "MNT"
+      }
+    ],
+    "Lights (External)": [
+      {
+        "condition": "Marker Lights - Turret Switch, Inoperative, In Off Position",
+        "category": "S"
+      },
+      {
+        "condition": "Step light - Inoperative/Blown",
+        "category": "MNT"
+      },
+      {
+        "condition": "Step light - Flickering/Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Step light - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Step light - Missing",
+        "category": "MNT"
+      }
+    ],
+    "Lights (Internal)": [
+      {
+        "condition": "Saloon Lights - Inoperative, All Saloon Lights in One Car, Emergency Saloon Lights Inoperative, Daylight Hours",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Lights - Inoperative, All Saloon Lights in Multiple Cars, Emergency Saloon Lights Operative, Hours of Darkness",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Lights - Inoperative, All Saloon Lights in Multiple Cars, Emergency Saloon Lights Operative, Daylight Hours",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Lights - Inoperative, All Saloon Lights in Multiple Cars, Emergency Saloon Lights Inoperative, Hours of Darkness",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Lights - Inoperative, All Saloon Lights in Multiple Cars, Emergency Saloon Lights Inoperative, Daylight Hours",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Lights - Will Not Extinguish",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Lights - Smashed",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Lights - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Lights - Frame Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Lights - Half Car Lighting Only",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Lights - Lights Flickering",
+        "category": "MNT"
+      }
+    ],
+    "Main Reservoir": [
+      {
+        "condition": "Blow of Air (Main Res Pressure Not Effected)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Blow of Air (Main Res less than 700KPa but more than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Blow of Air (Main Res less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Damaged (Main Res Pressure Not Effected)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Damaged (Main Res less than 700KPa but more than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Damaged (Main Res less than 580KPa)",
+        "category": "C"
+      },
+      {
+        "condition": "Low Pressure (Main Res less than 700KPa but more than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Low Pressure (Main Res less than 580KPa)",
+        "category": "C"
+      }
+    ],
+    "Master Controller": [
+      {
+        "condition": "Handle - Loose (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - T Bar, Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Handle - T Bar, Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - T Bar, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - T Bar, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - T Bar, Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - Arm, Stiff (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Handle - Arm, Stiff (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - Arm, Missing (Lead/Trail Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Handle - Arm, Missing (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Handle - Arm, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Handle - Arm, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Inoperative (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Inoperative (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Inoperative (Centre Motor)",
+        "category": "S"
+      }
+    ],
+    "Master/Controller Key": [
+      {
+        "condition": "Key Stuck in Off position unable to activate - On Dock (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Key will not fit - In Service (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Key will not fit - In Service (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Key will not fit - In Service (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Key will not fit - On Dock (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Key will not fit - On Dock (Trailing Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Key will not fit - On Dock (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Key will not Activate Cab - In Service (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Key will not Activate Cab - In Service (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Key will not Activate Cab - In Service (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Key will not Activate Cab - On Dock (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Key will not Activate Cab - On Dock (Trailing Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Key will not Activate Cab - On Dock (Centre Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stiff",
+        "category": "MNT"
+      }
+    ],
+    "Master Selector Switch/Reverser": [
+      {
+        "condition": "Inoperative",
+        "category": "C"
+      },
+      {
+        "condition": "Stiff",
+        "category": "MNT"
+      },
+      {
+        "condition": "Stuck in Forward - In Service (Leading Motor)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Stuck in Forward - In Service, Other Motors",
+        "category": "C"
+      },
+      {
+        "condition": "Stuck in Forward - On Dock",
+        "category": "C"
+      },
+      {
+        "condition": "Stuck in Neutral",
+        "category": "C"
+      },
+      {
+        "condition": "Stuck in Reverse",
+        "category": "C"
+      }
+    ],
+    "Mirrors": [
+      {
+        "condition": "Curved Mirror - Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Curved Mirror - Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Curved Mirror - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Curved Mirror - Dirty",
+        "category": "MNT"
+      }
+    ],
+    "Motors": [
+      {
+        "condition": "Noisy",
+        "category": "MNT"
+      },
+      {
+        "condition": "Surging (More than 50% motors isolated on train)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Slow Acceleration",
+        "category": "MNT"
+      },
+      {
+        "condition": "Sluggish (Train)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Seized Motor",
+        "category": "C"
+      },
+      {
+        "condition": "Smoke Issuing - Smoke still issuing",
+        "category": "C"
+      }
+    ],
+    "On Board Diagnostic System": [
+      {
+        "condition": "Bogie Monitoring System - Data Concentrator Module, Equipment Alert, Condition Alert",
+        "category": "S"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Single System, Auxiliary",
+        "category": "MNT"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Single System, Doors",
+        "category": "MNT"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Single System, HVAC",
+        "category": "MNT"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Single System, On-Board Diagnostic",
+        "category": "MNT"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Single System, PAPIS",
+        "category": "MNT"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Single System, Traction",
+        "category": "MNT"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Single System, VICERS",
+        "category": "MNT"
+      },
+      {
+        "condition": "Diagnostic and Reporting System - Systems Not Reporting, Multiple systems",
+        "category": "MNT"
+      }
+    ],
+    "Other Equipment": [
+      {
+        "condition": "Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Damaged but Safe",
+        "category": "MNT"
+      },
+      {
+        "condition": "Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Dirty",
+        "category": "MNT"
+      },
+      {
+        "condition": "Blow of Air",
+        "category": "MNT"
+      },
+      {
+        "condition": "Other Fault",
+        "category": "MNT"
+      }
+    ],
+    "Pantograph": [
+      {
+        "condition": "Raise Lower Controls - Lower Button Lower Button (Train-Line), Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Raise Lower Controls - Raise Button Raise Button (Train-Line), Inoperative, Raise Locally",
+        "category": "S"
+      },
+      {
+        "condition": "Raise Lower Controls - Raise Button Raise Button (Train-Line), Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Raise Lower Controls - Will Not Raise Electrically, 6 Car",
+        "category": "C"
+      },
+      {
+        "condition": "Raise Lower Controls - Will Not Raise Electrically, 3 Car",
+        "category": "C"
+      },
+      {
+        "condition": "Raise Lower Controls - Will Not Lower Electrically, 6 Car",
+        "category": "C"
+      },
+      {
+        "condition": "Raise Lower Controls - Will Not Lower Electrically, 3 Car",
+        "category": "C"
+      },
+      {
+        "condition": "Raise Lower Controls - Will Not Lower Manually (Or Electrically)",
+        "category": "C"
+      },
+      {
+        "condition": "Pulling Substation - 6 Car",
+        "category": "C"
+      },
+      {
+        "condition": "Pulling Substation - 3 Car",
+        "category": "C"
+      },
+      {
+        "condition": "Check Pantograph - Following Incident Train, No Damage found",
+        "category": "S"
+      },
+      {
+        "condition": "Check Pantograph - Following Incident Train, Damaged Found",
+        "category": "C"
+      },
+      {
+        "condition": "Check Pantograph - 2nd Train Behind Incident Train, No Damage found",
+        "category": "S"
+      },
+      {
+        "condition": "Check Pantograph - 2nd Train Behind Incident Train, Damaged Found",
+        "category": "C"
+      },
+      {
+        "condition": "Check Pantograph - Train In Advance of Incident Train, No Damage found",
+        "category": "S"
+      },
+      {
+        "condition": "Check Pantograph - Train In Advance of Incident Train, Damaged Found",
+        "category": "C"
+      },
+      {
+        "condition": "Check Pantograph - 2nd Train In Advance of Incident Train, No Damage found",
+        "category": "S"
+      },
+      {
+        "condition": "Check Pantograph - 2nd Train In Advance of Incident Train, Damaged Found",
+        "category": "C"
+      }
+    ],
+    "Pilot Valves": [
+      {
+        "condition": "Foot Pilot Valve - Stuck in set position when fully released or fully pressed down (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Foot Pilot Valve - Stuck in set position when fully released or fully pressed down (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Foot Plate, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Detached From Footplate/Floor, Operative (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Foot Pilot Valve - Detached From Footplate/Floor, Operative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Detached From Footplate/Floor, Inoperative, Hand Pilot Operative (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Foot Pilot Valve - Detached From Footplate/Floor, Inoperative, Hand Pilot Operative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Detached From Footplate/Floor, Inoperative, Hand Pilot Inoperative (Leading Motor)",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Foot Pilot Valve - Detached From Footplate/Floor, Inoperative, Hand Pilot Inoperative (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Foot Pilot Valve - Detached From Footplate/Floor, Inoperative, Hand Pilot Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Light, Blown",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Reset, Bent",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Reset, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Foot Pilot Valve - Reset, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Pilot Valve - Stiff (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Hand Pilot Valve - Stiff (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Pilot Valve - Hard to Hold Down/Set (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Hand Pilot Valve - Hard to Hold Down/Set (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Pilot Valve - Will Not Set, Foot Pilot Operative (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Hand Pilot Valve - Will Not Set, Foot Pilot Operative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Pilot Valve - Will Not Set, Foot Pilot Inoperative (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Hand Pilot Valve - Will Not Set, Foot Pilot Inoperative (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Hand Pilot Valve - Will Not Set, Foot Pilot Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Hand Pilot Valve - Stuck in Set Position (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Hand Pilot Valve - Stuck in Set Position (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Hand Pilot Valve - Stuck in Set Position (Centre Motor)",
+        "category": "MNT"
+      }
+    ],
+    "Pipes": [
+      {
+        "condition": "Other Pipes - Blow of Air, Minor Blow",
+        "category": "MNT"
+      },
+      {
+        "condition": "Other Pipes - Blow of Air, Excessive Blow (Main Res less than 700KPa but more than 580KPa)",
+        "category": "S"
+      },
+      {
+        "condition": "Other Pipes - Blow of Air, Excessive Blow (Main Res less than 580KPa)",
+        "category": "C"
+      }
+    ],
+    "Power Conversion": [
+      {
+        "condition": "Static Inverter Inoperative - One SIV inoperative",
+        "category": "S"
+      },
+      {
+        "condition": "Static Inverter Inoperative - Two SIV inoperative, On 3 Car Set",
+        "category": "C"
+      },
+      {
+        "condition": "Static Inverter Inoperative - Two SIV inoperative (On 6 Car Train, One on Each Unit)",
+        "category": "S"
+      },
+      {
+        "condition": "Static Inverter Inoperative - Two SIV inoperative (On 6 Car Train, Both On One Unit)",
+        "category": "C"
+      }
+    ],
+    "Power Point": [
+      {
+        "condition": "Drivers Area - No Power",
+        "category": "MNT"
+      },
+      {
+        "condition": "Drivers Area - Damaged, Exposed Wires",
+        "category": "C"
+      },
+      {
+        "condition": "Drivers Area - Damaged, No Exposed Wires",
+        "category": "S"
+      },
+      {
+        "condition": "Drivers Area - Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Drivers Area - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon - No Power",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon - Damaged, Exposed Wires",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon - Damaged, No Exposed Wires",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon - Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon - Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Under Body - No Power",
+        "category": "MNT"
+      },
+      {
+        "condition": "Under Body - Damaged, Exposed Wires",
+        "category": "C"
+      },
+      {
+        "condition": "Under Body - Damaged, No Exposed Wires",
+        "category": "S"
+      },
+      {
+        "condition": "Under Body - Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Under Body - Loose",
+        "category": "S"
+      }
+    ],
+    "Seats": [
+      {
+        "condition": "Saloon Seats - Pads, Excrement, Odour effecting Lead Cab",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Saloon Seats - Pads, Excrement, Odour effecting Trail Cab",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Saloon Seats - Pads, Excrement, Odour not effecting Lead/Trail Cab",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Seats - Pads, Vomit, Odour effecting Lead Cab",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Saloon Seats - Pads, Vomit, Odour effecting Trail Cab",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Saloon Seats - Pads, Vomit, Odour not effecting Lead/Trail Cab",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon Seats - Frame, Damaged, 1 Frame",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Seats - Frame, Damaged, Multiple frames",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Seats - Frame, Loose, 1 Frame",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Seats - Frame, Loose, Multiple frames",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Seats - Frame, Missing, 1 Frame",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Seats - Frame, Missing, Multiple frames",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Seats - Frame Hand Grip (Saloon Seats), Damaged",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Seats - Frame Hand Grip (Saloon Seats), Loose",
+        "category": "S"
+      },
+      {
+        "condition": "Saloon Seats - Frame Hand Grip (Saloon Seats), Missing",
+        "category": "MNT"
+      }
+    ],
+    "Secondary Devices": [
+      {
+        "condition": "Memory Aid Device - Inoperative (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Memory Aid Device - Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Memory Aid Device - Tone, Inoperative (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Memory Aid Device - Tone, Inoperative (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Memory Aid Device - Tone, Permanently stuck on (Leading Motor)",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Memory Aid Device - Tone, Permanently stuck on (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Memory Aid Device - Tone, Permanently stuck on (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Memory Aid Device - Tone, Too Soft",
+        "category": "MNT"
+      },
+      {
+        "condition": "Memory Aid Device - Tone, Too Loud",
+        "category": "MNT"
+      }
+    ],
+    "Steps": [
+      {
+        "condition": "Cab Door - Loose",
+        "category": "C"
+      },
+      {
+        "condition": "Cab Door - Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Door - Damaged but Safe",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Door - Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Door - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon Door - Missing",
+        "category": "MNT"
+      }
+    ],
+    "Strap Hanger": [
+      {
+        "condition": "Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Loose",
+        "category": "MNT"
+      }
+    ],
+    "Suspension": [
+      {
+        "condition": "Primary Suspension - Rough Ride",
+        "category": "MNT"
+      },
+      {
+        "condition": "Primary Suspension - Rough Ride, Both Bogies",
+        "category": "MNT"
+      },
+      {
+        "condition": "Primary Suspension - Spring Broken",
+        "category": "C"
+      },
+      {
+        "condition": "Secondary Suspension - Lateral Sway",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Secondary Suspension - Lateral Sway, Both Bogies",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Secondary Suspension - Lateral Shock Absorber, Damaged",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Secondary Suspension - Lateral Shock Absorber, Loose",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Secondary Suspension - Lateral Shock Absorber, Missing",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Secondary Suspension - Lateral Shock Absorber, Leaking",
+        "category": "MNT"
+      },
+      {
+        "condition": "Secondary Suspension - Main Spring, Broken",
+        "category": "C"
+      },
+      {
+        "condition": "Secondary Suspension - Main Spring, Misaligned",
+        "category": "C"
+      },
+      {
+        "condition": "Secondary Suspension - Vertical Shock Absorber Body to Bogie, Damaged but Safe",
+        "category": "MNT"
+      },
+      {
+        "condition": "Secondary Suspension - Vertical Shock Absorber Body to Bogie, Damaged Unsafe/Out of Gauge",
+        "category": "C"
+      },
+      {
+        "condition": "Secondary Suspension - Vertical Shock Absorber Body to Bogie, Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Secondary Suspension - Vertical Shock Absorber Body to Bogie, Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "Secondary Suspension - Vertical Shock Absorber Body to Bogie, Leaking",
+        "category": "MNT"
+      }
+    ],
+    "Switches": [
+      {
+        "condition": "Safety Loop Bypass - Operated (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Safety Loop Bypass - Safety Seal Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Safety Loop Bypass - Safety Seal Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Safety Loop Bypass - Switch, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Safety Loop Bypass - Switch, Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Tacho Bypass Switch - Operated (Leading Motor)",
+        "category": "S-RETN"
+      },
+      {
+        "condition": "Tacho Bypass Switch - Operated (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Tacho Bypass Switch - Safety Seal Missing (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Tacho Bypass Switch - Safety Seal Missing (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Tacho Bypass Switch - Switch, Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Tacho Bypass Switch - Switch, Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Train stable button - Inoperative",
+        "category": "S"
+      },
+      {
+        "condition": "Train stable button - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Train stable button - Broken",
+        "category": "MNT"
+      },
+      {
+        "condition": "Panto Control Button - Inoperative",
+        "category": "S"
+      },
+      {
+        "condition": "Panto Control Button - Damaged",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cleaners Key Switch - Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cleaners Key Switch - Damaged",
+        "category": "MNT"
+      }
+    ],
+    "Totally Disabled Train": [
+      {
+        "condition": "Brakes locked on - Contact the TSO",
+        "category": "C"
+      },
+      {
+        "condition": "Loss of tractive effort",
+        "category": "C"
+      },
+      {
+        "condition": "Loss of overhead power - Overhead Power Not Restored",
+        "category": "C"
+      },
+      {
+        "condition": "Derailment",
+        "category": "C"
+      },
+      {
+        "condition": "Flat Batteries",
+        "category": "C"
+      },
+      {
+        "condition": "Other",
+        "category": "C"
+      }
+    ],
+    "Train Cable": [
+      {
+        "condition": "Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Arcing",
+        "category": "C"
+      }
+    ],
+    "Train presentation": [
+      {
+        "condition": "Saloon - Vomit in saloon, Odour not effecting Lead/Trail Cab",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon - Blood in Saloon",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Saloon - Dirty Saloon",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon - Rubbish in Saloon",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon - Glass in Saloon",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon - Wet Saloon",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon - Train not cleaned overnight",
+        "category": "MNT"
+      },
+      {
+        "condition": "Saloon - Covid-19 Confirmed Case",
+        "category": "C"
+      },
+      {
+        "condition": "Wash External - Requires External Wash",
+        "category": "MNT"
+      },
+      {
+        "condition": "Wash External - Fatality",
+        "category": "C"
+      },
+      {
+        "condition": "Insect Infestation",
+        "category": "S"
+      }
+    ],
+    "Trip": [
+      {
+        "condition": "Will Not Lower (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Will Not Lower (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Will Not Reset (Leading Motor), Trip Reset",
+        "category": "C"
+      },
+      {
+        "condition": "Will Not Reset (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Will Not Reset (Centre Motor)",
+        "category": "MNT"
+      }
+    ],
+    "VICERS": [
+      {
+        "condition": "Key Switch - Key switch set to isolate, Driver Found VICERS Isolated",
+        "category": "S"
+      },
+      {
+        "condition": "Key Switch - Key switch set to isolate, Driver Isolated VICERS",
+        "category": "S"
+      },
+      {
+        "condition": "Variable Dimmer - Inoperative, broken, jammed",
+        "category": "MNT"
+      },
+      {
+        "condition": "Variable Dimmer - Operative Damaged, Defaced, stiff, loose.",
+        "category": "MNT"
+      },
+      {
+        "condition": "Variable Dimmer - Missing",
+        "category": "MNT"
+      },
+      {
+        "condition": "VM40 Access Cover - Damaged",
+        "category": "S"
+      },
+      {
+        "condition": "VM40 Access Cover - Missing",
+        "category": "C"
+      },
+      {
+        "condition": "VM40 Access Cover - Cannot Lock",
+        "category": "C"
+      },
+      {
+        "condition": "Failed Drivers Prep Test",
+        "category": "S"
+      },
+      {
+        "condition": "Task Linking Inoperative - Horn, Low note",
+        "category": "S"
+      },
+      {
+        "condition": "Task Linking Inoperative - Horn, High note",
+        "category": "S"
+      },
+      {
+        "condition": "Task Linking Inoperative - Horn, Both",
+        "category": "S"
+      },
+      {
+        "condition": "Task Linking Inoperative - Master Controller",
+        "category": "S"
+      },
+      {
+        "condition": "Download requested",
+        "category": "S"
+      },
+      {
+        "condition": "Unable To Download (USB)",
+        "category": "MNT"
+      }
+    ],
+    "Wheel Chair Ramp": [
+      {
+        "condition": "Missing (Centre Motor)",
+        "category": "MNT"
+      }
+    ],
+    "Windows": [
+      {
+        "condition": "Saloon Window - Loose, 4 Windows",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Window - Loose, 5 Windows",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Window - Loose, 6 Windows",
+        "category": "C"
+      },
+      {
+        "condition": "Saloon Window - Loose, All Windows in Car",
+        "category": "C"
+      }
+    ],
+    "Windscreen": [
+      {
+        "condition": "Cracked - Wiper sweep affected but viewable (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Shattered",
+        "category": "C"
+      },
+      {
+        "condition": "Missing",
+        "category": "C"
+      },
+      {
+        "condition": "Dirty - Wiper Sweep clear",
+        "category": "MNT"
+      },
+      {
+        "condition": "Dirty - Wiper sweep affected but viewable (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Dirty - Wiper sweep affected but viewable (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Distorted - Wiper sweep clear",
+        "category": "MNT"
+      },
+      {
+        "condition": "Distorted - Wiper sweep affected (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Distorted - Wiper sweep affected (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Cloudy/Milky (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Cloudy/Milky (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Clearplex to be applied",
+        "category": "MNT"
+      }
+    ],
+    "Windscreen Wiper": [
+      {
+        "condition": "Arm - Missing, Conditions require (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Arm - Missing, Conditions require (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Arm - Missing, Forecast wet weather (Lead/Trail Motor)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Arm - Missing, Forecast wet weather (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Arm - Missing, Conditions don't require (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Arm - Missing, Conditions don't require (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Arm - loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Incorrect Parking",
+        "category": "MNT"
+      },
+      {
+        "condition": "Sweeping - Erratic",
+        "category": "MNT"
+      },
+      {
+        "condition": "Sweeping - Insufficient",
+        "category": "MNT"
+      },
+      {
+        "condition": "Washer Jets  - Misaligned",
+        "category": "MNT"
+      },
+      {
+        "condition": "Washer Jets  - Blocked",
+        "category": "MNT"
+      },
+      {
+        "condition": "Washer Jets  - Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Washer Bottle - Empty",
+        "category": "MNT"
+      },
+      {
+        "condition": "Washer Bottle - No Soap",
+        "category": "MNT"
+      },
+      {
+        "condition": "Washer Bottle - Leaking",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Knob / Switch - Inoperative, Conditions require (Leading Motor)",
+        "category": "C"
+      },
+      {
+        "condition": "Control Knob / Switch - Inoperative, Conditions require (Trailing Motor)",
+        "category": "S-ENDR"
+      },
+      {
+        "condition": "Control Knob / Switch - Inoperative, Conditions require (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Knob / Switch - Inoperative, Forecast wet weather (Lead/Trail Motor)",
+        "category": "S-PRTY"
+      },
+      {
+        "condition": "Control Knob / Switch - Inoperative, Forecast wet weather (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Knob / Switch - Inoperative, Conditions don't require (Lead/Trail Motor)",
+        "category": "S"
+      },
+      {
+        "condition": "Control Knob / Switch - Inoperative, Conditions don't require (Centre Motor)",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Knob / Switch - Variable Timer, Inoperative",
+        "category": "MNT"
+      },
+      {
+        "condition": "Control Knob / Switch - Loose",
+        "category": "MNT"
+      },
+      {
+        "condition": "Vandals Been On Coupler - Check Windscreen Wiper",
+        "category": "MNT"
+      }
+    ]
+  }
