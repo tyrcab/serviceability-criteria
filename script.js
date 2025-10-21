@@ -2,6 +2,7 @@ let data = {};
 let trains = [];
 const cache = {};
 
+// --- TRAIN DOCUMENT INFO ---
 const trainDocs = {
   "comeng.json": "Document Number: A9718 Version:1.0 Published: 02/08/2022",
   "siemens.json": "Document Number: A9720 Version:1.0 Published: 02/08/2022",
@@ -9,68 +10,82 @@ const trainDocs = {
   "hcmt.json": "Document Number: A9721 Version:2.0 Published: 22/02/2024"
 };
 
-// CATEGORY DEFINITIONS
+// --- SHARED PARAGRAPH FOR ALL SERIOUS FAULTS ---
+const seriousCommon = `
+  <p>
+    All Serious Faults expire when the train shunts and stables (with the exception of HCMT). 
+    The train must not run in Revenue Service until the fault has been rectified or remarshalled.
+  </p>
+`;
+
+// --- CATEGORY DEFINITIONS ---
 const categoryDefinitions = {
   "C": `
     <h3>Critical (C) Faults:</h3>
-    <p>Critical faults booked during a safety preparation must not enter service. 
-    Critical faults booked in running must be removed from service as soon as possible, 
-    detraining passengers at the first available station, with the train shunting at a stabling siding 
-    as directed by the Train Controller Metrol if safe to do so.</p>
+    <p>
+      Critical faults booked during a safety preparation must not enter service. 
+      Critical faults booked in running must be removed from service as soon as possible, 
+      detraining passengers at the first available station, with the train shunting at a stabling siding 
+      as directed by the Train Controller Metrol if safe to do so.
+    </p>
   `,
+
   "MNT": `
     <h3>Maintenance (MNT) Faults:</h3>
-    <p>A Maintenance fault will be reviewed via the FMP system within 24 hours of submission. 
-    Maintenance faults will be prioritised, attended and rectified if possible or 
-    the FMP system annotated to reflect when the fault will be rectified.</p>
+    <p>
+      A Maintenance fault will be reviewed via the FMP system within 24 hours of submission. 
+      Maintenance faults will be prioritised, attended and rectified if possible or 
+      the FMP system annotated to reflect when the fault will be rectified.
+    </p>
   `,
+
   "RIR": `
     <h3>Rectified in Running (RIR):</h3>
-    <p>Fault rectified in running. TMM/FWN(s) to be removed by Driver. 
-    Will be reviewed via the FMP system.</p>
+    <p>
+      Fault rectified in running. TMM/FWN(s) to be removed by Driver. 
+      Will be reviewed via the FMP system.
+    </p>
   `,
+
+  // --- SERIOUS FAULTS (using shared seriousCommon paragraph) ---
   "S": `
     <h3>Serious (S) Faults:</h3>
     <p>
-When a Serious fault is identified, the train may enter and/or remain in revenue service, 
-    but will be removed from service as soon as reasonably practical, 
-    but not later than the end of scheduled services for that day (including those after 00:00).
-</p>
-<p>
-All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
-</p>
+      When a Serious fault is identified, the train may enter and/or remain in revenue service, 
+      but will be removed from service as soon as reasonably practical, 
+      but not later than the end of scheduled services for that day (including those after 00:00).
+    </p>
+    ${seriousCommon}
   `,
+
   "S-PRTY": `
     <h3>Serious Priority (S-PRTY):</h3>
     <p>
-Given a higher priority to be removed from service than other serious faults.
-</p>
-<p>
-All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
-</p>
+      Given a higher priority to be removed from service than other serious faults.
+    </p>
+    ${seriousCommon}
   `,
+
   "S-RETN": `
     <h3>Serious Return Run (S-RETN):</h3>
     <p>
-After the defective leading cab arrives at its current destination, 
-    the train will not be driven from that cab again in revenue service until the fault is rectified.
-</p>
-<p>
-All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
-</p>
+      After the defective leading cab arrives at its current destination, 
+      the train will not be driven from that cab again in revenue service until the fault is rectified.
+    </p>
+    ${seriousCommon}
   `,
+
   "S-ENDR": `
     <h3>Serious End Run (S-ENDR):</h3>
     <p>
-May be driven in revenue service from the current non–defective cab 
-    as far as the Metro network allows. The defective cab must not be driven from in revenue service.
-</p>
-<p>
-All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
-</p>
+      May be driven in revenue service from the current non–defective cab 
+      as far as the Metro network allows. The defective cab must not be driven from in revenue service.
+    </p>
+    ${seriousCommon}
   `
 };
 
+// --- MAIN SCRIPT ---
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
   const hcmtConditionSelect = document.getElementById("hcmtCondition");
@@ -94,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
 
+  // --- Fetch helper with offline fallback ---
   const fetchJSON = async (url) => {
     try {
       const response = await fetch(url);
@@ -106,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // --- Load available trains ---
   const loadTrains = async () => {
     trains = await fetchJSON(`${baseURL}trains.json`);
     trainSelect.innerHTML = '<option value="">Select Train Type</option>';
@@ -117,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  // --- Load specific train data ---
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
     const json = await fetchJSON(`${baseURL}${jsonFile}?t=${Date.now()}`);
@@ -126,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
-  // Train selection
+  // --- Train selection ---
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     docInfo.textContent = trainDocs[jsonFile] || "";
@@ -168,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // HCMT Running/Prep selection
+  // --- HCMT Running/Prep selection ---
   hcmtConditionSelect.addEventListener("change", () => {
     const condType = hcmtConditionSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -190,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
     equipmentSelect.disabled = false;
   });
 
-  // Equipment selection
+  // --- Equipment selection ---
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const hcmtCond = hcmtConditionSelect.value;
@@ -218,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     faultSelect.disabled = faultsArray.length === 0;
   });
 
-  // Fault selection
+  // --- Fault selection ---
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -256,12 +274,11 @@ document.addEventListener("DOMContentLoaded", () => {
     else resultBox.classList.add("default-bg");
 
     resultBox.style.display = "block";
-
     definitionsBox.innerHTML = categoryDefinitions[catKey] || "<p>No definition available for this category.</p>";
     definitionsBox.style.display = "block";
   });
 
-  // Terms of Service modal
+  // --- Terms of Service modal ---
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
@@ -272,7 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
-
   tosModal.addEventListener("click", (e) => {
     if (e.target === tosModal) tosModal.classList.remove("show");
   });
