@@ -31,7 +31,8 @@ const categoryDefinitions = {
   `,
   "S": `
     <h3>Serious (S) Faults:</h3>
-    <p>When a Serious fault is identified, the train may enter and/or remain in revenue service, 
+    <p>
+When a Serious fault is identified, the train may enter and/or remain in revenue service, 
     but will be removed from service as soon as reasonably practical, 
     but not later than the end of scheduled services for that day (including those after 00:00).
 </p>
@@ -41,7 +42,8 @@ All Serious Faults expire when the train shunts and stables(with the exception o
   `,
   "S-PRTY": `
     <h3>Serious Priority (S-PRTY):</h3>
-    <p>Given a higher priority to be removed from service than other serious faults.
+    <p>
+Given a higher priority to be removed from service than other serious faults.
 </p>
 <p>
 All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
@@ -49,7 +51,8 @@ All Serious Faults expire when the train shunts and stables(with the exception o
   `,
   "S-RETN": `
     <h3>Serious Return Run (S-RETN):</h3>
-    <p>After the defective leading cab arrives at its current destination, 
+    <p>
+After the defective leading cab arrives at its current destination, 
     the train will not be driven from that cab again in revenue service until the fault is rectified.
 </p>
 <p>
@@ -58,7 +61,8 @@ All Serious Faults expire when the train shunts and stables(with the exception o
   `,
   "S-ENDR": `
     <h3>Serious End Run (S-ENDR):</h3>
-    <p>May be driven in revenue service from the current non–defective cab 
+    <p>
+May be driven in revenue service from the current non–defective cab 
     as far as the Metro network allows. The defective cab must not be driven from in revenue service.
 </p>
 <p>
