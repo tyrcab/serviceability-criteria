@@ -33,24 +33,24 @@ const categoryDefinitions = {
     <h3>Serious (S) Faults:</h3>
     <p>When a Serious fault is identified, the train may enter and/or remain in revenue service, 
     but will be removed from service as soon as reasonably practical, 
-    but not later than the end of scheduled services for that day (including those after 00:00).\nAll Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
+    but not later than the end of scheduled services for that day (including those after 00:00).<br>All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
 </p>
   `,
   "S-PRTY": `
     <h3>Serious Priority (S-PRTY):</h3>
-    <p>Given a higher priority to be removed from service than other serious faults.\nAll Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
+    <p>Given a higher priority to be removed from service than other serious faults.<br>All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
 </p>
   `,
   "S-RETN": `
     <h3>Serious Return Run (S-RETN):</h3>
     <p>After the defective leading cab arrives at its current destination, 
-    the train will not be driven from that cab again in revenue service until the fault is rectified.\nAll Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
+    the train will not be driven from that cab again in revenue service until the fault is rectified.<br>All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
 </p>
   `,
   "S-ENDR": `
     <h3>Serious End Run (S-ENDR):</h3>
     <p>May be driven in revenue service from the current non–defective cab 
-    as far as the Metro network allows. The defective cab must not be driven from in revenue service.\nAll Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
+    as far as the Metro network allows. The defective cab must not be driven from in revenue service.<br>All Serious Faults expire when the train shunts and stables(with the exception of HCMT). The train must not run in Revenue Service until the fault has been rectified or remarshalled.
 </p>
   `
 };
