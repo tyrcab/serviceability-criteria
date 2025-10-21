@@ -124,16 +124,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resultCategory.textContent = categoryInfo.text;
 
+        // Pulse animation
         resultCategory.classList.remove("pulse");
         void resultCategory.offsetWidth;
         resultCategory.classList.add("pulse");
 
+        // Set result box background color based on category
         resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
 
-        if (catKey === "C") resultBox.classList.add("critical-bg");
-        else if (catKey.startsWith("S")) resultBox.classList.add("serious-bg");
-        else if (catKey === "MNT" || catKey === "RIR") resultBox.classList.add("maintenance-bg");
-        else resultBox.classList.add("default-bg");
+        if (catKey === "C") {
+          resultBox.classList.add("critical-bg"); // red
+        } else if (catKey.startsWith("S")) {
+          resultBox.classList.add("serious-bg"); // orange
+        } else if (catKey === "MNT" || catKey === "RIR") {
+          resultBox.classList.add("maintenance-bg"); // grey
+        } else {
+          resultBox.classList.add("default-bg"); // fallback light grey
+        }
 
         resultBox.style.display = "block";
       }
