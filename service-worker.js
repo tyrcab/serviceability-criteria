@@ -7,7 +7,7 @@ const urlsToCache = [
   "./trains.json",
   "./comeng.json",
   "./siemens.json",
-  "./xtrapolis.json",
+  "./Xtrapolis.json",
   "./hcmt.json",
   "./manifest.json",
   "./icons/icon-192.png",
