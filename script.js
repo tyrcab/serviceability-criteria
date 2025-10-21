@@ -9,15 +9,53 @@ const trainDocs = {
   "hcmt.json": "Document Number: A9721 Version:2.0 Published: 22/02/2024"
 };
 
-// Category definitions
+// 🟦 CATEGORY DEFINITIONS (with bold headings)
 const categoryDefinitions = {
-  "C": "Critical (C) Faults: Critical faults booked during a safety preparation must not enter service. Critical faults booked in running must be removed from service as soon as possible, detraining passengers at the first available station, with the train shunting at a stabling siding as directed by the Train Controller Metrol if safe to do so.",
-  "MNT": "Maintenance (MNT) Faults: A Maintenance fault will be reviewed via the FMP system within 24 hours of submission. Maintenance faults will be prioritised, attended and rectified if possible or the FMP system annotated to reflect when rectified.",
-  "RIR": "Rectified in Running (RIR) Faults: Fault rectified in running. TMM/FWN(s) to be removed by Driver. Will be reviewed via the FMP system.",
-  "S": "Serious (S) Faults: When a Serious fault is identified, the train may enter and/or remain in revenue service, but will be removed from service as soon as reasonably practical, but not later than the end of scheduled services for that day.",
-  "S-PRTY": "Serious Priority (S-PRTY): Given a higher priority to be removed from service than other serious faults.",
-  "S-RETN": "Serious Return Run (S-RETN): After the defective leading cab arrives at its current destination, the train will not be driven from that cab again in revenue service until the fault is rectified.",
-  "S-ENDR": "Serious End Run (S-ENDR): May be driven in revenue service from the current non–defective cab as far as the Metro network allows. The defective cab must not be driven from in revenue service."
+  "C": `
+    <h3>Critical (C) Faults:</h3>
+    <p>Critical faults booked during a safety preparation must not enter service. 
+    Critical faults booked in running must be removed from service as soon as possible, 
+    detraining passengers at the first available station, with the train shunting at a stabling siding 
+    as directed by the Train Controller Metrol if safe to do so.</p>
+  `,
+  "MNT": `
+    <h3>Maintenance (MNT) Faults:</h3>
+    <p>A Maintenance fault will be reviewed via the FMP system within 24 hours of submission. 
+    Maintenance faults will be prioritised, attended and rectified if possible or 
+    the FMP system annotated to reflect when the fault will be rectified.</p>
+  `,
+  "RIR": `
+    <h3>Rectified in Running (RIR):</h3>
+    <p>Fault rectified in running. TMM/FWN(s) to be removed by Driver. 
+    Will be reviewed via the FMP system.</p>
+  `,
+  "S": `
+    <h3>Serious (S) Faults:</h3>
+    <p>When a Serious fault is identified, the train may enter and/or remain in revenue service, 
+    but will be removed from service as soon as reasonably practical, 
+    but not later than the end of scheduled services for that day (including those after 00:00).</p>
+    <ul>
+      <li><strong>PRTY:</strong> Higher priority to be removed from service than other serious faults.</li>
+      <li><strong>RETN:</strong> After the defective leading cab arrives at its current destination, 
+      the train will not be driven from that cab again in revenue service until the fault is rectified.</li>
+      <li><strong>ENDR:</strong> May be driven in revenue service from the current non-defective cab 
+      as far as the Metro network allows. The defective cab must not be driven from in revenue service.</li>
+    </ul>
+  `,
+  "S-PRTY": `
+    <h3>Serious Priority (S-PRTY):</h3>
+    <p>Given a higher priority to be removed from service than other serious faults.</p>
+  `,
+  "S-RETN": `
+    <h3>Serious Return Run (S-RETN):</h3>
+    <p>After the defective leading cab arrives at its current destination, 
+    the train will not be driven from that cab again in revenue service until the fault is rectified.</p>
+  `,
+  "S-ENDR": `
+    <h3>Serious End Run (S-ENDR):</h3>
+    <p>May be driven in revenue service from the current non–defective cab 
+    as far as the Metro network allows. The defective cab must not be driven from in revenue service.</p>
+  `
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -74,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
+  // 🟦 Train selection
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     docInfo.textContent = trainDocs[jsonFile] || "";
@@ -105,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 🟦 Equipment selection
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -124,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // 🟦 Fault selection (show result + definitions)
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -140,6 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", color: "black" };
         resultCategory.textContent = categoryInfo.text;
 
+        // Animate and color result
         resultCategory.classList.remove("pulse");
         void resultCategory.offsetWidth;
         resultCategory.classList.add("pulse");
@@ -152,8 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resultBox.style.display = "block";
 
-        // Show definitions under result
-        definitionsBox.textContent = categoryDefinitions[catKey] || "No definition available for this category.";
+        // 🟨 Show definitions with formatted headings
+        definitionsBox.innerHTML = categoryDefinitions[catKey] || "<p>No definition available for this category.</p>";
         definitionsBox.style.display = "block";
       }
     }
