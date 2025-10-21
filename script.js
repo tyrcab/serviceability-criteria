@@ -62,10 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
+  // Train type selection
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
 
-    // Show document info
+    // Show document info above dropdowns
     docInfo.textContent = trainDocs[jsonFile] || "";
     docInfo.style.display = jsonFile ? "block" : "none";
 
@@ -94,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Equipment selection
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -112,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Fault selection
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -125,9 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
           : "";
 
-        const categoryInfo =
-          categoryMap[catKey] || { text: selectedFault.category || "Unknown", color: "black" };
-
+        const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", color: "black" };
         resultCategory.textContent = categoryInfo.text;
 
         resultCategory.classList.remove("pulse");
@@ -146,6 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // TERMS OF SERVICE MODAL
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
@@ -153,4 +155,20 @@ document.addEventListener("DOMContentLoaded", () => {
   tosLink.addEventListener("click", (e) => { e.preventDefault(); tosModal.classList.add("show"); });
   tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
   tosModal.addEventListener("click", (e) => { if (e.target === tosModal) tosModal.classList.remove("show"); });
+
+  // DEFINITIONS MODAL
+  const definitionsLink = document.getElementById("definitionsLink");
+  const definitionsModal = document.getElementById("definitionsModal");
+  const definitionsClose = definitionsModal.querySelector(".close");
+
+  definitionsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    definitionsModal.classList.add("show");
+  });
+
+  definitionsClose.addEventListener("click", () => definitionsModal.classList.remove("show"));
+
+  definitionsModal.addEventListener("click", (e) => {
+    if (e.target === definitionsModal) definitionsModal.classList.remove("show");
+  });
 });
