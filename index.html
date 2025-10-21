@@ -30,22 +30,28 @@
   <!-- MAIN CONTENT -->
   <main class="main-content">
     <!-- DROPDOWNS -->
-    <div class="dropdown-container">
-      <label for="trainType">Train Type:</label>
-      <select id="trainType">
-        <option value="">Select Train Type</option>
-      </select>
+<div class="dropdown-container">
+  <label for="trainType">Train Type:</label>
+  <select id="trainType">
+    <option value="">Select Train Type</option>
+  </select>
 
-      <label for="equipmentFault">Equipment Fault:</label>
-      <select id="equipmentFault" disabled>
-        <option value="">Select Equipment Fault</option>
-      </select>
+  <!-- NEW: HCMT Running/Prep Dropdown -->
+  <label for="hcmtCondition" id="hcmtConditionLabel" style="display:none;">HCMT Condition:</label>
+  <select id="hcmtCondition" style="display:none;">
+    <option value="">Select Condition</option>
+  </select>
 
-      <label for="faultCondition">Fault/Condition:</label>
-      <select id="faultCondition" disabled>
-        <option value="">Select Fault/Condition</option>
-      </select>
-    </div>
+  <label for="equipmentFault">Equipment Fault:</label>
+  <select id="equipmentFault" disabled>
+    <option value="">Select Equipment Fault</option>
+  </select>
+
+  <label for="faultCondition">Fault/Condition:</label>
+  <select id="faultCondition" disabled>
+    <option value="">Select Fault/Condition</option>
+  </select>
+</div>
 
     <!-- RESULT BOX -->
     <div class="result-box" id="resultBox" style="display:none;">
