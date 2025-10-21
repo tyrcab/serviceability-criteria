@@ -1,4 +1,4 @@
-let data = {};
+let data = {}; 
 let trains = [];
 const cache = {};
 
@@ -192,5 +192,21 @@ document.addEventListener("DOMContentLoaded", () => {
         definitionsBox.style.display = "block";
       }
     }
+  });
+
+  // 🟦 TERMS OF SERVICE MODAL
+  const tosLink = document.getElementById("tosLink");
+  const tosModal = document.getElementById("tosModal");
+  const tosClose = tosModal.querySelector(".close");
+
+  tosLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    tosModal.classList.add("show");
+  });
+
+  tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
+
+  tosModal.addEventListener("click", (e) => {
+    if (e.target === tosModal) tosModal.classList.remove("show");
   });
 });
