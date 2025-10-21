@@ -20,47 +20,45 @@ document.addEventListener("DOMContentLoaded", () => {
     "S-RETN": { text: "S-RETN - Serious Return Run", color: "black" }
   };
 
-  // ✅ Explicit absolute path for GitHub Pages
   const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
 
-  const loadTrains = async () => {
+  // Helper: fetch JSON network-first, fallback to cache
+  const fetchJSON = async (url) => {
     try {
-      const url = `${baseURL}trains.json`;
-      console.log("Fetching trains from:", url);
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      trains = await response.json();
-
-      trainSelect.innerHTML = '<option value="">Select Train Type</option>';
-      trains.forEach(train => {
-        const option = document.createElement("option");
-        option.value = train.file;
-        option.textContent = train.name;
-        trainSelect.appendChild(option);
-      });
+      return await response.json();
     } catch (err) {
-      console.error("❌ Error loading trains.json:", err);
-    }
-  };
-
-  const loadTrainData = async (jsonFile) => {
-    if (!jsonFile) return {};
-    try {
-      const url = `${baseURL}${jsonFile}?t=${Date.now()}`;
-      console.log("Fetching train data:", url);
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const json = await response.json();
-      cache[jsonFile] = json;
-      return json;
-    } catch (err) {
-      console.error(`❌ Error loading ${jsonFile}:`, err);
+      console.warn(`Network failed, trying cache for ${url}`, err);
+      const cacheMatch = await caches.match(url);
+      if (cacheMatch) return await cacheMatch.json();
       return {};
     }
   };
 
+  // Load trains list
+  const loadTrains = async () => {
+    trains = await fetchJSON(`${baseURL}trains.json`);
+    trainSelect.innerHTML = '<option value="">Select Train Type</option>';
+    trains.forEach(train => {
+      const option = document.createElement("option");
+      option.value = train.file;
+      option.textContent = train.name;
+      trainSelect.appendChild(option);
+    });
+  };
+
+  // Load specific train JSON data
+  const loadTrainData = async (jsonFile) => {
+    if (!jsonFile) return {};
+    const json = await fetchJSON(`${baseURL}${jsonFile}?t=${Date.now()}`);
+    cache[jsonFile] = json;
+    return json;
+  };
+
   loadTrains();
 
+  // When train type changes
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -88,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // When equipment changes
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -106,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // When fault/condition changes
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -130,15 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
 
-        if (catKey === "C") {
-          resultBox.classList.add("critical-bg");
-        } else if (catKey.startsWith("S")) {
-          resultBox.classList.add("serious-bg");
-        } else if (catKey === "MNT" || catKey === "RIR") {
-          resultBox.classList.add("maintenance-bg");
-        } else {
-          resultBox.classList.add("default-bg");
-        }
+        if (catKey === "C") resultBox.classList.add("critical-bg");
+        else if (catKey.startsWith("S")) resultBox.classList.add("serious-bg");
+        else if (catKey === "MNT" || catKey === "RIR") resultBox.classList.add("maintenance-bg");
+        else resultBox.classList.add("default-bg");
 
         resultBox.style.display = "block";
       }
@@ -150,14 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
 
-  tosLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    tosModal.classList.add("show");
-  });
-
+  tosLink.addEventListener("click", (e) => { e.preventDefault(); tosModal.classList.add("show"); });
   tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
-
-  tosModal.addEventListener("click", (e) => {
-    if (e.target === tosModal) tosModal.classList.remove("show");
-  });
+  tosModal.addEventListener("click", (e) => { if (e.target === tosModal) tosModal.classList.remove("show"); });
 });
