@@ -27,8 +27,9 @@
   <!-- DOCUMENT INFO -->
   <div id="docInfo" class="doc-info" style="display:none;"></div>
 
-  <!-- DROPDOWNS -->
+  <!-- MAIN CONTENT -->
   <main class="main-content">
+    <!-- DROPDOWNS -->
     <div class="dropdown-container">
       <label for="trainType">Train Type:</label>
       <select id="trainType">
@@ -54,29 +55,15 @@
     </div>
 
     <!-- DEFINITIONS BOX -->
-    <div id="definitionsBox" class="definitions-box" style="display:none;">
-      <h2>Category Definitions</h2>
-      <ul>
-        <li><strong>Critical (C) Faults:</strong> Critical faults booked during a safety preparation must not enter service. Critical faults booked in running must be removed as soon as possible, detraining passengers at the first available station, with the train shunting at a stabling siding as directed by the Train Controller if safe.</li>
-        <li><strong>Maintenance (MNT) Faults:</strong> A Maintenance fault will be reviewed via the FMP system within 24 hours. Maintenance faults will be prioritised, attended and rectified if possible, or FMP annotated to reflect when it will be rectified.</li>
-        <li><strong>Rectified in Running (RIR) Faults:</strong> Fault rectified in running. TMM/FWN(s) to be removed by Driver. Will be reviewed via the FMP system.</li>
-        <li><strong>Serious (S) Faults:</strong> When a Serious fault has been identified, the train may enter and/or remain in revenue service, but will be removed from service as soon as reasonably practical, but not later than the end of scheduled services for that day (including services after 00:00 hours).</li>
-        <li>Serious faults subcategories:
-          <ul>
-            <li><strong>PRTY:</strong> Higher priority to be removed from service than other serious faults.</li>
-            <li><strong>RETN:</strong> After the defective leading cab arrives at destination, the train will not be driven from that cab again until fault rectified.</li>
-            <li><strong>ENDR:</strong> May be driven from the current non-defective cab; defective cab must not be used in revenue service.</li>
-          </ul>
-        </li>
-      </ul>
+    <div id="definitionsBox" class="definitions-box" style="display:none;"></div>
+
+    <!-- TERMS OF SERVICE -->
+    <div class="tos-container">
+      <a href="#" id="tosLink">Terms of Service</a>
     </div>
   </main>
 
-  <!-- TERMS OF SERVICE -->
-  <div class="tos-container">
-    <a href="#" id="tosLink">Terms of Service</a>
-  </div>
-
+  <!-- TERMS MODAL -->
   <div id="tosModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
