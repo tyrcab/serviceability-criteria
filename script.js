@@ -9,7 +9,7 @@ const trainDocs = {
   "hcmt.json": "Document Number: A9721 Version:2.0 Published: 22/02/2024"
 };
 
-// 🟦 CATEGORY DEFINITIONS (with bold headings)
+// CATEGORY DEFINITIONS
 const categoryDefinitions = {
   "C": `
     <h3>Critical (C) Faults:</h3>
@@ -53,7 +53,7 @@ const categoryDefinitions = {
 
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
-  const hcmtConditionSelect = document.getElementById("hcmtCondition"); // NEW dropdown
+  const hcmtConditionSelect = document.getElementById("hcmtCondition");
   const equipmentSelect = document.getElementById("equipmentFault");
   const faultSelect = document.getElementById("faultCondition");
   const resultBox = document.getElementById("resultBox");
@@ -63,13 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const definitionsBox = document.getElementById("definitionsBox");
 
   const categoryMap = {
-    "C": { text: "C - Critical", color: "black" },
-    "MNT": { text: "MNT - Maintenance", color: "black" },
-    "RIR": { text: "RIR - Rectified in Running", color: "black" },
-    "S": { text: "S - Serious", color: "black" },
-    "S-ENDR": { text: "S-ENDR - Serious End Run", color: "black" },
-    "S-PRTY": { text: "S-PRTY - Serious Priority", color: "black" },
-    "S-RETN": { text: "S-RETN - Serious Return Run", color: "black" }
+    "C": { text: "C - Critical" },
+    "MNT": { text: "MNT - Maintenance" },
+    "RIR": { text: "RIR - Rectified in Running" },
+    "S": { text: "S - Serious" },
+    "S-ENDR": { text: "S-ENDR - Serious End Run" },
+    "S-PRTY": { text: "S-PRTY - Serious Priority" },
+    "S-RETN": { text: "S-RETN - Serious Return Run" }
   };
 
   const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
-    } catch (err) {
+    } catch {
       const cacheMatch = await caches.match(url);
       if (cacheMatch) return await cacheMatch.json();
       return {};
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
-  // 🟦 Train selection
+  // Train selection
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     docInfo.textContent = trainDocs[jsonFile] || "";
@@ -128,7 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
     data = await loadTrainData(jsonFile);
 
     if (jsonFile === "hcmt.json") {
-      // SHOW Running/Prep dropdown
       hcmtConditionSelect.style.display = "inline-block";
       ["Running", "Prep"].forEach(cond => {
         const option = document.createElement("option");
@@ -136,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         option.textContent = cond;
         hcmtConditionSelect.appendChild(option);
       });
-      equipmentSelect.disabled = true; // will enable after HCMT condition selected
+      equipmentSelect.disabled = true;
     } else {
       hcmtConditionSelect.style.display = "none";
       Object.keys(data).forEach(eq => {
@@ -149,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🟦 HCMT Running/Prep selection
+  // HCMT Running/Prep selection
   hcmtConditionSelect.addEventListener("change", () => {
     const condType = hcmtConditionSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -171,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     equipmentSelect.disabled = false;
   });
 
-  // 🟦 Equipment selection
+  // Equipment selection
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const hcmtCond = hcmtConditionSelect.value;
@@ -186,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let faultsArray = data[equipment];
     if (trainSelect.value === "hcmt.json" && hcmtCond) {
-      faultsArray = data[equipment][hcmtCond]; // Running or Prep
+      faultsArray = data[equipment][hcmtCond] || [];
     }
 
     faultsArray.forEach(fault => {
@@ -199,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
     faultSelect.disabled = faultsArray.length === 0;
   });
 
-  // 🟦 Fault selection (show result + definitions)
+  // Fault selection
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -209,23 +208,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let selectedFault;
     if (trainSelect.value === "hcmt.json" && hcmtCond) {
-      selectedFault = data[equipment][hcmtCond].find(f => f.condition === fault);
+      selectedFault = (data[equipment][hcmtCond] || []).find(f => f.condition === fault);
     } else {
-      selectedFault = data[equipment].find(f => f.condition === fault);
+      selectedFault = (data[equipment] || []).find(f => f.condition === fault);
     }
 
     if (!selectedFault) return;
 
     resultCondition.textContent = selectedFault.condition;
 
-    const catKey = selectedFault.value
-      ? selectedFault.value.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
+    const catKey = selectedFault.category
+      ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
       : "";
 
-    const categoryInfo = categoryMap[catKey] || { text: selectedFault.value || "Unknown", color: "black" };
+    const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown" };
     resultCategory.textContent = categoryInfo.text;
 
-    // Animate and color result
+    // Animate & color
     resultCategory.classList.remove("pulse");
     void resultCategory.offsetWidth;
     resultCategory.classList.add("pulse");
@@ -242,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     definitionsBox.style.display = "block";
   });
 
-  // 🟦 TERMS OF SERVICE MODAL
+  // Terms of Service modal
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
