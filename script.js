@@ -1,6 +1,6 @@
 let data = {};
 let trains = [];
-const cache = {}; // Cache for loaded train JSONs
+const cache = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
@@ -9,11 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultBox = document.getElementById("resultBox");
   const resultCondition = document.getElementById("resultCondition");
   const resultCategory = document.getElementById("resultCategory");
-
-  // 🧭 Automatically detect base path (local or GitHub Pages)
-  const basePath = window.location.pathname.includes("serviceability-criteria")
-    ? "/serviceability-criteria/"
-    : "/";
 
   const categoryMap = {
     "C": { text: "C - Critical", color: "black" },
@@ -25,11 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "S-RETN": { text: "S-RETN - Serious Return Run", color: "black" }
   };
 
-  // 🔹 Load list of trains
+  // ✅ Explicit absolute path for GitHub Pages
+  const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
+
   const loadTrains = async () => {
     try {
-      const response = await fetch(`${basePath}trains.json`);
+      const url = `${baseURL}trains.json`;
+      console.log("Fetching trains from:", url);
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       trains = await response.json();
+
+      trainSelect.innerHTML = '<option value="">Select Train Type</option>';
       trains.forEach(train => {
         const option = document.createElement("option");
         option.value = train.file;
@@ -37,28 +39,28 @@ document.addEventListener("DOMContentLoaded", () => {
         trainSelect.appendChild(option);
       });
     } catch (err) {
-      console.error("Error loading trains.json:", err);
+      console.error("❌ Error loading trains.json:", err);
     }
   };
 
-  // 🔹 Load individual train data
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
     try {
-      const response = await fetch(`${basePath}${jsonFile}?t=${Date.now()}`);
+      const url = `${baseURL}${jsonFile}?t=${Date.now()}`;
+      console.log("Fetching train data:", url);
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const json = await response.json();
       cache[jsonFile] = json;
       return json;
     } catch (err) {
-      console.error(`Error loading ${jsonFile}:`, err);
+      console.error(`❌ Error loading ${jsonFile}:`, err);
       return {};
     }
   };
 
-  // Initialize dropdown
   loadTrains();
 
-  // 🔸 When train type changes
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -86,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🔸 When equipment fault changes
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -105,14 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🔸 When fault/condition changes
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
 
     if (equipment && fault && data[equipment]) {
       const selectedFault = data[equipment].find(f => f.condition === fault);
-
       if (selectedFault) {
         resultCondition.textContent = selectedFault.condition;
 
@@ -125,26 +124,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resultCategory.textContent = categoryInfo.text;
 
-        // 🔔 Trigger pulse animation
         resultCategory.classList.remove("pulse");
-        void resultCategory.offsetWidth; // restart animation
+        void resultCategory.offsetWidth;
         resultCategory.classList.add("pulse");
 
-        // 🎨 Apply background & text color
         resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
 
         if (catKey === "C") {
           resultBox.classList.add("critical-bg");
-          resultBox.style.color = "#000";
         } else if (catKey.startsWith("S")) {
           resultBox.classList.add("serious-bg");
-          resultBox.style.color = "#000";
         } else if (catKey === "MNT" || catKey === "RIR") {
           resultBox.classList.add("maintenance-bg");
-          resultBox.style.color = "#111";
         } else {
           resultBox.classList.add("default-bg");
-          resultBox.style.color = "#111";
         }
 
         resultBox.style.display = "block";
@@ -152,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 🔹 TERMS OF SERVICE MODAL
+  // TERMS OF SERVICE MODAL
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
@@ -162,13 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
     tosModal.classList.add("show");
   });
 
-  tosClose.addEventListener("click", () => {
-    tosModal.classList.remove("show");
-  });
+  tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
 
   tosModal.addEventListener("click", (e) => {
-    if (e.target === tosModal) {
-      tosModal.classList.remove("show");
-    }
+    if (e.target === tosModal) tosModal.classList.remove("show");
   });
 });
