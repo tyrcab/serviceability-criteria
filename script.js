@@ -34,13 +34,6 @@ const categoryDefinitions = {
     <p>When a Serious fault is identified, the train may enter and/or remain in revenue service, 
     but will be removed from service as soon as reasonably practical, 
     but not later than the end of scheduled services for that day (including those after 00:00).</p>
-    <ul>
-      <li><strong>PRTY:</strong> Higher priority to be removed from service than other serious faults.</li>
-      <li><strong>RETN:</strong> After the defective leading cab arrives at its current destination, 
-      the train will not be driven from that cab again in revenue service until the fault is rectified.</li>
-      <li><strong>ENDR:</strong> May be driven in revenue service from the current non-defective cab 
-      as far as the Metro network allows. The defective cab must not be driven from in revenue service.</li>
-    </ul>
   `,
   "S-PRTY": `
     <h3>Serious Priority (S-PRTY):</h3>
