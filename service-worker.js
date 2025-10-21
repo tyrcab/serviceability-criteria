@@ -1,20 +1,23 @@
-// List of files to cache (no need to version manually)
+// List of files to cache
 const urlsToCache = [
   "./",
   "./index.html",
   "./style.css",
   "./script.js",
+  "./trains.json",
   "./comeng.json",
   "./siemens.json",
+  "./xtrapolis.json",
+  "./hcmt.json",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png"
 ];
 
-// Generate a dynamic cache name based on timestamp
+// Dynamic cache name
 const CACHE_NAME = `scg-cache-${Date.now()}`;
 
-// Install service worker and cache all files
+// Install: cache all files
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
@@ -22,29 +25,27 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activate new SW and delete old caches
+// Activate: delete old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
+    caches.keys().then((cacheNames) =>
+      Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
+          if (cacheName !== CACHE_NAME) return caches.delete(cacheName);
         })
-      );
-    })
+      )
+    )
   );
   self.clients.claim();
 });
 
-// Fetch: Network-first, fallback to cache
+// Fetch: network-first, fallback to cache
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Update cache with the latest version
-        if (event.request.url.startsWith(self.location.origin)) {
+        // Cache only successful GET requests
+        if (event.request.method === "GET" && response.status === 200) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseClone);
@@ -52,6 +53,6 @@ self.addEventListener("fetch", (event) => {
         }
         return response;
       })
-      .catch(() => caches.match(event.request)) // fallback if offline
+      .catch(() => caches.match(event.request))
   );
 });
