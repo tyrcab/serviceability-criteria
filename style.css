@@ -7,7 +7,16 @@ html, body { width: 100%; overflow-x: hidden; font-family: "Segoe UI", Roboto, A
 .logo { width: 60px; height: 60px; margin-bottom: 10px; }
 
 /* DOCUMENT INFO */
-.doc-info { margin: 10px 15px; padding: 10px 15px; background-color: #fff3b0; border-left: 5px solid #ffd700; font-weight: bold; border-radius: 6px; font-size: 1em; }
+.doc-info {
+  margin: 10px 15px;
+  padding: 10px 15px;
+  background-color: #fff3b0;
+  border-left: 5px solid #ffd700;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 1em;
+  color: #333;
+}
 
 /* MAIN CONTENT */
 .main-content { padding: 10px 15px; }
@@ -40,13 +49,42 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
 .tos-container a:hover { color: #104E8B; }
 
 /* MODAL */
-.modal { display: flex; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
 .modal.show { opacity: 1; pointer-events: auto; }
-.modal-content { background-color: #fff; padding: 15px 20px; border-radius: 10px; width: 95%; max-width: 500px; max-height: 80vh; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; animation: slideDown 0.3s ease-out; }
+
+.modal-content {
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+  animation: slideDown 0.3s ease-out;
+}
+
 .modal-logo-container { display: flex; justify-content: center; margin-bottom: 15px; }
 .modal-logo { width: 60px; height: 60px; }
 .modal-content h2 { text-align: center; margin-bottom: 15px; }
-.modal-content ul { padding-left: 20px; margin-top: 10px; }
+.modal-content ul { padding-left: 20px; margin-top: 10px; line-height: 1.5em; }
+.modal-content ul li { margin-bottom: 10px; }
 .modal-content .close { color: #aaa; position: absolute; top: 10px; right: 15px; font-size: 1.5em; font-weight: bold; cursor: pointer; }
 .modal-content .close:hover { color: #000; }
 @keyframes slideDown { 0% { transform: translateY(-20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
@@ -55,10 +93,11 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
 .app-footer { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #1E90FF; color: white; text-align: center; padding: 10px 8px; font-size: 0.9em; box-sizing: border-box; overflow-wrap: break-word; word-break: break-word; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); z-index: 1000; }
 .app-footer a { color: #ffffff; text-decoration: underline; word-break: break-all; }
 
+/* RESPONSIVE */
 @media (max-width: 600px) {
   .dropdown-container { margin: 10px 5px; }
   select { font-size: 0.95em; }
   .result-box { margin: 10px 5px; padding: 12px 15px; }
-  .modal-content { padding: 15px 15px; }
+  .modal-content { padding: 15px 15px; max-height: 85vh; }
   .app-footer { font-size: 0.85em; padding: 8px 6px; }
 }
