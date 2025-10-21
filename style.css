@@ -52,6 +52,17 @@ select {
 }
 select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); }
 
+/* 🔹 HCMT CONDITION DROPDOWN */
+#hcmtCondition,
+#hcmtConditionLabel {
+  display: none; /* hidden by default */
+}
+.dropdown-container.show-hcmt #hcmtCondition,
+.dropdown-container.show-hcmt #hcmtConditionLabel {
+  display: block;
+}
+#hcmtCondition { margin-bottom: 10px; }
+
 /* RESULT BOX */
 .result-box {
   border-radius: 12px;
