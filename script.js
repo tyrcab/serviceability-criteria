@@ -2,6 +2,13 @@ let data = {};
 let trains = [];
 const cache = {};
 
+const trainDocs = {
+  "comeng.json": "Document Number: A9718 Version:1.0 Published: 02/08/2022",
+  "siemens.json": "Document Number: A9720 Version:1.0 Published: 02/08/2022",
+  "xtrapolis.json": "Document Number: A9719 Version:1.0 Published: 02/08/2022",
+  "hcmt.json": "Document Number: A9721 Version:2.0 Published: 22/02/2024"
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
   const equipmentSelect = document.getElementById("equipmentFault");
@@ -9,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultBox = document.getElementById("resultBox");
   const resultCondition = document.getElementById("resultCondition");
   const resultCategory = document.getElementById("resultCategory");
+  const docInfo = document.getElementById("docInfo");
 
   const categoryMap = {
     "C": { text: "C - Critical", color: "black" },
@@ -22,21 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
 
-  // Helper: fetch JSON network-first, fallback to cache
   const fetchJSON = async (url) => {
     try {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (err) {
-      console.warn(`Network failed, trying cache for ${url}`, err);
       const cacheMatch = await caches.match(url);
       if (cacheMatch) return await cacheMatch.json();
       return {};
     }
   };
 
-  // Load trains list
   const loadTrains = async () => {
     trains = await fetchJSON(`${baseURL}trains.json`);
     trainSelect.innerHTML = '<option value="">Select Train Type</option>';
@@ -48,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Load specific train JSON data
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
     const json = await fetchJSON(`${baseURL}${jsonFile}?t=${Date.now()}`);
@@ -58,9 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
-  // When train type changes
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
+
+    // Show document info
+    docInfo.textContent = trainDocs[jsonFile] || "";
+    docInfo.style.display = jsonFile ? "block" : "none";
+
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
     faultSelect.disabled = true;
@@ -86,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // When equipment changes
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
@@ -105,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // When fault/condition changes
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -124,30 +130,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         resultCategory.textContent = categoryInfo.text;
 
-        // Pulse animation
         resultCategory.classList.remove("pulse");
         void resultCategory.offsetWidth;
         resultCategory.classList.add("pulse");
 
-        // Set result box background color based on category
         resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
 
-        if (catKey === "C") {
-          resultBox.classList.add("critical-bg"); // red
-        } else if (catKey.startsWith("S")) {
-          resultBox.classList.add("serious-bg"); // orange
-        } else if (catKey === "MNT" || catKey === "RIR") {
-          resultBox.classList.add("maintenance-bg"); // grey
-        } else {
-          resultBox.classList.add("default-bg"); // fallback light grey
-        }
+        if (catKey === "C") resultBox.classList.add("critical-bg");
+        else if (catKey.startsWith("S")) resultBox.classList.add("serious-bg");
+        else if (catKey === "MNT" || catKey === "RIR") resultBox.classList.add("maintenance-bg");
+        else resultBox.classList.add("default-bg");
 
         resultBox.style.display = "block";
       }
     }
   });
 
-  // TERMS OF SERVICE MODAL
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
