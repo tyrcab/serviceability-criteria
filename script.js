@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultCondition = document.getElementById("resultCondition");
   const resultCategory = document.getElementById("resultCategory");
   const docInfo = document.getElementById("docInfo");
+  const definitionsBox = document.getElementById("definitionsBox");
 
   const categoryMap = {
     "C": { text: "C - Critical", color: "black" },
@@ -74,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
     faultSelect.disabled = true;
     resultBox.style.display = "none";
+    definitionsBox.style.display = "none";
 
     if (!jsonFile) {
       equipmentSelect.disabled = true;
@@ -100,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const equipment = equipmentSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
     resultBox.style.display = "none";
+    definitionsBox.style.display = "none";
 
     if (equipment && data[equipment]) {
       data[equipment].forEach(fault => {
@@ -136,14 +139,18 @@ document.addEventListener("DOMContentLoaded", () => {
         resultCategory.classList.add("pulse");
 
         resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
-
         if (catKey === "C") resultBox.classList.add("critical-bg");
         else if (catKey.startsWith("S")) resultBox.classList.add("serious-bg");
         else if (catKey === "MNT" || catKey === "RIR") resultBox.classList.add("maintenance-bg");
         else resultBox.classList.add("default-bg");
 
+        // Show result and definitions boxes
         resultBox.style.display = "block";
+        definitionsBox.style.display = "block";
       }
+    } else {
+      resultBox.style.display = "none";
+      definitionsBox.style.display = "none";
     }
   });
 
@@ -155,20 +162,4 @@ document.addEventListener("DOMContentLoaded", () => {
   tosLink.addEventListener("click", (e) => { e.preventDefault(); tosModal.classList.add("show"); });
   tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
   tosModal.addEventListener("click", (e) => { if (e.target === tosModal) tosModal.classList.remove("show"); });
-
-  // DEFINITIONS MODAL
-  const definitionsLink = document.getElementById("definitionsLink");
-  const definitionsModal = document.getElementById("definitionsModal");
-  const definitionsClose = definitionsModal.querySelector(".close");
-
-  definitionsLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    definitionsModal.classList.add("show");
-  });
-
-  definitionsClose.addEventListener("click", () => definitionsModal.classList.remove("show"));
-
-  definitionsModal.addEventListener("click", (e) => {
-    if (e.target === definitionsModal) definitionsModal.classList.remove("show");
-  });
 });
