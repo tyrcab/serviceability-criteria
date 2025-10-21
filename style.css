@@ -33,6 +33,20 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
 .result-box strong { font-weight: 600; }
 #resultCategory { font-weight: 700; font-size: 1.1em; text-transform: uppercase; letter-spacing: 0.5px; }
 
+/* DEFINITIONS BOX (inline under result) */
+#definitionsBox {
+  display: none;
+  margin-top: 15px;
+  padding: 12px 18px;
+  border-left: 5px solid #1E90FF;
+  background-color: #e6f0ff;
+  border-radius: 8px;
+  font-size: 0.95em;
+  color: #222;
+  line-height: 1.5em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 /* CATEGORY COLORS */
 .critical-bg { background-color: #ff4d4f; color: black; }
 .serious-bg { background-color: #ffa940; color: black; }
@@ -98,6 +112,7 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
   .dropdown-container { margin: 10px 5px; }
   select { font-size: 0.95em; }
   .result-box { margin: 10px 5px; padding: 12px 15px; }
+  #definitionsBox { margin: 10px 5px; padding: 10px 15px; font-size: 0.9em; }
   .modal-content { padding: 15px 15px; max-height: 85vh; }
   .app-footer { font-size: 0.85em; padding: 8px 6px; }
 }
