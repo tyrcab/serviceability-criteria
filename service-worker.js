@@ -1,4 +1,4 @@
-// List of files to cache
+// List of files to cache (static assets)
 const urlsToCache = [
   "./",
   "./index.html",
@@ -14,45 +14,65 @@ const urlsToCache = [
   "./icons/icon-512.png"
 ];
 
-// Dynamic cache name
-const CACHE_NAME = `scg-cache-${Date.now()}`;
+// Base cache name
+const CACHE_BASE = "scg-cache";
 
-// Install: cache all files
+// Install SW: cache files
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(`${CACHE_BASE}-temp`).then((cache) => cache.addAll(urlsToCache))
   );
   self.skipWaiting();
 });
 
-// Activate: delete old caches
+// Activate SW: remove old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) =>
-      Promise.all(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) return caches.delete(cacheName);
+          if (!cacheName.startsWith(CACHE_BASE + "-temp")) {
+            return caches.delete(cacheName);
+          }
         })
-      )
-    )
+      );
+    }).then(() => {
+      return caches.rename(`${CACHE_BASE}-temp`, CACHE_BASE);
+    })
   );
   self.clients.claim();
 });
 
-// Fetch: network-first, fallback to cache
+// Fetch: network-first for JSONs, cache-first for static assets
 self.addEventListener("fetch", (event) => {
+  const url = new URL(event.request.url);
+
+  // JSON files: network-first
+  if (url.pathname.endsWith(".json")) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const responseClone = response.clone();
+            caches.open(CACHE_BASE).then((cache) => cache.put(event.request, responseClone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Other static files: cache-first
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Cache only successful GET requests
-        if (event.request.method === "GET" && response.status === 200) {
+    caches.match(event.request).then((cached) => {
+      return cached || fetch(event.request).then((response) => {
+        if (response.ok) {
           const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+          caches.open(CACHE_BASE).then((cache) => cache.put(event.request, responseClone));
         }
         return response;
-      })
-      .catch(() => caches.match(event.request))
+      });
+    })
   );
 });
