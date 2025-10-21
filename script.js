@@ -53,6 +53,7 @@ const categoryDefinitions = {
 
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
+  const hcmtConditionSelect = document.getElementById("hcmtCondition"); // NEW dropdown
   const equipmentSelect = document.getElementById("equipmentFault");
   const faultSelect = document.getElementById("faultCondition");
   const resultBox = document.getElementById("resultBox");
@@ -114,6 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
     faultSelect.disabled = true;
+    hcmtConditionSelect.style.display = "none";
+    hcmtConditionSelect.innerHTML = '<option value="">Select Condition</option>';
     resultBox.style.display = "none";
     definitionsBox.style.display = "none";
 
@@ -124,74 +127,119 @@ document.addEventListener("DOMContentLoaded", () => {
 
     data = await loadTrainData(jsonFile);
 
-    if (Object.keys(data).length > 0) {
+    if (jsonFile === "hcmt.json") {
+      // SHOW Running/Prep dropdown
+      hcmtConditionSelect.style.display = "inline-block";
+      ["Running", "Prep"].forEach(cond => {
+        const option = document.createElement("option");
+        option.value = cond;
+        option.textContent = cond;
+        hcmtConditionSelect.appendChild(option);
+      });
+      equipmentSelect.disabled = true; // will enable after HCMT condition selected
+    } else {
+      hcmtConditionSelect.style.display = "none";
       Object.keys(data).forEach(eq => {
         const option = document.createElement("option");
         option.value = eq;
         option.textContent = eq;
         equipmentSelect.appendChild(option);
       });
-      equipmentSelect.disabled = false;
-    } else {
-      equipmentSelect.disabled = true;
+      equipmentSelect.disabled = Object.keys(data).length === 0;
     }
+  });
+
+  // 🟦 HCMT Running/Prep selection
+  hcmtConditionSelect.addEventListener("change", () => {
+    const condType = hcmtConditionSelect.value;
+    equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
+    faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
+    resultBox.style.display = "none";
+    definitionsBox.style.display = "none";
+
+    if (!condType) {
+      equipmentSelect.disabled = true;
+      return;
+    }
+
+    Object.keys(data).forEach(eq => {
+      const option = document.createElement("option");
+      option.value = eq;
+      option.textContent = eq;
+      equipmentSelect.appendChild(option);
+    });
+    equipmentSelect.disabled = false;
   });
 
   // 🟦 Equipment selection
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
+    const hcmtCond = hcmtConditionSelect.value;
     faultSelect.innerHTML = '<option value="">Select Fault/Condition</option>';
     resultBox.style.display = "none";
     definitionsBox.style.display = "none";
 
-    if (equipment && data[equipment]) {
-      data[equipment].forEach(fault => {
-        const option = document.createElement("option");
-        option.value = fault.condition;
-        option.textContent = fault.condition;
-        faultSelect.appendChild(option);
-      });
-      faultSelect.disabled = data[equipment].length === 0;
-    } else {
+    if (!equipment) {
       faultSelect.disabled = true;
+      return;
     }
+
+    let faultsArray = data[equipment];
+    if (trainSelect.value === "hcmt.json" && hcmtCond) {
+      faultsArray = data[equipment][hcmtCond]; // Running or Prep
+    }
+
+    faultsArray.forEach(fault => {
+      const option = document.createElement("option");
+      option.value = fault.condition;
+      option.textContent = fault.condition;
+      faultSelect.appendChild(option);
+    });
+
+    faultSelect.disabled = faultsArray.length === 0;
   });
 
   // 🟦 Fault selection (show result + definitions)
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
+    const hcmtCond = hcmtConditionSelect.value;
 
-    if (equipment && fault && data[equipment]) {
-      const selectedFault = data[equipment].find(f => f.condition === fault);
-      if (selectedFault) {
-        resultCondition.textContent = selectedFault.condition;
+    if (!equipment || !fault) return;
 
-        const catKey = selectedFault.category
-          ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
-          : "";
-
-        const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown", color: "black" };
-        resultCategory.textContent = categoryInfo.text;
-
-        // Animate and color result
-        resultCategory.classList.remove("pulse");
-        void resultCategory.offsetWidth;
-        resultCategory.classList.add("pulse");
-
-        resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
-        if (catKey === "C") resultBox.classList.add("critical-bg");
-        else if (catKey.startsWith("S")) resultBox.classList.add("serious-bg");
-        else if (catKey === "MNT" || catKey === "RIR") resultBox.classList.add("maintenance-bg");
-        else resultBox.classList.add("default-bg");
-
-        resultBox.style.display = "block";
-
-        // 🟨 Show definitions with formatted headings
-        definitionsBox.innerHTML = categoryDefinitions[catKey] || "<p>No definition available for this category.</p>";
-        definitionsBox.style.display = "block";
-      }
+    let selectedFault;
+    if (trainSelect.value === "hcmt.json" && hcmtCond) {
+      selectedFault = data[equipment][hcmtCond].find(f => f.condition === fault);
+    } else {
+      selectedFault = data[equipment].find(f => f.condition === fault);
     }
+
+    if (!selectedFault) return;
+
+    resultCondition.textContent = selectedFault.condition;
+
+    const catKey = selectedFault.value
+      ? selectedFault.value.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
+      : "";
+
+    const categoryInfo = categoryMap[catKey] || { text: selectedFault.value || "Unknown", color: "black" };
+    resultCategory.textContent = categoryInfo.text;
+
+    // Animate and color result
+    resultCategory.classList.remove("pulse");
+    void resultCategory.offsetWidth;
+    resultCategory.classList.add("pulse");
+
+    resultBox.classList.remove("critical-bg", "serious-bg", "maintenance-bg", "default-bg");
+    if (catKey === "C") resultBox.classList.add("critical-bg");
+    else if (catKey.startsWith("S")) resultBox.classList.add("serious-bg");
+    else if (catKey === "MNT" || catKey === "RIR") resultBox.classList.add("maintenance-bg");
+    else resultBox.classList.add("default-bg");
+
+    resultBox.style.display = "block";
+
+    definitionsBox.innerHTML = categoryDefinitions[catKey] || "<p>No definition available for this category.</p>";
+    definitionsBox.style.display = "block";
   });
 
   // 🟦 TERMS OF SERVICE MODAL
