@@ -1,4 +1,4 @@
-const CACHE_NAME = 'train-app-v2';
+const CACHE_NAME = 'train-app-v3'; // updated version to force cache refresh
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -12,27 +12,27 @@ const ASSETS_TO_CACHE = [
   '/style.css'
 ];
 
-let currentVersion = null;
-
-// --- Install event: cache assets ---
+// --- Install: cache assets ---
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS_TO_CACHE))
   );
-  self.skipWaiting();
+  self.skipWaiting(); // activate new SW immediately
 });
 
-// --- Activate event: cleanup old caches ---
+// --- Activate: clean up old caches ---
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys => Promise.all(
-      keys.map(key => key !== CACHE_NAME ? caches.delete(key) : null)
-    ))
+    caches.keys().then(keys =>
+      Promise.all(keys.map(key => {
+        if (key !== CACHE_NAME) return caches.delete(key);
+      }))
+    )
   );
-  self.clients.claim();
+  self.clients.claim(); // take control immediately
 });
 
-// --- Fetch event: serve from cache first ---
+// --- Fetch: cache-first strategy ---
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cached => cached || fetch(event.request))
@@ -41,31 +41,14 @@ self.addEventListener('fetch', event => {
 
 // --- Listen for messages from page ---
 self.addEventListener('message', async event => {
-  if (!event.data) return;
-
   if (event.data === 'checkForUpdate') {
-    try {
-      // Fetch latest version.json
-      const response = await fetch('/version.json?t=' + Date.now());
-      const versionData = await response.json();
-      const newVersion = versionData.version;
-
-      // Only notify if the version changed
-      if (currentVersion && newVersion !== currentVersion) {
-        sendMessageToClients({ type: 'NEW_VERSION' });
-      }
-
-      // Update the current version in SW memory
-      currentVersion = newVersion;
-
-      // Also trigger SW update
-      await self.registration.update();
-
-    } catch (err) {
-      console.error('Error checking for update:', err);
+    // Check for new SW version
+    const registration = await self.registration.update();
+    if (self.registration.waiting) {
+      sendMessageToClients({ type: 'NEW_VERSION' });
     }
-
-  } else if (event.data.type === 'SKIP_WAITING') {
+  } else if (event.data && event.data.type === 'SKIP_WAITING') {
+    // Activate new SW immediately
     self.skipWaiting();
   }
 });
