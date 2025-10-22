@@ -1,4 +1,4 @@
-const CACHE_NAME = 'train-app-v1'; // bump this on major releases
+const CACHE_NAME = 'train-app-v5'; // bump this on major releases
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -10,17 +10,20 @@ const ASSETS_TO_CACHE = [
   '/hcmt.json',
   '/version.json',
   '/style.css'
+  // Removed favicon.ico since it doesn't exist
 ];
 
-// Install event: cache assets
+// --- Install event: cache assets ---
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS_TO_CACHE))
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS_TO_CACHE))
+      .catch(err => console.error('Cache addAll failed:', err))
   );
   self.skipWaiting(); // activate new SW immediately
 });
 
-// Activate event: delete old caches
+// --- Activate event: delete old caches ---
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -30,14 +33,14 @@ self.addEventListener('activate', event => {
   self.clients.claim(); // take control immediately
 });
 
-// Fetch event: cache-first strategy
+// --- Fetch event: cache-first strategy ---
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cached => cached || fetch(event.request))
   );
 });
 
-// Listen for messages from the page
+// --- Listen for messages from the page ---
 self.addEventListener('message', event => {
   if (event.data === 'checkForUpdate') {
     if (self.registration.waiting) {
@@ -48,7 +51,7 @@ self.addEventListener('message', event => {
   }
 });
 
-// Send message to all clients
+// --- Send message to all clients ---
 function sendMessageToClients(msg) {
   self.clients.matchAll().then(clients => {
     clients.forEach(client => client.postMessage(msg));
