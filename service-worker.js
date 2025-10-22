@@ -1,4 +1,10 @@
-// List of files to cache (static assets)
+// Increment this version whenever you deploy new code
+const APP_VERSION = "v1.0.5"; // <-- bump this to force update
+
+// Cache name includes version
+const CACHE_NAME = `scg-cache-${APP_VERSION}`;
+
+// Files to cache
 const urlsToCache = [
   "./",
   "./index.html",
@@ -14,47 +20,43 @@ const urlsToCache = [
   "./icons/icon-512.png"
 ];
 
-// Base cache name
-const CACHE_BASE = "scg-cache";
-
-// Install SW: cache files
+// Install: pre-cache app shell
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(`${CACHE_BASE}-temp`).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
   );
   self.skipWaiting();
 });
 
-// Activate SW: remove old caches
+// Activate: delete old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (!cacheName.startsWith(CACHE_BASE + "-temp")) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => {
-      return caches.rename(`${CACHE_BASE}-temp`, CACHE_BASE);
-    })
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((key) => key.startsWith("scg-cache-") && key !== CACHE_NAME)
+          .map((key) => caches.delete(key))
+      )
+    )
   );
   self.clients.claim();
 });
 
-// Fetch: network-first for JSONs, cache-first for static assets
+// Fetch strategy: network-first for JSON, cache-first for static assets
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
-  // JSON files: network-first
+  // Handle only same-origin requests
+  if (url.origin !== self.location.origin) return;
+
+  // JSON: network-first
   if (url.pathname.endsWith(".json")) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
           if (response.ok) {
-            const responseClone = response.clone();
-            caches.open(CACHE_BASE).then((cache) => cache.put(event.request, responseClone));
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
           return response;
         })
@@ -63,16 +65,36 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Other static files: cache-first
+  // Everything else: cache-first
   event.respondWith(
     caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request).then((response) => {
-        if (response.ok) {
-          const responseClone = response.clone();
-          caches.open(CACHE_BASE).then((cache) => cache.put(event.request, responseClone));
-        }
-        return response;
-      });
+      return (
+        cached ||
+        fetch(event.request).then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return response;
+        })
+      );
     })
   );
+});
+
+// 🔄 Notify clients when a new version is available
+self.addEventListener("message", (event) => {
+  if (event.data === "checkForUpdate") {
+    fetch("version.json")
+      .then((r) => r.json())
+      .then((latest) => {
+        if (latest.version !== APP_VERSION) {
+          // Tell all tabs to reload
+          self.clients.matchAll().then((clients) => {
+            clients.forEach((client) => client.postMessage({ type: "NEW_VERSION" }));
+          });
+        }
+      })
+      .catch(() => {});
+  }
 });
