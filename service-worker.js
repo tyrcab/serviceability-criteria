@@ -11,7 +11,6 @@ const ASSETS_TO_CACHE = [
   '/version.json',
   '/style.css' // add your CSS if exists
 ];
-
 // --- Install event: cache assets ---
 self.addEventListener('install', event => {
   event.waitUntil(
