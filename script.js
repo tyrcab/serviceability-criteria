@@ -240,10 +240,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- VERSION & UPDATE MODAL ---
   const updateModalId = "updateModal";
+  let updateApplied = false; // prevents repeated popups
+  let updateListenerAdded = false; // prevents multiple listeners
 
-  const showUpdateModalIfPending = () => {
-    if (!navigator.serviceWorker.waiting) return;
-    if (document.getElementById(updateModalId)) return;
+  const showUpdateModal = () => {
+    if (updateApplied || document.getElementById(updateModalId)) return;
 
     const modal = document.createElement("div");
     modal.id = updateModalId;
@@ -268,9 +269,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (navigator.serviceWorker.waiting) {
         navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
       }
-      localStorage.removeItem("pendingUpdate");
+      updateApplied = true;
       modal.remove();
-      // reload page to activate new SW
       window.location.reload();
     });
   };
@@ -282,21 +282,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
 
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        // only show modal if SW is waiting
-        navigator.serviceWorker.addEventListener('message', (event) => {
-          if (event.data && event.data.type === "NEW_VERSION") {
-            localStorage.setItem("pendingUpdate", "true");
-            showUpdateModalIfPending();
-          }
-        });
-
-        // ask SW if update is available
-        navigator.serviceWorker.controller.postMessage("checkForUpdate");
-
-        // if update was pending from last visit
-        if (localStorage.getItem("pendingUpdate") === "true") {
-          showUpdateModalIfPending();
+        if (!updateListenerAdded) {
+          navigator.serviceWorker.addEventListener('message', (event) => {
+            if (event.data && event.data.type === "NEW_VERSION") {
+              showUpdateModal();
+            }
+          });
+          updateListenerAdded = true;
         }
+        navigator.serviceWorker.controller.postMessage("checkForUpdate");
       }
     } catch (err) {
       console.log("Failed to load version.json", err);
