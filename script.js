@@ -10,7 +10,7 @@ const trainDocs = {
   "hcmt.json": "Document Number: A9721 Version:2.0 Published: 22/02/2024"
 };
 
-// --- SHARED PARAGRAPH FOR ALL SERIOUS FAULTS ---
+// --- SHARED PARAGRAPH FOR SERIOUS FAULTS ---
 const seriousCommon = `
   <p>
     All Serious Faults expire when the train shunts and stables (with the exception of HCMT). 
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // --- Load available trains ---
+  // --- Load trains ---
   const loadTrains = async () => {
     trains = await fetchJSON(`${baseURL}trains.json`);
     trainSelect.innerHTML = '<option value="">Select Train Type</option>';
@@ -221,15 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
     definitionsBox.style.display = "block";
   });
 
-  // --- TERMS OF SERVICE MODAL ---
-  const tosLink = document.getElementById("tosLink");
-  const tosModal = document.getElementById("tosModal");
-  const tosClose = tosModal.querySelector(".close");
-
-  tosLink.addEventListener("click", (e) => { e.preventDefault(); tosModal.classList.add("show"); });
-  tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
-  tosModal.addEventListener("click", (e) => { if (e.target === tosModal) tosModal.classList.remove("show"); });
-
   // --- PWA UPDATE BADGE ---
   const showUpdateBadge = (worker, version) => {
     if (document.getElementById("updateBadge")) return;
@@ -263,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(badge);
   };
 
+  // --- Check for updates ---
   const updateVersion = async () => {
     try {
       const versionData = await fetchJSON(`${baseURL}version.json?t=${Date.now()}`);
@@ -274,18 +266,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if ('serviceWorker' in navigator) {
         const registration = await navigator.serviceWorker.getRegistration();
-        if (registration) {
-          if (registration.waiting) {
-            showUpdateBadge(registration.waiting, latestVersion);
-          }
-          registration.addEventListener('updatefound', () => {
-            const newWorker = registration.installing;
-            newWorker.addEventListener('statechange', () => {
-              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                showUpdateBadge(newWorker, latestVersion);
-              }
-            });
+        if (!registration) return;
+
+        if (registration.waiting) {
+          showUpdateBadge(registration.waiting, latestVersion);
+        }
+
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showUpdateBadge(newWorker, latestVersion);
+            }
           });
+        });
+
+        if (navigator.serviceWorker.controller) {
+          navigator.serviceWorker.controller.postMessage('checkForUpdate');
         }
       }
     } catch (err) {
