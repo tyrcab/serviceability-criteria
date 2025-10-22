@@ -240,11 +240,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- VERSION & UPDATE MODAL ---
   const updateModalId = "updateModal";
-  let updateApplied = false; // prevents repeated popups
-  let updateListenerAdded = false; // prevents multiple listeners
 
-  const showUpdateModal = () => {
-    if (updateApplied || document.getElementById(updateModalId)) return;
+  const showUpdateModalIfPending = () => {
+    if (!navigator.serviceWorker.waiting) return;
+    if (document.getElementById(updateModalId)) return;
 
     const modal = document.createElement("div");
     modal.id = updateModalId;
@@ -269,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (navigator.serviceWorker.waiting) {
         navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
       }
-      updateApplied = true;
+      localStorage.removeItem("pendingUpdate");
       modal.remove();
       window.location.reload();
     });
@@ -282,15 +281,18 @@ document.addEventListener("DOMContentLoaded", () => {
       if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
 
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        if (!updateListenerAdded) {
-          navigator.serviceWorker.addEventListener('message', (event) => {
-            if (event.data && event.data.type === "NEW_VERSION") {
-              showUpdateModal();
-            }
-          });
-          updateListenerAdded = true;
-        }
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === "NEW_VERSION") {
+            localStorage.setItem("pendingUpdate", "true");
+            showUpdateModalIfPending();
+          }
+        });
+
         navigator.serviceWorker.controller.postMessage("checkForUpdate");
+
+        if (localStorage.getItem("pendingUpdate") === "true") {
+          showUpdateModalIfPending();
+        }
       }
     } catch (err) {
       console.log("Failed to load version.json", err);
