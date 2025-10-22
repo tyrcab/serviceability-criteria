@@ -91,8 +91,6 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
   color: #222;
   line-height: 1.6em;
 }
-
-/* Bold and colored headings inside definitions */
 .definitions-box h3,
 .definitions-box strong,
 .definitions-box .definition-heading {
@@ -101,12 +99,9 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
   display: block;
   margin-bottom: 6px;
 }
-
-/* Optional color-coded headings */
 .definitions-box .critical-heading { color: #ff4d4f; }
 .definitions-box .serious-heading { color: #ffa940; }
 .definitions-box .maintenance-heading { color: #777; }
-
 .definitions-box p { margin-bottom: 12px; }
 .definitions-box ul { padding-left: 20px; margin-bottom: 12px; }
 .definitions-box li { margin-bottom: 8px; }
@@ -137,7 +132,7 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
 
 /* MODAL */
 .modal {
-  display: flex;
+  display: none; /* hidden by default */
   position: fixed;
   z-index: 2000;
   left: 0;
@@ -152,7 +147,11 @@ select:focus { border-color: #1E90FF; box-shadow: 0 0 5px rgba(30,144,255,0.5); 
   pointer-events: none;
   transition: opacity 0.3s;
 }
-.modal.show { opacity: 1; pointer-events: auto; }
+.modal.show {
+  display: flex;      /* visible when active */
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .modal-content {
   background-color: #fff;
