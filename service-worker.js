@@ -12,15 +12,15 @@ const ASSETS_TO_CACHE = [
   '/style.css' // add your CSS if exists
 ];
 
-// Install event — cache assets
+// --- Install event: cache assets ---
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS_TO_CACHE))
   );
-  self.skipWaiting(); // optional: immediately activate SW
+  self.skipWaiting(); // activate new SW immediately
 });
 
-// Activate event — cleanup old caches
+// --- Activate event: cleanup old caches ---
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => Promise.all(
@@ -32,19 +32,18 @@ self.addEventListener('activate', event => {
   self.clients.claim(); // take control of all pages
 });
 
-// Fetch event — serve from cache first, then network
+// --- Fetch event: serve from cache first, then network ---
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      return cached || fetch(event.request);
-    })
+    caches.match(event.request).then(cached => cached || fetch(event.request))
   );
 });
 
-// Listen for messages from page
-self.addEventListener('message', event => {
+// --- Listen for messages from page ---
+self.addEventListener('message', async event => {
   if (event.data === 'checkForUpdate') {
-    // Notify client if a new service worker is waiting
+    // Only notify if a new SW is waiting
+    const registrations = await self.registration.update();
     if (self.registration.waiting) {
       sendMessageToClients({ type: 'NEW_VERSION' });
     }
@@ -53,7 +52,7 @@ self.addEventListener('message', event => {
   }
 });
 
-// Helper: send message to all clients
+// --- Helper: send message to all clients ---
 function sendMessageToClients(msg) {
   self.clients.matchAll().then(clients => {
     clients.forEach(client => client.postMessage(msg));
