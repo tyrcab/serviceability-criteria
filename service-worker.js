@@ -1,5 +1,5 @@
 // Increment this version whenever you deploy new code
-const APP_VERSION = "v1.0.6"; // <-- bump this to force update
+const APP_VERSION = "v1.0.7"; // <-- bump this to force update
 
 // Cache name includes version
 const CACHE_NAME = `scg-cache-${APP_VERSION}`;
