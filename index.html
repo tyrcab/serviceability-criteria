@@ -7,14 +7,43 @@
   <!-- Viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Prevent aggressive caching -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <!-- PWA / Theme -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#1E90FF">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
 
-  <!-- Styles & Scripts -->
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <!-- Styles & Scripts (cache-busting version query) -->
+  <link rel="stylesheet" href="style.css?v=20251022">
+  <script src="script.js?v=20251022" defer></script>
+
+  <style>
+    /* --- Toast Message Styling --- */
+    #updateToast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E90FF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      font-size: 16px;
+      font-weight: 500;
+      z-index: 9999;
+      display: none;
+      animation: fadein 0.3s ease;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+  </style>
 </head>
 <body>
 
@@ -29,29 +58,28 @@
 
   <!-- MAIN CONTENT -->
   <main class="main-content">
-    <!-- DROPDOWNS -->
-<div class="dropdown-container">
-  <label for="trainType">Train Type:</label>
-  <select id="trainType">
-    <option value="">Select Train Type</option>
-  </select>
+    <div class="dropdown-container">
+      <label for="trainType">Train Type:</label>
+      <select id="trainType">
+        <option value="">Select Train Type</option>
+      </select>
 
-  <!-- NEW: HCMT Running/Prep Dropdown -->
-  <label for="hcmtCondition" id="hcmtConditionLabel" style="display:none;">HCMT Condition:</label>
-  <select id="hcmtCondition" style="display:none;">
-    <option value="">Select Condition</option>
-  </select>
+      <!-- HCMT Running/Prep Dropdown -->
+      <label for="hcmtCondition" id="hcmtConditionLabel" style="display:none;">HCMT Condition:</label>
+      <select id="hcmtCondition" style="display:none;">
+        <option value="">Select Condition</option>
+      </select>
 
-  <label for="equipmentFault">Equipment Fault:</label>
-  <select id="equipmentFault" disabled>
-    <option value="">Select Equipment Fault</option>
-  </select>
+      <label for="equipmentFault">Equipment Fault:</label>
+      <select id="equipmentFault" disabled>
+        <option value="">Select Equipment Fault</option>
+      </select>
 
-  <label for="faultCondition">Fault/Condition:</label>
-  <select id="faultCondition" disabled>
-    <option value="">Select Fault/Condition</option>
-  </select>
-</div>
+      <label for="faultCondition">Fault/Condition:</label>
+      <select id="faultCondition" disabled>
+        <option value="">Select Fault/Condition</option>
+      </select>
+    </div>
 
     <!-- RESULT BOX -->
     <div class="result-box" id="resultBox" style="display:none;">
@@ -91,15 +119,48 @@
     <a href="mailto:tyroncabral@gmail.com">tyroncabral@gmail.com</a>
   </footer>
 
-  <!-- SERVICE WORKER -->
+  <!-- Toast for updates -->
+  <div id="updateToast">🔄 A new version is available — updating...</div>
+
+  <!-- 🔧 SERVICE WORKER + AUTO-UPDATE LOGIC -->
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js")
-          .then(() => console.log("✅ Service Worker registered"))
-          .catch((err) => console.log("Service Worker registration failed:", err));
-      });
-    }
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", async () => {
+      try {
+        const reg = await navigator.serviceWorker.register("./service-worker.js");
+        console.log("✅ Service Worker registered");
+
+        const showToast = (msg) => {
+          const toast = document.getElementById("updateToast");
+          toast.textContent = msg;
+          toast.style.display = "block";
+        };
+
+        // --- Instant version check on load ---
+        if (reg.active) reg.active.postMessage("checkForUpdate");
+
+        // --- Periodic checks (every 5 minutes) ---
+        setInterval(() => {
+          if (reg.active) reg.active.postMessage("checkForUpdate");
+        }, 300000);
+
+        // --- Handle new version message from SW ---
+        navigator.serviceWorker.addEventListener("message", (event) => {
+          if (event.data.type === "NEW_VERSION") {
+            console.log("🔄 New version detected — reloading...");
+            showToast("🔄 A new version is available — updating...");
+            setTimeout(() => {
+              caches.keys()
+                .then(keys => Promise.all(keys.map(k => caches.delete(k))))
+                .finally(() => location.reload(true));
+            }, 1500); // brief delay so user sees message
+          }
+        });
+      } catch (err) {
+        console.error("Service Worker registration failed:", err);
+      }
+    });
+  }
   </script>
 
 </body>
