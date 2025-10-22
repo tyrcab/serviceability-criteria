@@ -1,4 +1,4 @@
-const CACHE_NAME = 'train-app-v3'; // updated version to force cache refresh
+const CACHE_NAME = 'train-app-v4'; // increment this on each release
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -12,7 +12,7 @@ const ASSETS_TO_CACHE = [
   '/style.css'
 ];
 
-// --- Install: cache assets ---
+// --- Install event: cache assets ---
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS_TO_CACHE))
@@ -20,19 +20,17 @@ self.addEventListener('install', event => {
   self.skipWaiting(); // activate new SW immediately
 });
 
-// --- Activate: clean up old caches ---
+// --- Activate event: cleanup old caches ---
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.map(key => {
-        if (key !== CACHE_NAME) return caches.delete(key);
-      }))
+      Promise.all(keys.map(key => key !== CACHE_NAME ? caches.delete(key) : null))
     )
   );
-  self.clients.claim(); // take control immediately
+  self.clients.claim(); // take control of all pages
 });
 
-// --- Fetch: cache-first strategy ---
+// --- Fetch event: serve from cache first, then network ---
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cached => cached || fetch(event.request))
@@ -42,20 +40,18 @@ self.addEventListener('fetch', event => {
 // --- Listen for messages from page ---
 self.addEventListener('message', async event => {
   if (event.data === 'checkForUpdate') {
-    // Check for new SW version
-    const registration = await self.registration.update();
+    // If a new SW is waiting, notify clients
     if (self.registration.waiting) {
       sendMessageToClients({ type: 'NEW_VERSION' });
     }
   } else if (event.data && event.data.type === 'SKIP_WAITING') {
-    // Activate new SW immediately
-    self.skipWaiting();
+    self.skipWaiting(); // activate new SW immediately
   }
 });
 
 // --- Helper: send message to all clients ---
 function sendMessageToClients(msg) {
-  self.clients.matchAll({ includeUncontrolled: true }).then(clients => {
+  self.clients.matchAll().then(clients => {
     clients.forEach(client => client.postMessage(msg));
   });
 }
