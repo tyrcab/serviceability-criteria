@@ -1,5 +1,5 @@
 // ✅ Current app version (auto-bumped by GitHub Action)
-const APP_VERSION = "v1.0.9"; // will be updated automatically by bump-version.js
+const APP_VERSION = "v1.0.10"; // will be updated automatically by bump-version.js
 
 // Static assets to cache (no SW or version.json!)
 const urlsToCache = [
