@@ -206,6 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown" };
     resultCategory.textContent = categoryInfo.text;
 
+    // Animate & color
     resultCategory.classList.remove("pulse");
     void resultCategory.offsetWidth;
     resultCategory.classList.add("pulse");
@@ -221,68 +222,77 @@ document.addEventListener("DOMContentLoaded", () => {
     definitionsBox.style.display = "block";
   });
 
-  // --- PWA UPDATE BADGE ---
-  const showUpdateBadge = (worker, version) => {
-    if (document.getElementById("updateBadge")) return;
-    localStorage.setItem("lastNotifiedVersion", version);
+  // --- TERMS OF SERVICE MODAL ---
+  const tosLink = document.getElementById("tosLink");
+  const tosModal = document.getElementById("tosModal");
+  const tosClose = tosModal ? tosModal.querySelector(".close") : null;
 
-    const badge = document.createElement("div");
-    badge.id = "updateBadge";
-    badge.textContent = "Update Available";
-    badge.style = `
+  if (tosLink && tosModal && tosClose) {
+    tosLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      tosModal.classList.add("show");
+    });
+
+    tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
+    tosModal.addEventListener("click", (e) => {
+      if (e.target === tosModal) tosModal.classList.remove("show");
+    });
+  }
+
+  // --- VERSION & UPDATE MODAL ---
+  const updateModalId = "updateModal";
+
+  const showUpdateModalIfPending = () => {
+    if (!navigator.serviceWorker.waiting) return;
+    if (document.getElementById(updateModalId)) return;
+
+    const modal = document.createElement("div");
+    modal.id = updateModalId;
+    modal.style = `
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ff9800;
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 10000;
-      font-family: sans-serif;
-      font-weight: bold;
-      transition: transform 0.2s ease;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.5); display:flex; justify-content:center; align-items:center;
+      z-index:10000;
     `;
-    badge.addEventListener("mouseenter", () => badge.style.transform = "scale(1.1)");
-    badge.addEventListener("mouseleave", () => badge.style.transform = "scale(1.0)");
-    badge.addEventListener("click", () => {
-      if (worker) worker.postMessage({ type: "SKIP_WAITING" });
-      badge.remove();
+    const box = document.createElement("div");
+    box.style = `
+      background: #fff; padding: 20px; border-radius: 8px; text-align:center; max-width:300px;
+    `;
+    box.innerHTML = `
+      <p>A new version of the app is available.</p>
+      <button id="installUpdate" style="padding:8px 15px;margin-top:10px;">Install Update</button>
+    `;
+    modal.appendChild(box);
+    document.body.appendChild(modal);
+
+    document.getElementById("installUpdate").addEventListener("click", () => {
+      if (navigator.serviceWorker.waiting) {
+        navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
+      }
+      localStorage.removeItem("pendingUpdate");
+      modal.remove();
       window.location.reload();
     });
-    document.body.appendChild(badge);
   };
 
-  // --- Check for updates ---
   const updateVersion = async () => {
     try {
-      const versionData = await fetchJSON(`${baseURL}version.json?t=${Date.now()}`);
-      const latestVersion = versionData.version || "v1.0.0";
-      const lastNotifiedVersion = localStorage.getItem("lastNotifiedVersion");
+      const versionData = await fetch(`${baseURL}version.json?t=${Date.now()}`).then(r => r.json());
+      const currentVersion = versionData.version || "v1.0.0";
+      if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
 
-      if (footerVersion) footerVersion.textContent = `Version: ${latestVersion}`;
-      if (latestVersion === lastNotifiedVersion) return;
-
-      if ('serviceWorker' in navigator) {
-        const registration = await navigator.serviceWorker.getRegistration();
-        if (!registration) return;
-
-        if (registration.waiting) {
-          showUpdateBadge(registration.waiting, latestVersion);
-        }
-
-        registration.addEventListener('updatefound', () => {
-          const newWorker = registration.installing;
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              showUpdateBadge(newWorker, latestVersion);
-            }
-          });
+      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === "NEW_VERSION") {
+            localStorage.setItem("pendingUpdate", "true");
+            showUpdateModalIfPending();
+          }
         });
 
-        if (navigator.serviceWorker.controller) {
-          navigator.serviceWorker.controller.postMessage('checkForUpdate');
+        navigator.serviceWorker.controller.postMessage("checkForUpdate");
+
+        if (localStorage.getItem("pendingUpdate") === "true") {
+          showUpdateModalIfPending();
         }
       }
     } catch (err) {
@@ -290,7 +300,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // --- Run version check ---
   updateVersion();
-  setInterval(updateVersion, 30 * 60 * 1000);
 });
