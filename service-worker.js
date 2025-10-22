@@ -1,10 +1,7 @@
-// Increment this version whenever you deploy new code
-const APP_VERSION = "v1.0.7"; // <-- bump this to force update
+// ✅ Current app version (auto-bumped by GitHub Action)
+const APP_VERSION = "v1.0.0"; // will be updated automatically by bump-version.js
 
-// Cache name includes version
-const CACHE_NAME = `scg-cache-${APP_VERSION}`;
-
-// Files to cache
+// Static assets to cache (no SW or version.json!)
 const urlsToCache = [
   "./",
   "./index.html",
@@ -20,7 +17,9 @@ const urlsToCache = [
   "./icons/icon-512.png"
 ];
 
-// Install: pre-cache app shell
+const CACHE_NAME = `scg-cache-${APP_VERSION}`;
+
+// --- Install: cache static assets ---
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
@@ -28,73 +27,74 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activate: delete old caches
+// --- Activate: clear old caches ---
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
+    caches.keys().then((keys) => {
+      return Promise.all(
         keys
           .filter((key) => key.startsWith("scg-cache-") && key !== CACHE_NAME)
           .map((key) => caches.delete(key))
-      )
-    )
+      );
+    })
   );
   self.clients.claim();
 });
 
-// Fetch strategy: network-first for JSON, cache-first for static assets
+// --- Fetch handler ---
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
-  // Handle only same-origin requests
-  if (url.origin !== self.location.origin) return;
+  // Don't cache the service worker itself or version.json
+  if (url.pathname.endsWith("service-worker.js") || url.pathname.endsWith("version.json")) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
 
   // JSON: network-first
   if (url.pathname.endsWith(".json")) {
     event.respondWith(
       fetch(event.request)
-        .then((response) => {
-          if (response.ok) {
-            const clone = response.clone();
+        .then((res) => {
+          if (res.ok) {
+            const clone = res.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
-          return response;
+          return res;
         })
         .catch(() => caches.match(event.request))
     );
     return;
   }
 
-  // Everything else: cache-first
+  // Static: cache-first
   event.respondWith(
     caches.match(event.request).then((cached) => {
       return (
         cached ||
-        fetch(event.request).then((response) => {
-          if (response.ok) {
-            const clone = response.clone();
+        fetch(event.request).then((res) => {
+          if (res.ok) {
+            const clone = res.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
           }
-          return response;
+          return res;
         })
       );
     })
   );
 });
 
-// 🔄 Notify clients when a new version is available
+// --- Bonus: check for updates manually ---
 self.addEventListener("message", (event) => {
   if (event.data === "checkForUpdate") {
-    fetch("version.json")
+    fetch("./version.json")
       .then((r) => r.json())
-      .then((latest) => {
-        if (latest.version !== APP_VERSION) {
-          // Tell all tabs to reload
-          self.clients.matchAll().then((clients) => {
-            clients.forEach((client) => client.postMessage({ type: "NEW_VERSION" }));
-          });
+      .then((data) => {
+        if (data.version && data.version !== APP_VERSION) {
+          // New version detected
+          event.source.postMessage({ type: "NEW_VERSION" });
         }
       })
-      .catch(() => {});
+      .catch(() => console.log("No version update available."));
   }
 });
