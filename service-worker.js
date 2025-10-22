@@ -1,4 +1,4 @@
-const CACHE_NAME = 'train-app-v5'; // bump this on major releases
+const CACHE_NAME = 'train-app-v1'; // bump this on major releases
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
