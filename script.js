@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     definitionsBox.style.display = "block";
   });
 
-  // --- Terms of Service modal ---
+  // --- TERMS OF SERVICE MODAL ---
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
@@ -238,13 +238,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === tosModal) tosModal.classList.remove("show");
   });
 
-  // --- VERSION & SOFT UPDATE MODAL ---
+  // --- VERSION & UPDATE MODAL ---
   const updateModalId = "updateModal";
 
   const showUpdateModalIfPending = () => {
-    const pendingUpdate = localStorage.getItem("pendingUpdate");
-    if (!pendingUpdate) return;
-
+    if (!navigator.serviceWorker.waiting) return;
     if (document.getElementById(updateModalId)) return;
 
     const modal = document.createElement("div");
@@ -272,10 +270,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       localStorage.removeItem("pendingUpdate");
       modal.remove();
+      // reload page to activate new SW
+      window.location.reload();
     });
   };
 
-  // --- Load version and handle updates ---
   const updateVersion = async () => {
     try {
       const versionData = await fetch(`${baseURL}version.json?t=${Date.now()}`).then(r => r.json());
@@ -283,29 +282,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
 
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        // only show modal if SW is waiting
         navigator.serviceWorker.addEventListener('message', (event) => {
           if (event.data && event.data.type === "NEW_VERSION") {
             localStorage.setItem("pendingUpdate", "true");
+            showUpdateModalIfPending();
           }
         });
 
-        // Ask SW if a new version exists
+        // ask SW if update is available
         navigator.serviceWorker.controller.postMessage("checkForUpdate");
+
+        // if update was pending from last visit
+        if (localStorage.getItem("pendingUpdate") === "true") {
+          showUpdateModalIfPending();
+        }
       }
     } catch (err) {
       console.log("Failed to load version.json", err);
     }
-
-    // Show modal if an update is pending
-    showUpdateModalIfPending();
   };
-
-  // Reload page when new SW takes control
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      window.location.reload();
-    });
-  }
 
   updateVersion();
 });
