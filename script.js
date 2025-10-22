@@ -20,62 +20,13 @@ const seriousCommon = `
 
 // --- CATEGORY DEFINITIONS ---
 const categoryDefinitions = {
-  "C": `
-    <h3>Critical (C) Faults:</h3>
-    <p>
-      Critical faults booked during a safety preparation must not enter service. 
-      Critical faults booked in running must be removed from service as soon as possible, 
-      detraining passengers at the first available station, with the train shunting at a stabling siding 
-      as directed by the Train Controller Metrol if safe to do so.
-    </p>
-  `,
-  "MNT": `
-    <h3>Maintenance (MNT) Faults:</h3>
-    <p>
-      A Maintenance fault will be reviewed via the FMP system within 24 hours of submission. 
-      Maintenance faults will be prioritised, attended and rectified if possible or 
-      the FMP system annotated to reflect when the fault will be rectified.
-    </p>
-  `,
-  "RIR": `
-    <h3>Rectified in Running (RIR):</h3>
-    <p>
-      Fault rectified in running. TMM/FWN(s) to be removed by Driver. 
-      Will be reviewed via the FMP system.
-    </p>
-  `,
-  "S": `
-    <h3>Serious (S) Faults:</h3>
-    <p>
-      When a Serious fault is identified, the train may enter and/or remain in revenue , 
-      but will be removed from  as soon as reasonably practical, 
-      but not later than the end of scheduled s for that day (including those after 00:00).
-    </p>
-    ${seriousCommon}
-  `,
-  "S-PRTY": `
-    <h3>Serious Priority (S-PRTY):</h3>
-    <p>
-      Given a higher priority to be removed from  than other serious faults.
-    </p>
-    ${seriousCommon}
-  `,
-  "S-RETN": `
-    <h3>Serious Return Run (S-RETN):</h3>
-    <p>
-      After the defective leading cab arrives at its current destination, 
-      the train will not be driven from that cab again in revenue  until the fault is rectified.
-    </p>
-    ${seriousCommon}
-  `,
-  "S-ENDR": `
-    <h3>Serious End Run (S-ENDR):</h3>
-    <p>
-      May be driven in revenue  from the current non–defective cab 
-      as far as the Metro network allows. The defective cab must not be driven from in revenue .
-    </p>
-    ${seriousCommon}
-  `
+  "C": `<h3>Critical (C) Faults:</h3><p>Critical faults booked during a safety preparation must not enter service. Critical faults booked in running must be removed from service as soon as possible, detraining passengers at the first available station, with the train shunting at a stabling siding as directed by the Train Controller Metrol if safe to do so.</p>`,
+  "MNT": `<h3>Maintenance (MNT) Faults:</h3><p>A Maintenance fault will be reviewed via the FMP system within 24 hours of submission. Maintenance faults will be prioritised, attended and rectified if possible or the FMP system annotated to reflect when the fault will be rectified.</p>`,
+  "RIR": `<h3>Rectified in Running (RIR):</h3><p>Fault rectified in running. TMM/FWN(s) to be removed by Driver. Will be reviewed via the FMP system.</p>`,
+  "S": `<h3>Serious (S) Faults:</h3><p>When a Serious fault is identified, the train may enter and/or remain in revenue , but will be removed from  as soon as reasonably practical, but not later than the end of scheduled s for that day (including those after 00:00).</p>${seriousCommon}`,
+  "S-PRTY": `<h3>Serious Priority (S-PRTY):</h3><p>Given a higher priority to be removed from  than other serious faults.</p>${seriousCommon}`,
+  "S-RETN": `<h3>Serious Return Run (S-RETN):</h3><p>After the defective leading cab arrives at its current destination, the train will not be driven from that cab again in revenue  until the fault is rectified.</p>${seriousCommon}`,
+  "S-ENDR": `<h3>Serious End Run (S-ENDR):</h3><p>May be driven in revenue  from the current non–defective cab as far as the Metro network allows. The defective cab must not be driven from in revenue .</p>${seriousCommon}`
 };
 
 // --- MAIN SCRIPT ---
@@ -89,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultCategory = document.getElementById("resultCategory");
   const docInfo = document.getElementById("docInfo");
   const definitionsBox = document.getElementById("definitionsBox");
-  const updateToast = document.getElementById("updateToast");
+  const footerVersion = document.getElementById("appVersion");
 
   const categoryMap = {
     "C": { text: "C - Critical" },
@@ -287,23 +238,56 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === tosModal) tosModal.classList.remove("show");
   });
 
-  // --- SERVICE WORKER UPDATE CHECK ---
-  if (navigator.serviceWorker.controller) {
-    navigator.serviceWorker.addEventListener("message", (event) => {
-      if (event.data && event.data.type === "NEW_VERSION") {
-        // show toast
-        if (!document.getElementById("updateToast")) {
-          const toast = document.createElement("div");
-          toast.id = "updateToast";
-          toast.textContent = "A new version is available — click to reload";
-          toast.style = "position:fixed;bottom:20px;right:20px;padding:10px 15px;background:#1E90FF;color:#fff;border-radius:5px;cursor:pointer;z-index:10000;";
-          toast.addEventListener("click", () => window.location.reload());
-          document.body.appendChild(toast);
-        }
-      }
-    });
+  // --- VERSION & UPDATE MODAL ---
+  const updateModalId = "updateModal";
 
-    // ask SW if a new version exists
-    navigator.serviceWorker.controller.postMessage("checkForUpdate");
-  }
+  const showUpdateModal = () => {
+    if (document.getElementById(updateModalId)) return;
+    const modal = document.createElement("div");
+    modal.id = updateModalId;
+    modal.style = `
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.5); display:flex; justify-content:center; align-items:center;
+      z-index:10000;
+    `;
+    const box = document.createElement("div");
+    box.style = `
+      background: #fff; padding: 20px; border-radius: 8px; text-align:center; max-width:300px;
+    `;
+    box.innerHTML = `
+      <p>A new version of the app is available.</p>
+      <button id="installUpdate" style="padding:8px 15px;margin-top:10px;">Install Update</button>
+    `;
+    modal.appendChild(box);
+    document.body.appendChild(modal);
+
+    document.getElementById("installUpdate").addEventListener("click", () => {
+      if (navigator.serviceWorker.waiting) {
+        navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
+      }
+      modal.remove();
+    });
+  };
+
+  const updateVersion = async () => {
+    try {
+      const versionData = await fetch(`${baseURL}version.json?t=${Date.now()}`).then(r => r.json());
+      const currentVersion = versionData.version || "v1.0.0";
+      if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
+
+      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === "NEW_VERSION") {
+            showUpdateModal();
+          }
+        });
+        navigator.serviceWorker.controller.postMessage("checkForUpdate");
+      }
+    } catch (err) {
+      console.log("Failed to load version.json", err);
+    }
+  };
+
+  updateVersion();
 });
