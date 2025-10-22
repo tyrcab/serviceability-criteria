@@ -1,100 +1,61 @@
-// ✅ Current app version (auto-bumped by GitHub Action)
-const APP_VERSION = "v1.0.11"; // will be updated automatically by bump-version.js
-
-// Static assets to cache (no SW or version.json!)
-const urlsToCache = [
-  "./",
-  "./index.html",
-  "./style.css",
-  "./script.js",
-  "./trains.json",
-  "./comeng.json",
-  "./siemens.json",
-  "./Xtrapolis.json",
-  "./hcmt.json",
-  "./manifest.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png"
+const CACHE_NAME = 'train-app-v2';
+const ASSETS_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/script.js',
+  '/trains.json',
+  '/comeng.json',
+  '/siemens.json',
+  '/Xtrapolis.json',
+  '/hcmt.json',
+  '/version.json',
+  '/style.css' // add your CSS if exists
 ];
 
-const CACHE_NAME = `scg-cache-${APP_VERSION}`;
-
-// --- Install: cache static assets ---
-self.addEventListener("install", (event) => {
+// Install event — cache assets
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS_TO_CACHE))
   );
-  self.skipWaiting();
+  self.skipWaiting(); // optional: immediately activate SW
 });
 
-// --- Activate: clear old caches ---
-self.addEventListener("activate", (event) => {
+// Activate event — cleanup old caches
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys
-          .filter((key) => key.startsWith("scg-cache-") && key !== CACHE_NAME)
-          .map((key) => caches.delete(key))
-      );
-    })
-  );
-  self.clients.claim();
-});
-
-// --- Fetch handler ---
-self.addEventListener("fetch", (event) => {
-  const url = new URL(event.request.url);
-
-  // Don't cache the service worker itself or version.json
-  if (url.pathname.endsWith("service-worker.js") || url.pathname.endsWith("version.json")) {
-    event.respondWith(fetch(event.request));
-    return;
-  }
-
-  // JSON: network-first
-  if (url.pathname.endsWith(".json")) {
-    event.respondWith(
-      fetch(event.request)
-        .then((res) => {
-          if (res.ok) {
-            const clone = res.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return res;
-        })
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  // Static: cache-first
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return (
-        cached ||
-        fetch(event.request).then((res) => {
-          if (res.ok) {
-            const clone = res.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return res;
-        })
-      );
-    })
-  );
-});
-
-// --- Bonus: check for updates manually ---
-self.addEventListener("message", (event) => {
-  if (event.data === "checkForUpdate") {
-    fetch("./version.json")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.version && data.version !== APP_VERSION) {
-          // New version detected
-          event.source.postMessage({ type: "NEW_VERSION" });
-        }
+    caches.keys().then(keys => Promise.all(
+      keys.map(key => {
+        if (key !== CACHE_NAME) return caches.delete(key);
       })
-      .catch(() => console.log("No version update available."));
+    ))
+  );
+  self.clients.claim(); // take control of all pages
+});
+
+// Fetch event — serve from cache first, then network
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request);
+    })
+  );
+});
+
+// Listen for messages from page
+self.addEventListener('message', event => {
+  if (event.data === 'checkForUpdate') {
+    // Notify client if a new service worker is waiting
+    if (self.registration.waiting) {
+      sendMessageToClients({ type: 'NEW_VERSION' });
+    }
+  } else if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting(); // activate new SW immediately
   }
 });
+
+// Helper: send message to all clients
+function sendMessageToClients(msg) {
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => client.postMessage(msg));
+  });
+}
