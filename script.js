@@ -29,7 +29,6 @@ const categoryDefinitions = {
   "S-ENDR": `<h3>Serious End Run (S-ENDR):</h3><p>May be driven in revenue  from the current non–defective cab as far as the Metro network allows. The defective cab must not be driven from in revenue .</p>${seriousCommon}`
 };
 
-// --- MAIN SCRIPT ---
 document.addEventListener("DOMContentLoaded", () => {
   const trainSelect = document.getElementById("trainType");
   const hcmtConditionSelect = document.getElementById("hcmtCondition");
@@ -54,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
 
-  // --- Fetch helper with offline fallback ---
+  // --- Fetch helper ---
   const fetchJSON = async (url) => {
     try {
       const response = await fetch(url);
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // --- Load available trains ---
+  // --- Load trains ---
   const loadTrains = async () => {
     trains = await fetchJSON(`${baseURL}trains.json`);
     trainSelect.innerHTML = '<option value="">Select Train Type</option>';
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // --- Load specific train data ---
+  // --- Load train data ---
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
     const json = await fetchJSON(`${baseURL}${jsonFile}?t=${Date.now()}`);
@@ -103,10 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resultBox.style.display = "none";
     definitionsBox.style.display = "none";
 
-    if (!jsonFile) {
-      equipmentSelect.disabled = true;
-      return;
-    }
+    if (!jsonFile) { equipmentSelect.disabled = true; return; }
 
     data = await loadTrainData(jsonFile);
 
@@ -131,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- HCMT Running/Prep selection ---
+  // --- HCMT condition ---
   hcmtConditionSelect.addEventListener("change", () => {
     const condType = hcmtConditionSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -139,10 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resultBox.style.display = "none";
     definitionsBox.style.display = "none";
 
-    if (!condType) {
-      equipmentSelect.disabled = true;
-      return;
-    }
+    if (!condType) { equipmentSelect.disabled = true; return; }
 
     Object.keys(data).forEach(eq => {
       const option = document.createElement("option");
@@ -161,15 +154,10 @@ document.addEventListener("DOMContentLoaded", () => {
     resultBox.style.display = "none";
     definitionsBox.style.display = "none";
 
-    if (!equipment) {
-      faultSelect.disabled = true;
-      return;
-    }
+    if (!equipment) { faultSelect.disabled = true; return; }
 
     let faultsArray = data[equipment];
-    if (trainSelect.value === "hcmt.json" && hcmtCond) {
-      faultsArray = data[equipment][hcmtCond] || [];
-    }
+    if (trainSelect.value === "hcmt.json" && hcmtCond) faultsArray = data[equipment][hcmtCond] || [];
 
     faultsArray.forEach(fault => {
       const option = document.createElement("option");
@@ -177,7 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
       option.textContent = fault.condition;
       faultSelect.appendChild(option);
     });
-
     faultSelect.disabled = faultsArray.length === 0;
   });
 
@@ -199,11 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!selectedFault) return;
 
     resultCondition.textContent = selectedFault.condition;
-
-    const catKey = selectedFault.category
-      ? selectedFault.category.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase()
-      : "";
-
+    const catKey = selectedFault.category?.replace(/[^\x20-\x7E]/g, "").trim().toUpperCase() || "";
     const categoryInfo = categoryMap[catKey] || { text: selectedFault.category || "Unknown" };
     resultCategory.textContent = categoryInfo.text;
 
@@ -227,16 +210,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const tosLink = document.getElementById("tosLink");
   const tosModal = document.getElementById("tosModal");
   const tosClose = tosModal.querySelector(".close");
-
-  tosLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    tosModal.classList.add("show");
-  });
-
+  tosLink.addEventListener("click", e => { e.preventDefault(); tosModal.classList.add("show"); });
   tosClose.addEventListener("click", () => tosModal.classList.remove("show"));
-  tosModal.addEventListener("click", (e) => {
-    if (e.target === tosModal) tosModal.classList.remove("show");
-  });
+  tosModal.addEventListener("click", e => { if (e.target === tosModal) tosModal.classList.remove("show"); });
 
   // --- VERSION & UPDATE MODAL ---
   const updateModalId = "updateModal";
@@ -265,9 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(modal);
 
     document.getElementById("installUpdate").addEventListener("click", () => {
-      if (navigator.serviceWorker.waiting) {
-        navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
-      }
+      if (navigator.serviceWorker.waiting) navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
       localStorage.removeItem("pendingUpdate");
       modal.remove();
       window.location.reload();
@@ -281,8 +255,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
 
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        navigator.serviceWorker.addEventListener('message', (event) => {
-          if (event.data && event.data.type === "NEW_VERSION") {
+        navigator.serviceWorker.addEventListener('message', event => {
+          if (event.data?.type === "NEW_VERSION") {
             localStorage.setItem("pendingUpdate", "true");
             showUpdateModalIfPending();
           }
@@ -290,13 +264,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         navigator.serviceWorker.controller.postMessage("checkForUpdate");
 
-        if (localStorage.getItem("pendingUpdate") === "true") {
-          showUpdateModalIfPending();
-        }
+        if (localStorage.getItem("pendingUpdate") === "true") showUpdateModalIfPending();
       }
-    } catch (err) {
-      console.log("Failed to load version.json", err);
-    }
+    } catch (err) { console.log("Failed to load version.json", err); }
   };
 
   updateVersion();
