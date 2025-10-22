@@ -238,11 +238,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === tosModal) tosModal.classList.remove("show");
   });
 
-  // --- VERSION & UPDATE MODAL ---
+  // --- VERSION & SOFT UPDATE MODAL ---
   const updateModalId = "updateModal";
 
-  const showUpdateModal = () => {
+  const showUpdateModalIfPending = () => {
+    const pendingUpdate = localStorage.getItem("pendingUpdate");
+    if (!pendingUpdate) return;
+
     if (document.getElementById(updateModalId)) return;
+
     const modal = document.createElement("div");
     modal.id = updateModalId;
     modal.style = `
@@ -266,10 +270,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (navigator.serviceWorker.waiting) {
         navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
       }
+      localStorage.removeItem("pendingUpdate");
       modal.remove();
     });
   };
 
+  // --- Load version and handle updates ---
   const updateVersion = async () => {
     try {
       const versionData = await fetch(`${baseURL}version.json?t=${Date.now()}`).then(r => r.json());
@@ -279,15 +285,27 @@ document.addEventListener("DOMContentLoaded", () => {
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
         navigator.serviceWorker.addEventListener('message', (event) => {
           if (event.data && event.data.type === "NEW_VERSION") {
-            showUpdateModal();
+            localStorage.setItem("pendingUpdate", "true");
           }
         });
+
+        // Ask SW if a new version exists
         navigator.serviceWorker.controller.postMessage("checkForUpdate");
       }
     } catch (err) {
       console.log("Failed to load version.json", err);
     }
+
+    // Show modal if an update is pending
+    showUpdateModalIfPending();
   };
+
+  // Reload page when new SW takes control
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      window.location.reload();
+    });
+  }
 
   updateVersion();
 });
