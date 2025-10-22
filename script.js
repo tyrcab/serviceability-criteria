@@ -1,4 +1,4 @@
-let data = {}; 
+let data = {};
 let trains = [];
 const cache = {};
 
@@ -42,6 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const definitionsBox = document.getElementById("definitionsBox");
   const footerVersion = document.getElementById("appVersion");
 
+  const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
+
   const categoryMap = {
     "C": { text: "C - Critical" },
     "MNT": { text: "MNT - Maintenance" },
@@ -52,12 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "S-RETN": { text: "S-RETN - Serious Return Run" }
   };
 
-  const baseURL = window.location.origin + window.location.pathname.replace(/index\.html$/, "");
-
   // --- Fetch helper with offline fallback ---
   const fetchJSON = async (url) => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch {
@@ -79,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // --- Load specific train data ---
   const loadTrainData = async (jsonFile) => {
     if (!jsonFile) return {};
     const json = await fetchJSON(`${baseURL}${jsonFile}?t=${Date.now()}`);
@@ -89,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadTrains();
 
-  // --- Train selection ---
+  // --- Train & HCMT selection logic ---
   trainSelect.addEventListener("change", async () => {
     const jsonFile = trainSelect.value;
     docInfo.textContent = trainDocs[jsonFile] || "";
@@ -131,7 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- HCMT Running/Prep selection ---
   hcmtConditionSelect.addEventListener("change", () => {
     const condType = hcmtConditionSelect.value;
     equipmentSelect.innerHTML = '<option value="">Select Equipment Fault</option>';
@@ -153,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
     equipmentSelect.disabled = false;
   });
 
-  // --- Equipment selection ---
   equipmentSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const hcmtCond = hcmtConditionSelect.value;
@@ -181,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
     faultSelect.disabled = faultsArray.length === 0;
   });
 
-  // --- Fault selection ---
   faultSelect.addEventListener("change", () => {
     const equipment = equipmentSelect.value;
     const fault = faultSelect.value;
@@ -238,15 +234,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === tosModal) tosModal.classList.remove("show");
   });
 
-  // --- VERSION & UPDATE MODAL ---
-  const updateModalId = "updateModal";
+  // --- PWA UPDATE WORKFLOW ---
+  const showUpdateModal = (worker, version) => {
+    if (document.getElementById("updateModal")) return;
 
-  const showUpdateModalIfPending = () => {
-    if (!navigator.serviceWorker.waiting) return;
-    if (document.getElementById(updateModalId)) return;
+    localStorage.setItem("lastNotifiedVersion", version);
 
     const modal = document.createElement("div");
-    modal.id = updateModalId;
+    modal.id = "updateModal";
     modal.style = `
       position: fixed;
       top:0; left:0; width:100%; height:100%;
@@ -265,10 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(modal);
 
     document.getElementById("installUpdate").addEventListener("click", () => {
-      if (navigator.serviceWorker.waiting) {
-        navigator.serviceWorker.waiting.postMessage({ type: "SKIP_WAITING" });
-      }
-      localStorage.removeItem("pendingUpdate");
+      if (worker) worker.postMessage({ type: "SKIP_WAITING" });
       modal.remove();
       window.location.reload();
     });
@@ -276,22 +268,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateVersion = async () => {
     try {
-      const versionData = await fetch(`${baseURL}version.json?t=${Date.now()}`).then(r => r.json());
-      const currentVersion = versionData.version || "v1.0.0";
-      if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
+      const versionData = await fetchJSON(`${baseURL}version.json?t=${Date.now()}`);
+      const latestVersion = versionData.version || "v1.0.0";
+      const lastNotifiedVersion = localStorage.getItem("lastNotifiedVersion");
 
-      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        navigator.serviceWorker.addEventListener('message', (event) => {
-          if (event.data && event.data.type === "NEW_VERSION") {
-            localStorage.setItem("pendingUpdate", "true");
-            showUpdateModalIfPending();
+      if (footerVersion) footerVersion.textContent = `Version: ${latestVersion}`;
+      if (latestVersion === lastNotifiedVersion) return;
+
+      if ('serviceWorker' in navigator) {
+        const registration = await navigator.serviceWorker.getRegistration();
+        if (registration) {
+          if (registration.waiting) {
+            showUpdateModal(registration.waiting, latestVersion);
           }
-        });
 
-        navigator.serviceWorker.controller.postMessage("checkForUpdate");
-
-        if (localStorage.getItem("pendingUpdate") === "true") {
-          showUpdateModalIfPending();
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                showUpdateModal(newWorker, latestVersion);
+              }
+            });
+          });
         }
       }
     } catch (err) {
@@ -299,5 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // --- Run version check on load and every 30 min ---
   updateVersion();
+  setInterval(updateVersion, 30 * 60 * 1000);
 });
