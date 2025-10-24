@@ -279,7 +279,13 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const versionData = await fetch(`${baseURL}version.json?t=${Date.now()}`).then(r => r.json());
       const currentVersion = versionData.version || "v1.0.0";
-      if (footerVersion) footerVersion.textContent = `Version: ${currentVersion}`;
+      const buildTime = versionData.buildTime || "";
+
+      if (footerVersion) {
+        const datePart = buildTime.split(",")[0]?.trim();
+        const versionDisplay = datePart ? `Version: ${currentVersion} (${datePart})` : `Version: ${currentVersion}`;
+        footerVersion.textContent = versionDisplay;
+      }
 
       if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
         navigator.serviceWorker.addEventListener('message', (event) => {
