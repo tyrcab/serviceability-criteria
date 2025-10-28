@@ -8,7 +8,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-QXJCCZQT99');
 </script>
   
@@ -53,6 +52,34 @@
     @keyframes fadein {
       from { opacity: 0; transform: translateX(-50%) translateY(10px); }
       to { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    /* --- One-time Update Message Styling --- */
+    #versionPopup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1E90FF;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-family: 'Segoe UI', sans-serif;
+      z-index: 10000;
+      text-align: center;
+      max-width: 90%;
+      display: none;
+    }
+    #versionPopup button {
+      background: white;
+      color: #1E90FF;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -127,17 +154,55 @@
 
   <!-- FOOTER -->
   <footer class="app-footer">
-  <div>
-    <span id="appVersion">Version: v1.0.0</span>
-  </div>
-  <div>
-    If there are any incorrect serviceability criteria guidelines please send an email to 
-    <a href="mailto:tyroncabral@gmail.com">tyroncabral@gmail.com</a>
-  </div>
-</footer>
+    <div>
+      <span id="appVersion">Version: v1.0.0</span>
+    </div>
+    <div>
+      If there are any incorrect serviceability criteria guidelines please send an email to 
+      <a href="mailto:tyroncabral@gmail.com">tyroncabral@gmail.com</a>
+    </div>
+  </footer>
 
   <!-- Toast for updates -->
   <div id="updateToast">🔄 A new version is available — updating...</div>
+
+  <!-- 🔔 One-time Update Popup -->
+  <div id="versionPopup"></div>
+
+  <!-- ✅ Version.json One-time Update Logic -->
+  <script>
+  async function checkForAppUpdate() {
+    try {
+      const res = await fetch('version.json?v=' + Date.now());
+      const data = await res.json();
+      const currentVersion = data.version;
+      const lastSeen = localStorage.getItem('lastSeenVersion');
+
+      if (currentVersion !== lastSeen) {
+        showVersionPopup(data);
+        localStorage.setItem('lastSeenVersion', currentVersion);
+      }
+    } catch (err) {
+      console.error('Error checking version.json:', err);
+    }
+  }
+
+  function showVersionPopup(data) {
+    const buildDate = data.buildTime ? data.buildTime.split(',')[0].trim() : '';
+    const popup = document.getElementById('versionPopup');
+    popup.innerHTML = `
+      🚀 <strong>Updated to ${data.version}</strong><br>
+      ${buildDate} — ${data.updateMessage || 'New data or features have been added!'}
+      <br><button id="dismissPopup">OK</button>
+    `;
+    popup.style.display = 'block';
+    document.getElementById('dismissPopup').addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+  }
+
+  window.addEventListener('load', checkForAppUpdate);
+  </script>
 
   <!-- 🔧 SERVICE WORKER + AUTO-UPDATE LOGIC -->
   <script>
@@ -170,7 +235,7 @@
               caches.keys()
                 .then(keys => Promise.all(keys.map(k => caches.delete(k))))
                 .finally(() => location.reload(true));
-            }, 1500); // brief delay so user sees message
+            }, 1500);
           }
         });
       } catch (err) {
